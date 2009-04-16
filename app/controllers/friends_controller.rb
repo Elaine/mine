@@ -1,17 +1,23 @@
 class FriendsController < ApplicationController
+  before_filter :login_required, :only => [:new, :destroy, :update]
+  layout 'space'
   def index
     @user = User.find(params[:user_id])
-    @friends = @user.friendships.find(:all, :conditions => {:passed => true})
+    @space = @user.space
+    @friends = @user.friendships.find(:all, :conditions => {:passed => true}).paginate :page => params[:page], :per_page => 10
+ #   @friends = @user.friendships.paginate :page => params[:page], :per_page => 10
   end
 
   #我的申请
   def myrequest
-    @friends = Friendship.find_all_by_user_id(logged_in_user, :conditions => {:passed => false})
+    @space = logged_in_user.space
+    @friends = Friendship.find_all_by_user_id(logged_in_user, :conditions => {:passed => false}).paginate :page => params[:page], :per_page => 10
   end
 
   #申请我的
   def needpassed
-    @friends = Friendship.find_all_by_friend_id(logged_in_user, :conditions => {:passed => false})
+    @space = logged_in_user.space
+    @friends = Friendship.find_all_by_friend_id(logged_in_user, :conditions => {:passed => false}).paginate :page => params[:page], :per_page => 10
   end
 
   def new
@@ -29,10 +35,9 @@ class FriendsController < ApplicationController
   end
 
   def destroy
-    #@user =  User.find(logged_in_user)
     @user =  logged_in_user
     #@friendship = @user.friendships.find_by_friend_id(params[:id]).destroy
-    @friendship = Friendships.find_by_user_id_and_friend_id(@user,params[:id]).destroy
+    @friendship = @user.friendships.find_by_friend_id(params[:id]).destroy
     redirect_to user_friends_path(:user_id => @user)
   end
 

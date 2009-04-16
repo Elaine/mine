@@ -1,0 +1,4 @@
+module Validates
+  protected
+
+end

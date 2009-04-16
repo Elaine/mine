@@ -1,0 +1,129 @@
+<div id="main">
+<div class="auto_t_r w960">
+    <div class="auto_t_l">&nbsp;</div>
+       <div class="auto_b_r"><div class="auto_b_l">
+	   <div class="member">
+     <div class="content_t">等级排行榜</div>
+    <div class="content_c">
+      <table border="0" cellpadding="0" cellspacing="0" width="315">
+        <tbody><tr>
+            <td align="left">排名</td>
+            <td>用户</td>
+            <td align="center">点评数</td>
+          </tr>
+          <% @gradelist.each_with_index do |item, index|%>
+            <tr>
+              <td align="left" width="40"><%= index+1 %> .</td>
+              <td width="196">
+                 <% if item.avatar %>
+                  <%= link_to image_tag(item.avatar.public_filename(:tiny)), user_path(:id => item)%>
+                <% else %>
+                  <%= image_tag("../images/noface_tiny.jpg") %>
+                <% end %>
+                <%= link_to item.login_name, user_path(:id => item)%></td>
+              <td align="center" width="79"><%= item.grade.name %></td>
+            </tr>
+          <% end %>
+      </tbody></table>
+    </div>
+	</div>
+	<div class="member">
+    <div class="content_t">点评排行榜</div>
+    <div class="content_c">
+      <table border="0" cellpadding="0" cellspacing="0" width="315">
+        <tbody><tr>
+            <td align="left">排名</td>
+            <td>用户</td>
+            <td align="center">点评数</td>
+          </tr>
+          <% @votelist.each_with_index do |item, index|%>
+            <tr>
+              <td align="left" width="40"><%= index+1 %> .</td>
+              <td width="196">
+                <% if item.avatar %>
+                  <%= link_to image_tag(item.avatar.public_filename(:tiny)), user_path(:id => item)%>
+                <% else %>
+                  <%= image_tag("../images/noface_tiny.jpg") %>
+                <% end %>
+                <%= link_to item.login_name, user_path(:id => item)%></td>
+              <td align="center" width="79"><%= item.votes_count %></td>
+            </tr>
+          <% end %>
+      </tbody></table>
+    </div>
+	</div>
+	<div class="member">
+      <div class="content_t">小白论坛发贴排行榜</div>
+      <div class="content_c">
+        <table border="0" cellpadding="0" cellspacing="0" width="315">
+          <tbody><tr>
+              <td align="left" width="40">排名</td>
+              <td width="212">用户</td>
+              <td align="center" width="63">发贴数</td>
+            </tr>
+            <tr>
+              <% @postlist.each_with_index do |item, index|%>
+                <td align="left" valign="top" width="40"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tbody><tr>
+                        <td align="left" height="24"><%= index+1 %>.</td>
+                      </tr>
+                </tbody></table></td>
+                <td colspan="2" valign="top">
+                  <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <td width="212">
+                <% if item.avatar %>
+                  <%= link_to image_tag(item.avatar.public_filename(:tiny)), user_path(:id => item)%>
+                <% else %>
+                  <%= image_tag("../images/noface_tiny.jpg") %>
+                <% end %>
+                      <%= link_to item.login_name, user_path(:id => item) %>
+                    </td>
+                    <td align="center" width="63"><%= item.posts_count %></td>
+              </tr></tbody></table>
+            </td>
+          </tr> 
+        <% end %>
+    </tbody></table>
+  </div>
+  </div>
+<div class="member">
+  <div class="content_t">问答排行榜</div>
+  <div class="content_c">
+        <table border="0" cellpadding="0" cellspacing="0" width="315">
+          <tbody><tr>
+              <td align="left" width="40">排名</td>
+              <td width="212">用户</td>
+              <td align="center" width="63">答题数</td>
+            </tr>
+            <tr>
+              <% @answerlist.each_with_index do |item, index|%>
+                <td align="left" valign="top" width="40"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tbody><tr>
+                        <td align="left" height="24"><%= index+1 %>.</td>
+                      </tr>
+                </tbody></table></td>
+                <td colspan="2" valign="top">
+                  <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <td width="212">
+                <% if item.avatar %>
+                  <%= link_to image_tag(item.avatar.public_filename(:tiny)), user_path(:id => item)%>
+                <% else %>
+                  <%= image_tag("../images/noface_tiny.jpg") %>
+                <% end %>
+                      <%= link_to item.login_name, user_path(:id => item) %>
+                    </td>
+                    <td align="center" width="63"><%= item.answers_count %></td>
+              </tr></tbody></table>
+            </td>
+          </tr> 
+        <% end %>
+    </tbody></table>
+  </div>
+  </div>
+
+  <div class="clear"></div>
+  
+</div>
+</div>
+</div>
+<div class="clear"></div>

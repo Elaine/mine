@@ -1,0 +1,26 @@
+<div class="main top">
+<div id="title">上传照片</div>
+<div id="subtitle"><%= link_to '查看所有照片', business_serve_photos_path %></div>
+<div id="photoadd">
+  <% form_for :servephoto, :url => business_serve_photos_path, :html => {:multipart => true} do |f|%>
+<ul>
+   <li class="left">选择照片：</li>
+   <li class="right">
+     <label>
+       <%= f.file_field :uploaded_data %>
+     </label>
+   </li>
+   <li class="left">照片名称：</li>
+   <li class="right">
+   <label><%= f.text_field :title %> </label>
+   </li>
+   <li class="left"></li>
+   <li class="butten">
+   <label><%= submit_tag '上传' %> </label>
+   </li>
+   </ul>
+ <% end %>
+</div>
+<div class="clear">&nbsp;</div>
+</div>
+

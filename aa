@@ -1,0 +1,43 @@
+<% if is_logged_in? %>
+  <%= link_to 'Logout', logout_path %>
+  <%= link_to '论坛', forums_path%>
+  <%= link_to '知道', askhome_path  %>
+  <%= link_to '登记店铺', login_path %>
+  <%= link_to '商店', shops_path %>
+  <%= link_to '发布消息', new_info_path %>
+  <%= link_to '分类消息', infos_path %>
+  <%= link_to '消费点评', votes_path %>
+  <%= link_to '企业俱乐部', company_index_path %>
+  <p>
+  <%= link_to '给管理员发信', new_admin_message_path(:admin => "admin")%>
+  </p>
+  产品分类
+  <br/>
+  <div class="mod" id="subnav">
+    <div class="bgtop"></div>
+    <div class="modbox">
+      <dl>
+        <% for category in @parent_categories %>
+          <dt><%= link_to category.name, shops_path(:category_id => category) %></dt>
+          <dd>
+          <% category.subcategories.each do |sub| -%>
+            <%= link_to sub.name, shops_path(:category_id => sub) %>
+          <% end %>
+          </dd>
+        <% end -%>
+      </dl>
+    </div>
+    <div class="bgbottom"></div>
+  </div>
+  </p>
+<% else %>
+  <%= link_to '登录', login_path %>
+<% end %>
+
+
+<dt><%= link_to parent_category.name, listpage_doc_path(:name => parent_category.name) %></dt>
+<dd>
+<% parent_category.product_children.each do |child| -%>
+  <%= link_to child.name, listpage_doc_path(:name => child.name)%>
+<% end %>
+</dd>

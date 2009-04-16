@@ -1,0 +1,97 @@
+<div id="body_bg">
+<div id="main">
+<!--头部-->
+<div id="header">
+  <div id="header_sub1">
+    <ul>
+      <li><a href="#">工作台</a></li>
+      <li><a href="#">帮助</a></li>
+    </ul>
+  </div>
+  <div class="clear"></div>
+  <div id="header_messasge"> 您有<a href="#">20</a>条外来信息 </div>
+  <div id="header_menu">
+    <ul>
+      <li><%= link_to '退出管理', :action => 'logout'%></li>
+      <li><a href="#">问题反馈</a></li>
+      <li><a  href="#">首页</a></li>
+    </ul>
+  </div>
+</div>
+<div class="clear"></div>
+<!--左侧内容-->
+   <div id="frmTitle">
+    <iframe frameBorder="0" id="carnoc" name="carnoc" scrolling="no" src="" style="HEIGHT: 10px; VISIBILITY: inherit; WIDTH: 1px; Z-INDEX: 2">
+	</iframe> 
+	 <div id="welcome">
+</div>
+	 <div id="menu">
+	 <ul>
+   <li><%= link_to '用户管理', admin_users_path %></li>
+	   <li><%= link_to '样式管理', admin_theme_categories_path %></li>
+       <li><%= link_to '信息管理', admin_info_categories_path %></li>
+       <li><%= link_to '企业管理', admin_company_categories_path %></li>
+	   <li><%= link_to '知道管理', admin_ask_categories_path %></li>
+       <li><%= link_to '点评管理', admin_serve_categories_path %></li>
+       <li><%= link_to '等级管理', admin_grades_path %></li>
+	   <li></li>
+	   <li></li>
+	   <li></li>
+	   <li></li>
+	   <li></li>
+	    <li></li>
+	   <li></li>
+
+	 </ul>
+	 </div><div class="clear"></div>
+	 <div id="search">
+	   <input name="text" type="text" />
+	   <button type="submit" id="search_bottom">搜索</button>
+	 </div>
+   </div>
+       
+   <div id="frmcontent" style="display:block">
+    <div id="top_sub_menu"><div id="top_sub_l">
+     <div id="l_menu">
+	  <ul>  
+	     <li>修改密码</li>
+	  </ul>
+	</div>
+   </div></div><div class="clear"></div>
+   <div id="index_content_01">
+    <% if flash[:notice] %>
+     <%= flash[:notice] %>
+     <% end %>
+     <% if flash[:error] %>
+    <%= flash[:error] %>
+   <% end %>
+   <% form_for :admin, :url => {:controller => 'home', :action => 'update'}, :html => {:method => :put} do |f|%>
+  <table border="0" cellpadding="5" cellspacing="0" width="100%">
+    <tbody><tr>
+        <td width="13%">当前密码：</td>
+        <td width="87%"><%= f.password_field :oldpassword, :class => 'input'%></td>
+      </tr>
+      <tr>
+        <td>新密码：</td>
+        <td><%= f.password_field :password, :class => 'input' %></td>
+      </tr>
+      <tr>
+        <td>确认新密码：</td>
+        <td><%= f.password_field :password_confirmation, :class => 'input' %></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td><label>
+            <%= submit_tag '提交修改', :class => 'button' %>
+        </label></td>
+      </tr>
+  </tbody></table>
+<% end %>
+   </div><div class="clear"></div>
+   <div id="bot_c"><div id="bot_l"></div></div>
+  </div>
+   <div class="clear"></div>
+   <div id="footer"><div id="f_b_l">
+   </div></div>
+</div>
+</div>

@@ -1,0 +1,11 @@
+<% @companies.each do |item| %>
+  企业名称:<%= link_to item.login_name, company_path(:id => item) %>
+  企业邮箱:<%= item.company_email %>
+  经理:<%= item.master_name %>
+  企业描述:<%= item.description %>
+  企业地址:<%= item.address %>
+  企业电话:<%= item.phone %>
+  企业传真:<%= item.fax %>
+  企业网址:<%= item.website %>
+<% end %>
+<%= will_paginate @companies, :prev_label => '上一页', :next_label => '下一页'%>

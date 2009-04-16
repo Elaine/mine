@@ -1,1 +1,23 @@
-<%= @space.user.username%>
+<div id="m_pro" class="modbox">
+  <ul>
+    <li class="image"><img src="/images/noface.jpg" width="80" height="80" /></li>
+    <li class="user">
+  <% if @user.user_info.sex == true%>帅哥 <% else %> 美女<% end %>| <%= Time.now.year - @user.user_info.birthday.year %>岁</li>
+    <% if is_logged_in? && logged_in_user.friends.include?(@user) %> <li>My Friend</li>
+    <% elsif is_logged_in? && logged_in_user != @user %>
+      <li class="a">
+      <%= link_to '加为好友', new_user_friend_path(:user_id => logged_in_user, :friend_id => @user)%>
+      </li>
+    <% end %>
+    <li class="a"><%= link_to '修改头像', user_albums_path(:user_id => @user) %></li>
+    <li class="b"><%= link_to '发表文章', new_user_entry_path(:user_id => @user) %> </li>
+    <li class="c"><%= link_to '上传图片', user_albums_path(:user_id => @user) %></li>
+    <li class="desc addr">地点：
+    青岛 </li>
+    <li class="desc">等级：<%= @user.grade.name %> </li>
+    <li class="desc">积分：<%= @user.score %></li>
+    <li class="desc">上次登录：<%= time_ago_in_words(@user.last_activity) %>前</li>
+    <li class="clear">&nbsp;</li>
+  </ul>
+  <div class="clear">&nbsp;</div>
+</div>

@@ -1,0 +1,79 @@
+<div id="main">
+<div class="auto_t_r w960">
+    <div class="auto_t_l">&nbsp;</div>
+  <div class="auto_b_r"><div class="auto_b_l"> 
+  <div class="left" style="width:600px; float:left;">
+  <div id="title">添加新点评</div>
+  <div id="title2">密密麻麻网友情提示：对他人点评内容发表意见请使用“回应”功能</div>
+  <% form_for :vote, :url => vote_index_path(:business_id => @business) do |f|%>
+  <div class="review">
+  <ul >
+   <li class="left">质量：</li>
+   <li class="right">
+   <%= f.radio_button :quality, '1' %><label>很糟糕</label>
+   <%= f.radio_button :quality, '2' %><label>待改进</label>
+   <%= f.radio_button :quality, '3' %><label>一般吧</label>
+   <%= f.radio_button :quality, '4' %><label>还不错</label>
+   <%= f.radio_button :quality, '5' %><label>很满意</label>
+   <div  id="star_1" class="star03"></div>
+   </li>
+   <li class="left">环境：</li>
+   <li class="right">
+   <%= f.radio_button :environment, '1' %><label>很糟糕</label>
+   <%= f.radio_button :environment, '2' %><label>待改进</label>
+   <%= f.radio_button :environment, '3' %><label>一般吧</label>
+   <%= f.radio_button :environment, '4' %><label>还不错</label>
+   <%= f.radio_button :environment, '5' %><label>很满意</label>
+   <div id="star_2" class="star03"></div> 
+   </li>
+   <li class="left">服务：</li>
+   <li class="right">
+   <%= f.radio_button :services, '1' %><label>很糟糕</label>
+   <%= f.radio_button :services, '2' %><label>待改进</label>
+   <%= f.radio_button :services, '3' %><label>一般吧</label>
+   <%= f.radio_button :services, '4' %><label>还不错</label>
+   <%= f.radio_button :services, '5' %><label>很满意</label>
+   <div id="star_3" class="star03"></div>
+   </li>
+   <li class="left">消费情况：</li>
+   <li class="right">
+   <label><%= f.text_field :members %> </label>
+     人，共消费了
+     <label><%= f.text_field :price %> </label>
+     元   </li>
+   <li class="left">消费时间：</li>
+   <li class="right">
+   <%= f.datetime_select :time %> </li>
+   <li class="left">推荐：</li>
+   <li class="right">
+   <label><%= f.text_field :recommend %> </label> 
+     菜品、服务项目等
+   (多个请用空格隔开)</li>
+   <li class="xftitle">消费感受：(1000字以内) &nbsp;</li>
+   <li class="right">
+   <label><%= f.text_area :feel, :rows => 5, :cols => 45 %> </label>
+   </li>
+   <li class="left">
+   <label><%= submit_tag '提交' %> </label>
+   </li>
+  </ul>
+  <div class="clear">&nbsp;</div>
+  </div>
+  <% end %>
+</div>
+  <div id="right" style="width:230px; float:right">
+  <div class="right_t">注意事项</div>
+  <ul>
+<li>1.请不要发表带有辱骂，歧视性内容的点评</li>
+<li>2.请不要发表带有敏感政治性话题的点评</li>
+<li>3.请不要发表无实际内容的点评信息</li>
+<li>4.对他人点评内容发表意见请使用"回应"功能</li>
+<li>5.共同创建和维护良好的网络环境是所有会员的义务和责任。</li>
+<li>6.本网站有权利删除不符合要求的点评条目，如果您的点评被网站维护人员删除请参看以上3条</li>
+</ul>
+</div><div class="clear">&nbsp;</div>
+</div>
+</div>
+</div>
+<div class="clear">&nbsp;</div>
+</div>

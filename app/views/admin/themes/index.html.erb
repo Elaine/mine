@@ -8,3 +8,135 @@
   </p>
 <% end %>
 <%= link_to '添加主题', new_admin_theme_path %>
+mynav"+id).style.display="block";
+				document.getElementById("mynav"+id).style.color="#000000";
+			}
+			else
+			{
+				document.getElementById("usermessage"+id).style.display="none";
+				document.getElementById("mynav"+id).className="";
+				document.getElementById("mynav"+id).style.background="";
+				document.getElementById("mynav"+id).style.color="";
+			}
+		}
+	}
+</script> 
+<div id="body_bg">
+<div id="main">
+<!--头部-->
+<div id="header">
+  <div id="header_sub1">
+    <ul>
+      <li><a href="#">工作台</a></li>
+      <li><a href="#">留言板</a></li>
+      <li><a href="#">帮助</a></li>
+    </ul>
+  </div>
+  <div class="clear"></div>
+  <div id="header_messasge"> 您有<a href="#">20</a>条外来，<a href="#">0</a>条站内信息 </div>
+  <div id="header_menu">
+    <ul>
+      <li><%= link_to '退出管理', :action => 'logout'%></li>
+      <li><a href="#">问题反馈</a></li>
+      <li><a href="#">用户管理</a></li>
+      <li><a  href="#">首页</a></li>
+    </ul>
+  </div>
+</div>
+<div class="clear"></div>
+<!--左侧内容-->
+   <div id="frmTitle">
+    <iframe frameBorder="0" id="carnoc" name="carnoc" scrolling="no" src="" style="HEIGHT: 10px; VISIBILITY: inherit; WIDTH: 1px; Z-INDEX: 2">
+	</iframe> 
+	 <div id="welcome">name欢迎进入本页面
+</div>
+	 <div id="menu">
+	 <ul>
+	   <li><a href="admin_user.html">用户管理</a></li> 
+	   <li class="m_a"><%= link_to '样式管理', admin_theme_categories_path %></li>
+	   <li><a href="admin_message.html">信息管理</a></li>
+	   <li ><a href="admin_company.html">企业管理</a></li>
+	   <li><a href="admin_blog.html">博客管理</a></li>
+	   <li><a href="admin_knows.html">知道管理</a></li>
+	    <li></li>
+	   <li></li>
+	   <li></li>
+	   <li></li>
+	   <li></li>
+	   <li></li>
+	   <li></li>
+	   <li></li>
+	   <li></li>
+	 </ul>
+	 </div><div class="clear"></div>
+	 <div id="search">
+	   <input name="text" type="text" />
+	   <button type="submit" id="search_bottom">f</button>
+	 </div>
+   </div>
+       
+   <div id="frmcontent" style="display:block">
+    <div id="top_sub_menu"><div id="top_sub_l">
+     <div id="l_menu">
+	  <ul>  
+	     <li><a href="#" onclick="javascript:qiehuan(1)" id="mynav1">增加主题</a></li>
+		 <li><a href="#" onclick="javascript:qiehuan(2)" id="mynav2">分类</a></li>
+		 <li><a href="#" onclick="javascript:qiehuan(3)" id="mynav3">查看积分</a></li>
+	  </ul>
+	</div>
+   </div></div><div class="clear"></div>
+   <div id="index_content_01">
+    <div id="usermessage1" style="display:block">
+	<div id="tableFrame">
+    <div id="tableFrameTitle">
+        <ul>
+            <li class="group_block">分类名称</li>
+			<li class="group_block1">主题名称</li>
+			<li class="username">添加主题</li>
+        </ul>
+    </div><div class="clear"></div>
+    <div id="tableCase">
+    <!--此处开始循环 -->
+	 <% @themecategories.each do |category|%>
+       <li class="group_block"> <%= category.name %></li>
+           <% category.themes.each do |theme|%>
+       <li class="group_block1"> <%= theme.name %>|<%= link_to '删除', admin_theme_category_theme_path(:theme_category_id => category.id, :id => theme.id), :method => :delete, :confirm => "Sure?" %> <% end %></li> <% end %>
+        <li class="username"><%= link_to '添加主题', new_admin_theme_path %></li>
+       <!--到此循环结束 -->
+</div><div class="clear"></div>
+	<div id="table_logo">
+	<ul>
+	<li><input type="button" value="删除选中用户" height="25"/></li>
+	 <li><input type="text" width=50 style="width:50px" /></li>
+	 <li><a href="#">首页</a><a href="#">上一页</a><a href="#">下一页</a><a href="#">尾页</a></li>
+	</ul>
+	</div>
+   </div>
+ </div>
+	  <div id="usermessage2" style="display:none">
+<%= javascript_include_tag "prototype"%>
+<%= link_to_function '新建分类', "Element.show('category')" %>
+ <div id="category" style="display: none">
+  <fieldset>
+    <legend>添加分类</legend>
+    <% form_for :themecategory, :url => admin_theme_categories_path do |f| %>
+      <%= f.text_field :name, :class => 'input'%>
+      <%= submit_tag '添加', :class => 'button'%>
+      <%= link_to_function '关闭', "Element.hide('category')" %>
+    <% end %>
+  </fieldset>
+ </div>
+	 </div>
+	  <div id="usermessage3" style="display:none">
+	查看积分
+	查看积分
+	查看积分
+	 </div>
+   </div><div class="clear"></div>
+   <div id="bot_c"><div id="bot_l"></div></div>
+  </div>
+   <div class="clear"></div>
+   <div id="footer"><div id="f_b_l">
+   </div></div>
+</div>
+</div>

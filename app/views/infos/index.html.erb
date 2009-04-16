@@ -1,0 +1,442 @@
+
+<div id="main">
+<div id="message_top_content">
+      <!--便民服务-->
+	     <div class="left auto_t_b_r w200">  
+           <div class="auto_t_b_l"><h1>便民服务</h1></div>  
+             <div class="auto_b_r"><div class="auto_b_l">
+                  <div class="cate-category">							
+            		<ul>
+             <li><a class="yp01" name="yhp0806/fuwu/bendi1" target="_blank" href="http://bendi.koubei.com/anqing/searchstore--category-4">餐馆</a></li>
+             <li><a class="yp03" name="yhp0806/fuwu/bendi3" target="_blank" href="http://bendi.koubei.com/anqing/searchstore--category-5---subcates-92">银行</a></li>
+             <li><a class="yp05" name="yhp0806/fuwu/bendi4" target="_blank" href="http://bendi.koubei.com/anqing/searchstore--category-6---subcates-75">快递</a></li>
+             <li><a class="yp22" name="yhp0806/fuwu/bendi21" target="_blank" href="http://bendi.koubei.com/anqing/searchstore--category-2---subcates-79">书店</a></li>
+             <li><a class="yp09" name="yhp0806/fuwu/bendi8" target="_blank" href="http://bendi.koubei.com/anqing/searchstore--category-5---subcates-95">学校</a></li>
+             <li><a class="yp11" name="yhp0806/fuwu/bendi10" target="_blank" href="http://bendi.koubei.com/anqing/searchstore--category-2---subcates-47">网吧</a></li>
+             <li><a class="yp25" name="yhp0806/fuwu/bendi24" target="_blank" href="http://bendi.koubei.com/anqing/searchstore--category-3---subcates-333">超市</a></li>
+             <li><a class="yp15" name="yhp0806/fuwu/bendi15" target="_blank" href="http://bendi.koubei.com/anqing/searchstore--category-4---subcates-46">咖啡</a></li>
+             <li><a class="yp17" name="yhp0806/fuwu/bendi16" target="_blank" href="http://bendi.koubei.com/anqing/searchstore--category-2---subcates-19">健身</a></li>
+             <li><a class="yp07" name="yhp0806/fuwu/bendi6" target="_blank" href="http://bendi.koubei.com/anqing/searchstore--category-2---subcates-305">美发</a></li>
+             <li><a class="yp12" name="yhp0806/fuwu/bendi11" target="_blank" href="http://bendi.koubei.com/anqing/searchstore--category-2---subcates-156">棋牌</a></li>
+             <li><a class="yp23" name="yhp0806/fuwu/bendi22" target="_blank" href="http://bendi.koubei.com/anqing/searchstore--category-2---subcates-302">球馆</a></li>
+             <li><a class="yp21" name="yhp0806/fuwu/bendi20" target="_blank" href="http://bendi.koubei.com/anqing/searchstore--category-6---subcates-116">景点</a></li>
+             <li><a class="yp24" name="yhp0806/fuwu/bendi23" target="_blank" href="http://bendi.koubei.com/anqing/searchstore--category-2---subcates-101">公园</a></li>
+             <li><a class="yp20" name="yhp0806/fuwu/bendi19" target="_blank" href="http://bendi.koubei.com/anqing/searchstore--category-3---subcates-99">家居</a></li>
+           </ul>											       							
+         </div></div></div>   
+    </div>
+      <!--生活信息-->
+	<div class="left auto_t_b_r w380">  
+           <div class="auto_t_b_l"><h1>生活信息</h1></div>  
+             <div class="auto_b_r"><div class="auto_b_l">
+			 <div class="message_1">
+                <ul>
+                  <% @lifeinfos.each do |item|%>
+                    <li><%= link_to item.title, info_path(:id => item) %></li> 
+                  <% end %>
+		      </ul>
+			  </div>
+          </div></div>  
+    </div>
+    <!--交友信息-->
+    <div class="right auto_t_b_r w380">
+           <div class="auto_t_b_l"><h1>交友信息</h1></div>
+             <div class="auto_b_r"><div class="auto_b_l">
+			 <div class="message_1">
+                <ul>
+                  <% @friendinfos.each do |item|%>
+                    <li><%= link_to item.title, info_path(:id => item) %></li>
+                  <% end %>
+		      </ul>
+			  </div>
+          </div></div>  
+    </div>
+    <!--交友信息结束-->
+</div>
+<!--message_top_content结束-->
+ <div id="message_banner"><a href="../images/css/ascend.gif"><img src="../images/image/75080.jpg" /></a></div> 
+<div id="message_center_content">
+<div class="right auto_t_b_r w960">  
+           <div class="auto_t_b_l"><h1>最受关注的信息</h1></div>  
+             <div class="auto_b_r h380"><div class="auto_b_l h380">
+<script type="text/javascript">
+var kbb_n;
+var TimeOut=5000; 
+var adNum=0;
+var theTimer;
+var theone;
+function _slip(kbb_n){
+for (var w=1; w<=5; w++ ){
+document.getElementById("kbb_content"+w).style.display = "none";
+} 
+document.getElementById("kbb_content"+kbb_n).style.display = "block"; 
+}
+function play_s(){
+if(adNum<5){adNum++;}else{adNum=1;}
+_slip(adNum);
+theTimer=setTimeout("play_s()",TimeOut);
+}
+function pause_s(theone){window.clearInterval(theTimer);_slip(theone)}
+    </script>
+            <div id="top_ms">
+              <div id="kbb_content1" style="display:block;">
+                <div class="con">
+                  <div class="le">
+                    <div id="r01"> 
+					 <ul>
+                       <li><a href="#" target="_blank"><img src="../images/noface_tiny.jpg" alt="333元疯狂团购进行ing" /></a><a href="http://www.mimimama.com/forum/viewthread.php?tid=17151&extra=page%3D1" target="_blank">333元疯狂团购进行ing</a></li>
+                       <li><a href="http://www.mimimama.com/forum/viewthread.php?tid=17117&extra=page%3D1&page=1" target="_blank"><img src="../images/noface_tiny.jpg" width="160" height="120" alt="跟风哈根达斯火锅，情人节大餐！" /></a><a href="http://www.mimimama.com/forum/viewthread.php?tid=17117&extra=page%3D1&page=1" target="_blank">跟风哈根达斯火锅，情人节大餐！</a></li>
+                    </ul>
+                  <dl>
+            <dt><a href="http://www.mimimama.com/forum/viewthread.php?tid=17151&extra=page%3D1" target="_blank">
+			红豆摄影333元疯狂团购</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;不限风格，三套造型，拍摄50张以上，入册10张，5寸数码方册...</dt>
+			<% @houseinfos.each do |item| %>
+                <dd>[<%= link_to item.info_category.name,category_infos_infos_path(:category_id => item.info_category)  %>]
+                <%= link_to item.title, info_path(:id => item)  %> 
+			    </dd>
+               <% end %>
+              </dl>
+					</div>
+                  </div>
+                  <div class="cen">
+                    <ul>
+                      <li class="focuson focuson_top" onmouseover="_slip(1);pause_s(1);">
+                        <p><a href="#" target="_blank"><img class="shenghuo"src="../images/css/shenghuo.gif"/></a></p>
+                        <h1><%= link_to '房源', category_infos_infos_path(:category_id => @house), :method => :put %></h1>
+                      </li>
+                      <li onmouseover="_slip(2);pause_s(2);">
+                        <p><a href="#" target="_blank"><img class="gongzuo" src="../images/css/gongzuo.png" /></a></p>
+                        <h1><%= link_to '工作', category_infos_infos_path(:category_id => @work), :method => :put %></h1>
+                      </li>
+                      <li onmouseover="_slip(3);pause_s(3);">
+                        <p><a href="#" target="_blank"><img class="jiaoyu" src="../images/css/jiaoyu.gif"/></a></p>
+                        <h1><%= link_to '二手', category_infos_infos_path(:category_id => @second), :method => :put %></h1>
+                      </li>
+                      <li onmouseover="_slip(4);pause_s(4);">
+                        <p><a href="#" target="_blank"><img class= "qinggan" src="../images/css/qinggan.gif"/></a></p>
+                        <h1><%= link_to '供求', category_infos_infos_path(:category_id => @serve), :method => :put %></h1>
+                      </li>
+                      <li onmouseover="_slip(5);pause_s(5);">
+                        <p><a href="#" target="_blank"><img class="bagua" src="../images/css/bagua.gif"/></a></p>
+                        <h1><%= link_to '婚嫁', category_infos_infos_path(:category_id => @marry), :method => :put %></h1>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="rig">
+                    <div class="rig1">
+                      <div class="tit1">热点标签</div>
+                      <div class="cont">
+					  <ul>
+					  <li>房屋出租</li> 
+					   <li>整租</li>
+					  <li>合租 </li> 
+					  <li>房东房源</li>
+					 <li>中介出租房 </li>
+					 <li>女生合租 </li>
+					 <li>一周短租 </li>
+					 <li> 合租</li> 
+					 <li>整套出租 </li> 
+					 <li> 单间合</li>
+					  <li>租农民房 </li>
+					  <li> 500元以下</li> 
+					 </ul>
+					   </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="kbb_content2" style="display:none;">
+                <div class="con">
+                  <div class="center">
+                    <div class="le">
+                      <div id="r01">
+					  <ul>
+                       <li><a href="#" target="_blank"><img src="../images/noface_tiny.jpg" alt="333元疯狂团购进行ing" /></a><a href="http://www.mimimama.com/forum/viewthread.php?tid=17151&extra=page%3D1" target="_blank">333元疯狂团购进行ing</a></li>
+                       <li><a href="http://www.mimimama.com/forum/viewthread.php?tid=17117&extra=page%3D1&page=1" target="_blank"><img src="../images/noface_tiny.jpg" width="160" height="120" alt="跟风哈根达斯火锅，情人节大餐！" /></a><a href="http://www.mimimama.com/forum/viewthread.php?tid=17117&extra=page%3D1&page=1" target="_blank">跟风哈根达斯火锅，情人节大餐！</a></li>
+                    </ul>
+                  <dl>
+            <dt><a href="http://www.mimimama.com/forum/viewthread.php?tid=17151&extra=page%3D1" target="_blank">
+			红豆摄影333元疯狂团购</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;不限风格，三套造型，拍摄50张以上，入册10张，5寸数码方册...</dt>
+			<% @workinfos.each do |item| %>
+              <dd>[<%= link_to item.info_category.name,category_infos_infos_path(:category_id => item.info_category)  %>]
+             <%= link_to item.title, info_path(:id => item)  %>  
+               </dd>
+             <% end %>
+			
+              </dl>
+					   </div>
+                    </div>
+                    <div class="cen">
+                      <ul>
+                        <li class="focuson_top" onmouseover="_slip(1);pause_s(1);">
+                          <p><a href="#" target="_blank"><img class="shenghuo"src="../images/css/shenghuo.gif"/></a></p>
+                          <h1><%= link_to '房源', category_infos_infos_path(:category_id => @house), :method => :put %></h1>
+                        </li>
+                        <li class="focuson" onmouseover="_slip(2);pause_s(2);">
+                          <p><a href="#" target="_blank"><img class="gongzuo" src="../images/css/gongzuo.png" /></a></p>
+                          <h1><%= link_to '工作', category_infos_infos_path(:category_id => @work), :method => :put %></h1>
+                        </li>
+                        <li onmouseover="_slip(3);pause_s(3);">
+                          <p><a href="#" target="_blank"><img class="jiaoyu" src="../images/css/jiaoyu.gif"/></a></p>
+                          <h1><%= link_to '二手', category_infos_infos_path(:category_id => @second), :method => :put %></h1>
+                        </li>
+                        <li onmouseover="_slip(4);pause_s(4);">
+                          <p><a href="#" target="_blank"><img class= "qinggan" src="../images/css/qinggan.gif"/></a></p>
+                          <h1><%= link_to '供求', category_infos_infos_path(:category_id => @serve), :method => :put %></h1>
+                        </li>
+                        <li onmouseover="_slip(5);pause_s(5);">
+                          <p><a href="#" target="_blank"><img class="bagua" src="../images/css/bagua.gif"/></a></p>
+                          <h1><%= link_to '婚嫁', category_infos_infos_path(:category_id => @marry), :method => :put %></h1>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="rig">
+                      <div class="rig1">
+                        <div class="tit1">热点标签</div>
+                        <div class="cont"> 
+						<ul>
+						<li>大学生就业专区</li>
+						<li>急聘 </li>
+						<li>编辑 </li>
+						<li>行政 </li>
+						<li>软件开发</li> 
+						<li>财务 </li>
+						<li>采购员 </li>
+						<li>网络运营</li> 
+						<li>建筑设计</li> 
+						<li>文秘  </li>
+						<li>客服人员</li> 
+						<li>毕业生 </li>
+
+						</ul>
+						</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="kbb_content3" style="display:none;">
+                <div class="con">
+                  <div class="center">
+                    <div class="le">
+                      <div id="r01">
+					  <ul>
+                       <li><a href="#" target="_blank"><img src="../images/noface_tiny.jpg" alt="333元疯狂团购进行ing" /></a><a href="http://www.mimimama.com/forum/viewthread.php?tid=17151&extra=page%3D1" target="_blank">333元疯狂团购进行ing</a></li>
+                       <li><a href="http://www.mimimama.com/forum/viewthread.php?tid=17117&extra=page%3D1&page=1" target="_blank"><img src="../images/noface_tiny.jpg" width="160" height="120" alt="跟风哈根达斯火锅，情人节大餐！" /></a><a href="http://www.mimimama.com/forum/viewthread.php?tid=17117&extra=page%3D1&page=1" target="_blank">跟风哈根达斯火锅，情人节大餐！</a></li>
+                    </ul>
+                  <dl>
+            <dt><a href="http://www.mimimama.com/forum/viewthread.php?tid=17151&extra=page%3D1" target="_blank">
+			红豆摄影333元疯狂团购</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;不限风格，三套造型，拍摄50张以上，入册10张，5寸数码方册...</dt>
+			  <% @secondinfos.each do |item| %>
+                <dd>[<%= link_to item.info_category.name,category_infos_infos_path(:category_id => item.info_category)  %>]
+              <%= link_to item.title, info_path(:id => item)  %>   
+			   </dd>
+              <% end %>
+              </dl>
+					   </div>
+                    </div>
+                    <div class="cen">
+                      <ul>
+                        <li class="focuson_top" onmouseover="_slip(1);pause_s(1);">
+                          <p><a href="#" target="_blank"><img class="shenghuo"src="../images/css/shenghuo.gif"/></a></p>
+                          <h1><%= link_to '房源', category_infos_infos_path(:category_id => @house), :method => :put %></h1>
+                        </li>
+                        <li onmouseover="_slip(2);pause_s(2);">
+                          <p><a href="#" target="_blank"><img class="gongzuo" src="../images/css/gongzuo.png" /></a></p>
+                          <h1><%= link_to '工作', category_infos_infos_path(:category_id => @work), :method => :put %></h1>
+                        </li>
+                        <li class="focuson" onmouseover="_slip(3);pause_s(3);">
+                          <p><a href="#" target="_blank"><img class="jiaoyu" src="../images/css/jiaoyu.gif"/></a></p>
+                          <h1><%= link_to '二手', category_infos_infos_path(:category_id => @second), :method => :put %></h1>
+                        </li>
+                        <li onmouseover="_slip(4);pause_s(4);">
+                          <p><a href="#" target="_blank"><img class= "qinggan" src="../images/css/qinggan.gif"/></a></p>
+                          <h1><%= link_to '供求', category_infos_infos_path(:category_id => @serve), :method => :put %></h1>
+                        </li>
+                        <li onmouseover="_slip(5);pause_s(5);">
+                          <p><a href="#" target="_blank"><img class="bagua" src="../images/css/bagua.gif"/></a></p>
+                          <h1><%= link_to '婚嫁', category_infos_infos_path(:category_id => @marry), :method => :put %></h1>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="rig">
+                      <div class="rig1">
+                        <div class="tit1">热点标签</div>
+                        <div class="cont">  <ul>
+						<li>二手</li>
+						<li>旧家具</li>
+						<li>液晶电脑</li> 
+						<li>二手家电</li> 
+						<li>手机</li>
+						<li>网络</li> 
+						<li>数码</li> 
+						<li>旧书</li>
+						<li>旧碟</li> 
+						<li>母婴服饰</li>
+						<li> 玩具/推车</li>
+						</ul></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="kbb_content4" style="display:none;">
+                <div class="con">
+                  <div class="center">
+                    <div class="le">
+                      <div id="r01">
+					  <ul>
+                       <li><a href="#" target="_blank"><img src="../images/noface_tiny.jpg" alt="333元疯狂团购进行ing" /></a><a href="http://www.mimimama.com/forum/viewthread.php?tid=17151&extra=page%3D1" target="_blank">333元疯狂团购进行ing</a></li>
+                       <li><a href="http://www.mimimama.com/forum/viewthread.php?tid=17117&extra=page%3D1&page=1" target="_blank"><img src="../images/noface_tiny.jpg" width="160" height="120" alt="跟风哈根达斯火锅，情人节大餐！" /></a><a href="http://www.mimimama.com/forum/viewthread.php?tid=17117&extra=page%3D1&page=1" target="_blank">跟风哈根达斯火锅，情人节大餐！</a></li>
+                    </ul>
+                  <dl>
+            <dt><a href="http://www.mimimama.com/forum/viewthread.php?tid=17151&extra=page%3D1" target="_blank">
+			红豆摄影333元疯狂团购</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;不限风格，三套造型，拍摄50张以上，入册10张，5寸数码方册...</dt>
+			<% @serveinfos.each do |item| %>
+              <dd>[ <%= link_to item.info_category.name,category_infos_infos_path(:category_id => item.info_category)  %>]
+              <%= link_to item.title, info_path(:id => item)  %>  </dd>
+              <% end %> 
+			   </dl>    
+					    </div>
+                    </div>
+                    <div class="cen">
+                      <ul>
+                        <li class="focuson_top" onmouseover="_slip(1);pause_s(1);">
+                          <p><a href="#" target="_blank"><img class="shenghuo"src="../images/css/shenghuo.gif"/></a></p>
+                          <h1><%= link_to '房源', category_infos_infos_path(:category_id => @house), :method => :put %></h1>
+                        </li>
+                        <li onmouseover="_slip(2);pause_s(2);">
+                          <p><a href="#" target="_blank"><img class="gongzuo" src="../images/css/gongzuo.png" /></a></p>
+                          <h1><%= link_to '工作', category_infos_infos_path(:category_id => @work), :method => :put %></h1>
+                        </li>
+                        <li  onmouseover="_slip(3);pause_s(3);">
+                          <p><a href="#" target="_blank"><img class="jiaoyu" src="../images/css/jiaoyu.gif"/></a></p>
+                          <h1><%= link_to '二手', category_infos_infos_path(:category_id => @second), :method => :put %></h1>
+                        </li>
+                        <li class="focuson" onmouseover="_slip(4);pause_s(4);">
+                          <p><a href="#" target="_blank"><img class= "qinggan" src="../images/css/qinggan.gif"/></a></p>
+                          <h1><%= link_to '供求', category_infos_infos_path(:category_id => @serve), :method => :put %></h1>
+                        </li>
+                        <li onmouseover="_slip(5);pause_s(5);">
+                          <p><a href="#" target="_blank"><img class="bagua" src="../images/css/bagua.gif"/></a></p>
+                          <h1><%= link_to '婚嫁', category_infos_infos_path(:category_id => @marry), :method => :put %></h1>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="rig">
+                      <div class="rig1">
+                        <div class="tit1">热点标签</div>
+                        <div class="cont"> 
+				
+						</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="kbb_content5" style="display:none;">
+                <div class="con">
+                  <div class="center">
+                    <div class="le">
+                      <div id="r01">
+					  <ul>
+                       <li><a href="#" target="_blank"><img src="../images/noface_tiny.jpg" alt="333元疯狂团购进行ing" /></a><a href="http://www.mimimama.com/forum/viewthread.php?tid=17151&extra=page%3D1" target="_blank">333元疯狂团购进行ing</a></li>
+                       <li><a href="http://www.mimimama.com/forum/viewthread.php?tid=17117&extra=page%3D1&page=1" target="_blank"><img src="../images/noface_tiny.jpg" width="160" height="120" alt="跟风哈根达斯火锅，情人节大餐！" /></a><a href="http://www.mimimama.com/forum/viewthread.php?tid=17117&extra=page%3D1&page=1" target="_blank">跟风哈根达斯火锅，情人节大餐！</a></li>
+                    </ul>
+                  <dl>
+            <dt><a href="http://www.mimimama.com/forum/viewthread.php?tid=17151&extra=page%3D1" target="_blank">
+			红豆摄影333元疯狂团购</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;不限风格，三套造型，拍摄50张以上，入册10张，5寸数码方册...</dt>
+			<% @marryinfos.each do |item| %>
+            <dd>[<%= link_to item.info_category.name,category_infos_infos_path(:category_id => item.info_category)  %>]
+             <%= link_to item.title, info_path(:id => item)  %> </dd>
+                <% end %>
+              </dl>
+					   </div>
+                    </div>
+                    <div class="cen">
+                      <ul>
+                        <li class="focuson_top" onmouseover="_slip(1);pause_s(1);">
+                          <p><a href="#" target="_blank"><img class="shenghuo"src="../images/css/shenghuo.gif"/></a></p>
+                          <h1><%= link_to '房源', category_infos_infos_path(:category_id => @house), :method => :put %></h1>
+                        </li>
+                        <li onmouseover="_slip(2);pause_s(2);">
+                          <p><a href="#" target="_blank"><img class="gongzuo" src="../images/css/gongzuo.png" /></a></p>
+                          <h1><%= link_to '工作', category_infos_infos_path(:category_id => @work), :method => :put %></h1>
+                        </li>
+                        <li onmouseover="_slip(3);pause_s(3);">
+                          <p><a href="#" target="_blank"><img class="jiaoyu" src="../images/css/jiaoyu.gif"/></a></p>
+                          <h1><%= link_to '二手', category_infos_infos_path(:category_id => @second), :method => :put %></h1>
+                        </li>
+                        <li onmouseover="_slip(4);pause_s(4);">
+                          <p><a href="#" target="_blank"><img class= "qinggan" src="../images/css/qinggan.gif"/></a></p>
+                          <h1><%= link_to '供求', category_infos_infos_path(:category_id => @serve), :method => :put %></h1>
+                        </li>
+                        <li class="focuson" onmouseover="_slip(5);pause_s(5);">
+                          <p><a href="#" target="_blank"><img class="bagua" src="../images/css/bagua.gif"/></a></p>
+                          <h1><%= link_to '婚嫁', category_infos_infos_path(:category_id => @marry), :method => :put %></h1>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="rig">
+                      <div class="rig1">
+                        <div class="tit1">热点标签</div>
+                        <div class="cont"> 
+						<ul>
+						<li>免费送花</li>
+						<li>经典花束</li>
+						<li>鲜花套装</li>
+						<li>庆典花篮</li>
+						<li>租花</li>
+						<li>写真</li>
+						<li>司仪</li>
+						<li>古典婚礼</li> 
+						<li>婚车</li> 
+						<li>婚纱照</li>
+						<li>摄影摄像</li> 
+						</ul>
+						</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <script language="javascript">play_s();</script>
+            </div>
+            </div>
+            </div>
+    </div>
+  </div>
+</div></div>
+<!--中间内容结束-->
+<!--商家开始-->
+<div id="Brand" class="auto_t_r">
+  <div class="auto_t_l"></div>
+  <div class="auto_b_r">
+    <div class="auto_b_l"> 
+	<div id="Brand_box">
+      <dl>
+          <dt><img src="../images/image/logo_t.gif" width="50" height="80" /></dt>
+          <dd><a href="http://sale.mimimama.com/doc/1/provide/33" target="_blank"><img src="../images/image/logo_gusheying.gif" alt="成都古摄影婚纱艺术" width="88" height="31" /></a></dd>
+          <dd><a href="http://sale.mimimama.com/doc/1/provide/67/" target="_blank"><img src="../images/image/logo_hongdou.gif" alt="成都红豆摄影" width="88" height="31" /></a></dd>
+          <dd><a href="http://sale.mimimama.com/doc/1/provide/169/" target="_blank"><img src="../images/image/logo_v2.gif" alt=" 成都v2摄影" width="88" height="31" /></a></dd>
+          <dd><a href="http://sale.mimimama.com/doc/1/provide/229/" target="_blank"><img src="../images/image/logo_shangping.gif" alt="成都尚品国际婚纱摄影" width="88" height="31" /></a></dd>
+          <dd><a href="http://sale.mimimama.com/doc/1/provide/257/" target="_blank"><img src="../images/image/logo_huamei.gif" alt="成都华美教育培训中心" width="88" height="31" /></a></dd>
+          <dd><a href="http://sale.mimimama.com/doc/1/provide/263/" target="_blank"><img src="../images/image/logo_vogue.gif" alt="成都风尚国际婚纱摄影" width="88" height="31" /></a></dd>
+          <dd><a href="http://sale.mimimama.com/doc/1/provide/85/" target="_blank"><img src="../images/image/logo_xindongtai.gif" alt="新动态成都英语培训学校" width="88" height="31" /></a></dd>
+          <dd><a href="http://sale.mimimama.com/doc/1/provide/40/" target="_blank"><img src="../images/image/logo_longfa.gif" alt="北京龙发装饰集团" width="88" height="31" /></a></dd>
+          <dd><a href="http://sale.mimimama.com/doc/1/provide/19/" target="_blank"><img src="../images/image/logo_yezhifeng.gif" alt="成都业之峰装饰工程有限公司" width="88" height="31" /></a></dd>
+          <dd><a href="http://sale.mimimama.com/doc/1/provide/139/" target="_blank"><img src="../images/image/logo_zisy.gif" alt="梓摄影" width="88" height="31" /></a></dd>
+          <dd><a href="http://sale.mimimama.com/doc/1/provide/175/" target="_blank"><img src="../images/image/logo_uv.gif" alt="成都U&amp;V视觉婚纱摄影空间" width="88" height="31" /></a></dd>
+          <dd><a href="http://sale.mimimama.com/doc/1/provide/260/" target="_blank"><img src="../images/image/logo_benseziran.gif" alt="本色自然" width="88" height="31" /></a></dd>
+          <dd><a href="http://sale.mimimama.com/doc/1/provide/235/" target="_blank"><img src="../images/image/logo_luotuo.gif" alt="成都骆驼影像摄影" width="88" height="31" /></a></dd>
+          <dd><a href="http://sale.mimimama.com/doc/1/provide/168/" target="_blank"><img src="../images/image/logo_shijuekongjian.gif" alt="成都视觉空间摄影" width="88" height="31" /></a></dd>
+          <dd><a href="http://sale.mimimama.com/doc/1/provide/167/" target="_blank"><img src="../images/image/logo/logo_shulong.gif" alt="四川蜀龙装饰工程有限公司" width="88" height="31" /></a></dd>
+          <dd><a href="http://sale.mimimama.com/doc/1/600/" target="_blank"><img src="../images/image/logo_hongji.gif" alt="鸿基木业地板" width="88" height="31" /></a></dd>
+          <dd><a href="http://sale.mimimama.com/doc/1/690/" target="_blank"><img src="../images/image/logo_kele.gif" alt="科勒洁具" width="88" height="31" /></a></dd>
+          <dd><a href="http://sale.mimimama.com/doc/1/265/" target="_blank"><img src="../images/image/logo_aosite.gif" alt="澳斯特橱柜" width="88" height="31" /></a></dd>
+        </dl>
+		</div>
+    </div>
+  </div>
+</div>
+<!--页角的开始-->

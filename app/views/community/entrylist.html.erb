@@ -1,0 +1,95 @@
+﻿<script language="javascript">	
+  function qiehuan(num){
+    for(var id = 1;id<=3;id++)
+    {
+      if(id==num)
+      {
+        document.getElementById("blog"+id).style.display="block";
+        document.getElementById("mynav"+id).className="nav_on";
+
+      }
+      else
+      {
+        document.getElementById("blog"+id).style.display="none";
+        document.getElementById("mynav"+id).className="";
+      }
+    }
+  }
+</script>
+
+<div id="main" style="margin-top:-20px">
+  <div class="auto_t_r w960">
+    <div class="auto_t_l">&nbsp;</div>
+    <div class="auto_b_r"><div class="auto_b_l">
+        <div class="blog_left_content" >
+                  <div id="submenu">一周推荐文章
+            <div id="submenu_l">
+              <a href="#" onclick="javascript:qiehuan(1)"  id="mynav1">最新文章</a> |
+              <a href="#" onclick="javascript:qiehuan(2)"  id="mynav2">热评文章</a> |
+              <a href="#" onclick="javascript:qiehuan(3)"  id="mynav3">推荐文章</a>
+            </div>
+          </div>
+
+          <div id="blog1" style="display:block">
+            <% @newentries.each do |item|%>
+              <div class="blog" sytle="border:none">
+                <div class="vote"><font class="votes" id="s28995">0</font><a href="#" >顶一下</a></div>
+              </div>
+              <div class="blog_t_new"><%= link_to item.title, user_entry_path(:user_id => item.user, :id => item)%></div> 
+              <div class="blog_time_new">by <%= link_to item.user.login_name, user_path(:id => item.user)%> time:<%= item.created_at.strftime("%y-%m-%d %H:%M") %></div>
+              <div class="blog_c_new" ><%= item.content %></div>
+            <% end %>
+          </div>
+          <div id="blog2" style="display:none">
+            <% @hotentries.each do |item|%>
+              <div class="blog" sytle="border:none">
+                <div class="vote"><font class="votes" id="s28995">0</font><a href="#" >顶一下</a></div>
+              </div>
+              <div class="blog_t_new"><%= link_to item.title, user_entry_path(:user_id => item.user, :id => item)%></div> 
+              <div class="blog_time_new">by <%= link_to item.user.login_name, user_path(:id => item.user)%> time:<%= item.created_at.strftime("%y-%m-%d %H:%M") %></div>
+              <div class="blog_c_new" ><%= item.content %></div>
+            <% end %>
+          </div>
+
+          <div id="blog3" style="display:none">
+            此处为推荐文章
+          </div>
+
+        </div>
+        <div class="blog_right_content">
+           
+			              <div id="mymser">
+              <% if is_logged_in?%>
+                <%= link_to '+发表新文章', new_user_entry_path(:user_id => logged_in_user) %><br />
+                <%= link_to '+我发表的文章', user_entries_path(:user_id => logged_in_user) %><br />
+                <a href="blogs.php?type=mycom">+我评论过的文章</a><br />
+                <a href="blogs.php?type=mydig">+我推荐过的文章</a>
+              <% end %>
+            </div>
+            <div class="r_t">+ TAG</div>
+
+            <div class="r_c">	 <a title="相关内容有1336个" href="http://so.mimimama.com/s/search.jsp?key=%E5%BF%83%E6%83%85%E6%97%A5%E8%AE%B0&si=4" target="_blank">心情日记</a>&nbsp;
+              <a title="相关内容有540个" href="http://so.mimimama.com/s/search.jsp?key=%E4%BA%BA%E7%94%9F%E6%84%9F%E6%82%9F&si=4" target="_blank">人生感悟</a>&nbsp;
+              <a title="相关内容有36个" href="http://so.mimimama.com/s/search.jsp?key=%E6%97%A5%E8%AE%B0&si=4" target="_blank">日记</a>&nbsp;
+              <a title="相关内容有35个" href="http://so.mimimama.com/s/search.jsp?key=%E6%97%A9%E6%95%99&si=4" target="_blank">早教</a>&nbsp;
+            </div>
+            <div class="r_t">+ 最新博客评论</div>
+            <ul style="width:230px;">
+              <% @newcomments.each do |item|%>
+                <li><%= link_to item.content, user_entry_path(:user_id => item.poster.id, :id => item.item),:title => '文章标题：'"#{item.item.title}"'' %></li>
+                <li><%= item.created_at.strftime("%Y-%m-%d") %> &nbsp;&nbsp;<%= item.poster.login_name %></li>
+              <% end %>
+            </ul>
+            <div class="clear"></div>
+            <div class="r_t">+ 一周活跃会员</div>
+            <ul class="r1">
+              <ul>
+                <li><a href="home.php?u=583790979" class="titletxt">蘑菇头028</a><br /> (共有1篇)</li>
+                <li><a href="home.php?u=583790979" class="titletxt">蘑菇头028</a><br /> (共有1篇)</li>
+              </ul>
+         </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>  <div class="clear">&nbsp;</div>
+  </div> 

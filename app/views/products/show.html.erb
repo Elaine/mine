@@ -1,8 +1,91 @@
-<%= link_to '编辑', edit_shop_product_path(:id => @product)%>
-商品名称:<%= @product.name %>
-商品价格:<%= @product.price %>
-折扣价:<%= @product.discount %>
-商品介绍:<%= @product.introduction%>
-优惠说明:<%= @product.offer_description%>
-<%= link_to '我的店铺', shop_path(:id => @product.shop)%>
+<div id="main" >
+<div class="auto_t_r w960">
+    <div class="auto_t_l">&nbsp;</div>
+  <div class="auto_b_r"><div class="auto_b_l"> 
 
+<% if flash[:notice] %>
+  <%= flash[:notice] %>
+<% end %>
+<% if logged_in_user == @product.item %>
+<%= link_to '编辑', edit_product_path(:id => @product)%>
+<% end %>
+<%#= link_to '我有问题', "#ask" %>
+<br/>
+商品名称:<%= @product.name %><br/>
+商品价格:<%= @product.price %><br/>
+折扣价:<%= @product.discount %><br/>
+商品介绍:<%= @product.introduction%><br/>
+优惠说明:<%= @product.offer_description%><br/>
+商品图片:
+<% @product.item_photos.each do |p|%>
+  <li>
+  <%= image_tag(p.public_filename(:thumb))%>
+  </li>
+<% end %>
+<br/>
+
+<table align="left" border="0" cellpadding="5" cellspacing="0" width="100%"><tbody><tr>
+      <td align="left" bgcolor="#fafafa" width="15%"><strong>姓名</strong></td>
+      <td align="left" bgcolor="#fafafa" width="50%"><strong>内容</strong></td>
+      <td align="center" bgcolor="#fafafa" width="30%"><strong>时间</strong></td>
+    <% @product.comments.each do |c|%>
+      <tr>
+        <td>
+          <% if c.poster.avatar  %>
+            <%= image_tag(c.poster.avatar.public_filename(:tiny)) %>
+          <% else %>
+            <%= image_tag("../images/noface_tiny.jpg") %>
+          <% end %>
+          <% if logged_in_type == "User"%>
+          <%= link_to c.poster.login_name, user_path(:id => c.poster) %>
+        <% elsif logged_in_type == "Company"%>
+          <%= link_to c.poster.login_name, company_path(:id => c.poster) %>
+        <% else %>
+          <%= link_to c.poster.login_name, shop_path(:id => c.poster) %>
+          <% end %>
+        </td>
+        <td><%= c.content %></td>
+        <td align="center"><%= c.created_at.strftime("%Y-%m-%d %H:%M:%S")%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+添加留言:<a name="ask" id="ask"></a>
+<div class="inner_main">
+  <div>
+    <table border="0" cellpadding="5" cellspacing="0" width="100%">
+      <% form_for :comment, :url => product_comments_path(:product_id => @product) do |f| %>
+        <tbody>
+          <tr>
+            <td>
+              <label>
+                <%= f.text_area :content, :rows => 5, :cols => 40 %>
+              </label>
+            </td>
+          </tr>
+          <tr>
+            <td><label>验证码：
+            </label></td>
+          </tr>
+          <tr>
+            <td>
+              <%= f.hidden_field (:item_type, :value => "Product")%>
+              <%= f.hidden_field (:item_id, :value => @product.id)%>
+              <input name="switch" value="<%= product_path(:id => @product)%>" type="hidden">
+              <%= submit_tag '提交留言', :class => 'button' %>
+            </td>
+          </tr>
+        </tbody>
+      <% end %>
+    </table>
+  </div>
+  </p>
+  <% if logged_in_type == "Shop" and logged_in_user == @product.item %>
+  <%= link_to '我的店铺', shop_path(:id => @product.item)%>
+<% end %>
+<div class="clear"></div>
+</div>
+</div>
+</div>
+<div class="clear"></div>

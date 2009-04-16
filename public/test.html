@@ -1,0 +1,144 @@
+<script language="javascript">
+  function qiehuan(num){
+    for(var id = 1;id<=4;id++)
+    {
+      if(id==num)
+      {
+        document.getElementById("knowabc"+id).style.display="block";
+        document.getElementById("mynav"+id).className="nav_on";
+        document.getElementById("mynav"+id).style.background="#ffffff";
+        document.getElementById("mynav"+id).style.display="block";
+        document.getElementById("mynav"+id).style.color="#000000";
+      }
+      else
+      {
+        document.getElementById("knowabc"+id).style.display="none";
+        document.getElementById("mynav"+id).className="";
+        document.getElementById("mynav"+id).style.background="";
+        document.getElementById("mynav"+id).style.color="";
+      }
+    }
+  }
+  
+  function qiehuan_test(num){
+    for(var id = 1;id<=4;id++)
+    {
+      if(id==num)
+      {
+         document.getElementById("knowabc"+id).style.display="none";
+      
+      }
+    }
+  }
+</script>
+    <div class="auto_t_l">&nbsp;</div>
+    <div class="auto_b_r"><div  class="auto_b_l">
+        <div style="float:left; width:100px"><a href="usershall.php">社区</a> &raquo; </div>
+        <div id="123">
+          <ul>
+           
+            <li><a href="#" onclick="javascript:qiehuan(4)"  id="mynav4">我要出气筒</a></li>
+            <ul>
+            </div>
+
+            <div id="wishes" style="height:450px">
+              <% @boards.each_with_index do |item, index|%>
+                <div onselectstart="document.selection.empty();" id="wish_38"  class="xy04">
+                <div class="xytitle">第[<%= index + 1%>]条 <%= item.created_at.strftime("%Y-%m-%d") %> </div>
+                <div class="xyclose" id="btn_close_38"><img src="../../image/blog/qyclose.gif" width="13" height="18" /></div>
+                <div class="xymain" style="word-wrap:break-word; overflow:hidden;">&nbsp;&nbsp;&nbsp;<%= item.content %></div>
+                <div class="xyuser"><%= link_to item.user.login_name, user_path(:id => item.user.id )%></div>
+              </div>
+            <% end %>
+              <!--div id="info1" style="display:inline"></div>: &nbsp;<div id="info2" style="display:inline"></div>:&nbsp;<div id="info3" style="display:inline"></div>:&nbsp;<div id="info4" style="display:inline"></div>:&nbsp;<div id="info5" style="display:inline"></div>:&nbsp;<div id="info6" style="display:inline"></div-->
+            </div>
+            <div class="clear">&nbsp;</div>
+            <div id="knowabc2" style="display:none">
+              <form action="" name="saveform" id="saveform" method="post" onsubmit="return false">
+                <table width="100%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
+                  <tr>
+                    <td width="21%" align="right" bgcolor="#FFFFFF">背景颜色：</td>
+                    <td width="79%" align="left" valign="middle" bgcolor="#FFFFFF">
+                      <label><input name="wtype" type="radio" class="radio" value="1" checked="checked" /><div style="width:20px; background-color:#F0DE89; border:none; display:inline;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div></label>
+                      <label><input class="radio" type="radio" name="wtype" value="4" /><div style="width:20px; background-color:#F5D1E8; border:none; display:inline;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div></label>
+                      <label><input class="radio" type="radio" name="wtype" value="2" /><div style="width:20px; background-color:#C7F6A9; border:none; display:inline;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div></label>
+                      <label><input class="radio" type="radio" name="wtype" value="3" /><div style="width:20px; background-color:#9EE7E9; border:none; display:inline;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div></label>
+                      <label><input class="radio" type="radio" name="wtype" value="8" /><div style="width:20px; background-color:#EDEEF0; border:none; display:inline;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div></label>
+                      <label><input class="radio" type="radio" name="wtype" value="7" /><div style="width:20px; background-color:#F0EFD2; border:none; display:inline;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div></label>
+                      <label><input class="radio" type="radio" name="wtype" value="5" /><div style="width:20px; background-color:#E7C0B7; border:none; display:inline;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div></label>
+                      <label><input class="radio" type="radio" name="wtype" value="6" /><div style="width:20px; background-color:#CCDFEC; border:none; display:inline;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div></label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="right" bgcolor="#FFFFFF">告白对象：</td>
+                    <td align="left" bgcolor="#FFFFFF">
+                      <input type="text" name="toname" required="1" minlength="2" maxlength="10" err="请填写告白对象2-10个字符"/></td>  </tr>
+                  <tr>
+                    <td align="right" bgcolor="#FFFFFF">告白内容：</td>
+                    <td align="left" bgcolor="#FFFFFF"><textarea name="content" id="cont" cols="40" rows="5" required="1" onKeyUp="textlim();"></textarea></td>
+                  </tr>
+                  <tr>
+                    <td bgcolor="#FFFFFF"><a name="bottom"></a></td>
+                    <td align="left" bgcolor="#FFFFFF"><input name="txtclass" type="hidden" id="class" value="1" />
+                      <input id="btnSave" type="button" value="添 加" disabled="disabled" onclick="saveWish(this.form)"/>&nbsp;&nbsp;<input type="button"  value="取 消"  onclick="wishDlg.close()">(字数限制100字，目前<span id="spannotice">0</span>字)</td>
+              </tr></table></form>
+            </div>
+
+
+            <div id="knowabc3" style="display:none">
+              <form action="" name="saveform" id="saveform" method="post" onsubmit="return false">
+                <table width="100%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
+
+                  <tr>
+                    <td width="21%" align="right" bgcolor="#FFFFFF">类型：</td>
+                    <td width="79%" align="left" valign="middle" bgcolor="#FFFFFF">
+                      <label><input name="wtype" type="radio" class="radio" value="1" checked="checked" />生活</label>
+                      <label><input class="radio" type="radio" name="wtype" value="4" />恋爱</label>
+                      <label><input class="radio" type="radio" name="wtype" value="2" />友情</label>
+                      <label><input class="radio" type="radio" name="wtype" value="3" />学业</label>
+                      <label><input class="radio" type="radio" name="wtype" value="8" />事业</label>
+                      <label><input class="radio" type="radio" name="wtype" value="7" />健康</label>
+                      <label><input class="radio" type="radio" name="wtype" value="5" />家庭</label>
+                      <label><input class="radio" type="radio" name="wtype" value="6" />财富</label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="right" bgcolor="#FFFFFF">忏悔内容：</td>
+                    <td align="left" bgcolor="#FFFFFF"><textarea name="content" id="cont" cols="40" rows="5" required="1" onKeyUp="textlim();"></textarea></td>
+                  </tr>
+                  <tr>
+                    <td bgcolor="#FFFFFF"><a name="bottom"></a></td>
+                    <td align="left" bgcolor="#FFFFFF"><input name="txtclass" type="hidden" id="class" value="2" />
+                      <input id="btnSave" type="button" value="添 加" disabled="disabled" onclick="saveWish(this.form)" />&nbsp;&nbsp;<input type="button"  value="取 消" onclick="wishDlg.close()">(字数限制100字，目前<span id="spannotice">0</span>字)</td>
+              </tr></table></form>
+            </div>
+            <div id="knowabc4" style="display:none">
+              <form action="" name="saveform" id="saveform" method="post" onsubmit="return false">
+                <table width="100%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
+                  <tr>
+                    <td width="21%" align="right" bgcolor="#FFFFFF">类型：</td>
+                    <td width="79%" align="left" valign="middle" bgcolor="#FFFFFF">
+                      <label><input name="wtype" type="radio" class="radio" value="1" checked="checked" />生活</label>
+                      <label><input class="radio" type="radio" name="wtype" value="4" />恋爱</label>
+                      <label><input class="radio" type="radio" name="wtype" value="2" />友情</label>
+                      <label><input class="radio" type="radio" name="wtype" value="3" />学业</label>
+                      <label><input class="radio" type="radio" name="wtype" value="8" />事业</label>
+                      <label><input class="radio" type="radio" name="wtype" value="7" />健康</label>
+                      <label><input class="radio" type="radio" name="wtype" value="5" />家庭</label>
+                      <label><input class="radio" type="radio" name="wtype" value="6" />财富</label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="right" bgcolor="#FFFFFF">出气内容：</td>
+                    <td align="left" bgcolor="#FFFFFF"><textarea name="content" id="cont" cols="40" rows="5" required="1" onKeyUp="textlim();"></textarea></td>
+                  </tr>
+                  <tr>
+                    <td bgcolor="#FFFFFF"><a name="bottom"></a></td>
+                    <td align="left" bgcolor="#FFFFFF"><input name="txtclass" type="hidden" id="class" value="3" />
+                      <input id="btnSave" type="button" value="添 加" disabled="disabled" onclick="saveWish(this.form)" />&nbsp;&nbsp;<input type="button"  value="取 消" onclick="wishDlg.close()">(字数限制100字，目前<span id="spannotice">0</span>字)</td>
+              </tr></table></form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

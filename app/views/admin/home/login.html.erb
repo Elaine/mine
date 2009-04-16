@@ -1,7 +1,7 @@
-<div class="left auto_t_b_r w960">  
-  <div class="auto_t_b_l"></div>
-  <div class="auto_b_r">
-    <div class="auto_b_l">
+<div id="admin_bg">
+<div id="admin_content">
+<div id="admin_login_main">
+  <div id="admin_login">
       <% if flash[:error]%>
         <%= flash[:error]%>
       <% end %>
@@ -9,16 +9,25 @@
         <%= flash[:notice] %>
       <% end %>
       <% form_tag :controller => 'admin/home', :action => 'login' do %>
-        <h2>用户登录</h2>
-        <ul>
-          <label>账&nbsp;号:</label>
-          <%= text_field_tag :name, nil, :class => 'input'%><br/><br/>
-          <label>密&nbsp;码:</label>
-          <%= password_field_tag :password, nil, :class => 'input'%><p/>
-          <%= submit_tag '登录'%>
+       <ul>
+		 <li>
+          <strong>用户名：</strong>
+          <%= text_field_tag :name, nil, :class => 'input'%>
+         </li>
+		<li>
+		  <strong>密 &nbsp;码：</strong>
+          <%= password_field_tag :password, nil, :class => 'input'%>
+		</li>
+		<li>
+          <strong>验证码：</strong>
+          <%= text_field_tag :name, nil, :class => 'test_buttom'%><img class="test_img" scr="../images/admin/dl-1.jpg"/>
+        </li>
+		<li class="bottom"><%= submit_tag '登录', :class => 'login_buttom'%>
+			               <%= submit_tag '重置' ,:class => 'submit_buttom'%>
+		</li>  
         </ul>
       <% end %>
-      <div id="login_link"><%= link_to '忘记密码' %></div>
-    </div>
   </div>
+</div>
+</div>
 </div>

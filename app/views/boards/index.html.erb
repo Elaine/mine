@@ -1,0 +1,204 @@
+<!--企业黄页,企业管理资讯,最新加盟企业,供求信息,企业招聘,企业建站  (企业简介,留言信息,详细信息,产品展示,企业名片.)-->
+<script>
+  function qiehuan_close(num){
+    for(var id = num;id<=num;id++)
+    {
+      if(id==num)
+      {
+        document.getElementById("knowabc"+id).style.display="none";
+      }
+    }
+  }
+</script>
+<div id="main">
+  <div class="auto_t_r w960">
+    <div class="auto_t_l">&nbsp;</div>
+    <div class="auto_b_r"><div  class="auto_b_l">
+        <div style="float:left; width:100px"><a href="usershall.php">社区</a> &raquo; </div>
+        <div id="123">
+          <ul>
+            <% if is_logged_in? %>
+            <li><%= link_to_function "我要#{@category.name[0,6]}", :id => "mynav#{@category.id}", :onclick => "javascript:qiehuan(#{@category.id})" %></li>
+          <% else %>
+            <li><%= link_to "我要#{@category.name[0,6]}(点我登录)",login_path %></li>
+          <% end %>
+            <ul>
+            </div>
+            <div id="wishes" style="height:450px">
+              <% @boards.each_with_index do |item, index|%>
+                <div onselectstart="document.selection.empty();" id="wish_<%= item.id %>"  class="xy0<%= item.type_id %>" >
+                  <div class="xytitle">第[<%= index + 1 %>]条 <%= item.created_at.strftime("%Y-%m-%d") %> </div>
+                  <div class="xyclose" id="btn_close_<%= item.id %>"><img src="../../image/blog/qyclose.gif" width="13" height="18" /></div>
+                  <div class="xymain" style="word-wrap:break-word; overflow:hidden;">&nbsp;&nbsp;&nbsp;<%= item.content %></div>
+                  <div class="xyuser">
+                    <%= link_to item.user.login_name, user_path(:id => item.user.id )%>
+                    <% if @category.name == "告白"%>
+                      &nbsp;&nbsp;To:&nbsp;&nbsp;<%= item.to %>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
+              <!--div id="info1" style="display:inline"></div>: &nbsp;<div id="info2" style="display:inline"></div>:&nbsp;<div id="info3" style="display:inline"></div>:&nbsp;<div id="info4" style="display:inline"></div>:&nbsp;<div id="info5" style="display:inline"></div>:&nbsp;<div id="info6" style="display:inline"></div-->
+            </div>
+            <div class="clear">&nbsp;</div> 
+            <div id="knowabc1" style="display:none">
+              <% form_for :board, :url => boards_path(:category_id => @category), :onsubmit => "return false" do |f| %>
+                <table align="center" bgcolor="#cccccc" border="0" cellpadding="0" cellspacing="1" width="100%">
+                  <tbody><tr>  
+                      <td align="right" bgcolor="#ffffff" width="21%">类型：</td>
+                      <td align="left" bgcolor="#ffffff" valign="middle" width="79%">
+                        <label><%= f.radio_button :type_id, "5", :checked => "checked" %>生活</label> 
+                        <label><%= f.radio_button :type_id, "6" %>恋爱</label>
+                        <label><%= f.radio_button :type_id, "7" %>友情</label>
+                        <label><%= f.radio_button :type_id, "8" %>学业</label>
+                        <label><%= f.radio_button :type_id, "9" %>事业</label>
+                        <label><%= f.radio_button :type_id, "10" %>健康</label>
+                        <label><%= f.radio_button :type_id, "11" %>家庭</label>
+                        <label><%= f.radio_button :type_id, "12" %>财富</label>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td align="right" bgcolor="#ffffff">出气内容：</td>
+                      <td align="left" bgcolor="#ffffff">
+                        <%= f.text_area :content, :rows => 5, :cols => 40%>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td bgcolor="#ffffff"><a name="bottom"></a></td>
+                      <td align="left" bgcolor="#ffffff">
+                        <%#= f.hidden_field (:switch, :value => "Wish")%>
+                        <!--<input id="btnSave" value="添 加" disabled="disabled" onclick="saveWish(this.form)" type="button">&nbsp;&nbsp;-->
+                        <%= submit_tag '添加' %>
+                        <input type="button"  value="取 消" onclick="javascript:qiehuan_close(1)">(字数限制100字，目前<span id="spannotice">0</span>字)</td>
+                      (字数限制100字，目前
+                      <span id="spannotice">0</span>字)</td> 
+                  </tr>
+                </tbody>
+              </table>
+            <% end %>
+          </div>
+          <div id="knowabc2" style="display:none">
+            <% form_for :board, :url => boards_path(:category_id => @category), :onsubmit => "return false" do |f|%>
+              <table width="100%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
+                <tr>
+                  <td width="21%" align="right" bgcolor="#FFFFFF">背景颜色：</td>
+                  <td width="79%" align="left" valign="middle" bgcolor="#FFFFFF">
+                    <label><%= f.radio_button :type_id, "13", :checked => "checked" %>
+                      <div style="width:20px; background-color:#E7C0B7; border:none; display:inline;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                    </label>
+                    <label><%= f.radio_button :type_id, "14" %>
+                      <div style="width:20px; background-color:#F0EFD2; border:none; display:inline;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                    </label>
+                    <label><%= f.radio_button :type_id, "15" %>
+                      <div style="width:20px; background-color:#F0DE89; border:none; display:inline;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                    </label>
+                    <label><%= f.radio_button :type_id, "16" %>
+                      <div style="width:20px; background-color:#C7F6A9; border:none; display:inline;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                    </label>
+                    <label><%= f.radio_button :type_id, "17" %>
+                      <div style="width:20px; background-color:#CCDFEC; border:none; display:inline;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                    </label>
+                    <label><%= f.radio_button :type_id, "18" %>
+                      <div style="width:20px; background-color:#9EE7E9; border:none; display:inline;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                    </label>
+                    <label><%= f.radio_button :type_id, "19" %>
+                      <div style="width:20px; background-color:#EDEEF0; border:none; display:inline;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                    </label>
+                    <label><%= f.radio_button :type_id, "20" %>
+                      <div style="width:20px; background-color:#F5D1E8; border:none; display:inline;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                    </label>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="right" bgcolor="#FFFFFF">告白对象：</td>
+                  <td align="left" bgcolor="#FFFFFF">
+                    <%= f.text_field :to, :size => 10%></td>  </tr>
+                <tr>
+                  <td align="right" bgcolor="#FFFFFF">告白内容：</td>
+                  <td align="left" bgcolor="#FFFFFF">
+                    <%= f.text_area :content, :rows => 5, :cols => 40%>
+                  </td>
+                </tr>
+                <tr>
+                  <td bgcolor="#FFFFFF"><a name="bottom"></a></td>
+                  <td align="left" bgcolor="#FFFFFF"><input name="txtclass" type="hidden" id="class" value="1" />
+                    <%= submit_tag '添加' %> &nbsp;&nbsp;
+                    <input type="button"  value="取 消" onclick="javascript:qiehuan_close(2)">(字数限制100字，目前<span id="spannotice">0</span>字)</td>
+            </tr></table><% end %>
+          </div>
+          <div id="knowabc3" style="display:none">
+            <% form_for :board, :url => boards_path(:category_id => @category), :onsubmit => "return false" do |f| %>
+              <table align="center" bgcolor="#cccccc" border="0" cellpadding="0" cellspacing="1" width="100%">
+                <tbody><tr>  
+                    <td align="right" bgcolor="#ffffff" width="21%">类型：</td>
+                    <td align="left" bgcolor="#ffffff" valign="middle" width="79%">
+                      <label><%= f.radio_button :type_id, "5", :checked => "checked" %>生活</label> 
+                      <label><%= f.radio_button :type_id, "6" %>恋爱</label>
+                      <label><%= f.radio_button :type_id, "7" %>友情</label>
+                      <label><%= f.radio_button :type_id, "8" %>学业</label>
+                      <label><%= f.radio_button :type_id, "9" %>事业</label>
+                      <label><%= f.radio_button :type_id, "10" %>健康</label>
+                      <label><%= f.radio_button :type_id, "11" %>家庭</label>
+                      <label><%= f.radio_button :type_id, "12" %>财富</label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="right" bgcolor="#ffffff">忏悔内容：</td>
+                    <td align="left" bgcolor="#ffffff">
+                      <%= f.text_area :content, :rows => 5, :cols => 40%>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td bgcolor="#ffffff"><a name="bottom"></a></td>
+                    <td align="left" bgcolor="#ffffff">
+                      <%#= f.hidden_field (:switch, :value => "Wish")%>
+                      <!--<input id="btnSave" value="添 加" disabled="disabled" onclick="saveWish(this.form)" type="button">&nbsp;&nbsp;-->
+                      <%= submit_tag '添加' %>
+                      <input type="button"  value="取 消" onclick="javascript:qiehuan_close(3)">(字数限制100字，目前<span id="spannotice">0</span>字)</td>
+                    (字数限制100字，目前
+                    <span id="spannotice">0</span>字)</td> 
+                </tr>
+              </tbody>
+            </table>
+          <% end %>
+        </div>
+        <div id="knowabc4" style="display:none">
+          <% form_for :board, :url => boards_path(:category_id => @category), :onsubmit => "return false" do |f| %>
+            <table align="center" bgcolor="#cccccc" border="0" cellpadding="0" cellspacing="1" width="100%">
+              <tbody><tr>
+                  <td align="right" bgcolor="#ffffff" width="21%">类型：</td>
+                  <td align="left" bgcolor="#ffffff" valign="middle" width="79%">
+                    <label><%= f.radio_button :type_id, "5", :checked => "checked" %>生活</label> 
+                    <label><%= f.radio_button :type_id, "6" %>恋爱</label>
+                    <label><%= f.radio_button :type_id, "7" %>友情</label>
+                    <label><%= f.radio_button :type_id, "8" %>学业</label>
+                    <label><%= f.radio_button :type_id, "9" %>事业</label>
+                    <label><%= f.radio_button :type_id, "10" %>健康</label>
+                    <label><%= f.radio_button :type_id, "11" %>家庭</label>
+                    <label><%= f.radio_button :type_id, "12" %>财富</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="right" bgcolor="#ffffff">发泄内容：</td>
+                  <td align="left" bgcolor="#ffffff">
+                    <%= f.text_area :content, :rows => 5, :cols => 40%>
+                  </td>
+                </tr>
+                <tr>
+                  <td bgcolor="#ffffff"><a name="bottom"></a></td>
+                  <td align="left" bgcolor="#ffffff">
+                    <%#= f.hidden_field (:switch, :value => "Wish")%>
+                    <!--<input id="btnSave" value="添 加" disabled="disabled" onclick="saveWish(this.form)" type="button">&nbsp;&nbsp;-->
+                    <%= submit_tag '添加' %>
+                    <input type="button"  value="取 消" onclick="javascript:qiehuan_close(4)">(字数限制100字，目前<span id="spannotice">0</span>字)</td>
+                  (字数限制100字，目前
+                  <span id="spannotice">0</span>字)</td> 
+              </tr>
+            </tbody>
+          </table>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+    </div>

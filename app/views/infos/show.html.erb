@@ -1,0 +1,146 @@
+<div id="main">
+  <div id="self_message_left_content">
+    <div class="left auto_t_b_r w200">  
+      <div class="auto_t_b_l">
+        <h1>发布人资料</h1>
+      </div>  
+      <div class="auto_b_r"><div class="auto_b_l">
+          <% if @info.item_type == "User"%>
+            <ul>
+              <li class="image">
+              <%if @info.item.avatar %>
+                <%= link_to image_tag(@info.item.avatar.public_filename(:tiny)), user_path(:id => @info.item)%>
+              <% else %>
+                <%=link_to image_tag("../images/noface_tiny.jpg"), user_path(:id => @info.item) %>
+              <% end %>
+              </li>
+              <li class="user">
+              <% if @info.item.user_info.sex == true%> 
+                帅哥
+              <% else %> 美女<% end %>
+                | <%= Time.now.year - @info.item.user_info.birthday.year %>岁</li>
+                <li class="desc addr">地点：
+                <%= @info.item.user_info.location %></li>
+                <li class="desc">等级：
+                <%= @info.item.grade.name %></li>
+                <li class="desc">积分：<%= @info.item.score %> </li>
+                <li class="desc">上次登录：<%= time_ago_in_words(@info.item.last_activity) %>前 </li>
+                <li class="clear">&nbsp;</li>
+              </ul>
+            <% end %>
+            <% if @info.item_type == "Shop"%>
+              <ul>
+                <li class="image">
+                <%if @info.item.avatar %>
+                  <%= link_to image_tag(@info.item.avatar.public_filename(:tiny)), shop_path(:id => @info.item)%>
+                <% else %>
+                  <%=link_to image_tag("../images/noface_tiny.jpg"), shop_path(:id => @info.item) %>
+                <% end %>
+                </li>
+                  <li class="desc">店铺名称：<%= @info.item.login_name%> </li>
+                  <li class="desc">描述：<%= @info.item.description %></li>
+                  <li class="desc addr">地址：<%= @info.item.address %></li>
+                  <li class="desc">邮箱：<%= @info.item.email%></li>
+                  <li class="desc">邮编：<%= @info.item.postcode%></li>
+                  <li class="clear">&nbsp;</li>
+                </ul>
+              <% end %>
+          </div></div>
+        </div>
+        <div class="left auto_t_b_r w200">
+          <div class="auto_t_b_l"><h1>您最近的浏览历史</h1></div>
+          <div class="auto_b_r"><div class="auto_b_l">
+              <div class="message_1">
+                <ul>
+                  <li>fsafsdfdsfdsaf</li>
+                  <li>fsafsfdsfsddaf</li>
+                  <li>fsafsdfdsfdsaf</li>
+                  <li>fsafsfdsfsddaf</li>
+                  <li>fsafsdfdsfdsaf</li>
+                  <li>fsafsfdsfsddaf</li>
+                  <li>fsafsdfdsfdsaf</li>
+                  <li>fsafsfdsfsddaf</li>
+                  <li>fsafsdfdsfdsaf</li>
+                </ul>
+              </div>
+          </div></div>  
+        </div>
+      </div>
+      <div id="self_message_right_content">
+        <div class="left auto_t_b_r w760">  
+          <div class="auto_t_b_l"><h1>当前产品信息</h1></div>  
+          <div class="auto_b_r"><div class="auto_b_l">
+
+              <div class="shop_message">
+                <div class="shop_photo">
+                  <img src="../images/noface_tiny.jpg" width="200" height="200" />
+                </div>
+                <ul>
+                  <li class="l_message"> 
+                  <%= link_to @info.title, info_path(:id => @info) %>
+                  </li>
+                  <li>
+                  发布时间：<%= @info.created_at.strftime("%Y-%m-%d %H:%M:%S")%>
+                  </li>
+                  <li>
+                  <%= @info.content %>
+                  </li>
+                  <li><strong>浏览量:</strong><%= @info.views_count%></li>
+                  <li><strong>联系方式</strong>：<%= @info.phone %></li>
+                  <% if @info.item.id == logged_in_user.id%>
+                    <li><%= link_to '编辑信息', edit_info_path(:id => @info) %></li>
+                  <% end %>
+                </ul>
+              </div>
+              <div class="clear"></div>
+              <span>网友的留言</span>
+              <div id="RemarkContent">
+                <% @info.comments.each do |comment|%>
+                  <div class="answer_p_m">
+                    <div class="answer_photo">
+                      <% if comment.poster.avatar %>
+                        <%= image_tag(comment.poster.avatar.public_filename(:tiny))%>
+                      <% else %>
+                        <%= image_tag("../images/noface_tiny.jpg") %>
+                      <% end %>
+                    </div>
+                    <ul>
+                      <li>
+                      <% if logged_in_type == "Company"%>
+                        <%= link_to comment.poster.login_name, company_path(:id => comment.poster)%>
+                      <% elsif logged_in_type == "Shop"%>
+                        <%= link_to comment.poster.login_name, shop_path(:id => comment.poster)%>
+                      <% else %>
+                        <%= link_to comment.poster.login_name, user_path(:id => comment.poster)%>
+                      <% end %>
+                      </li>
+                      <%= comment.content %>
+                      <li>
+                      <%= comment.created_at.strftime("%Y-%m-%d %H:%M:%S")%>
+                      </li>
+                    </ul>
+                  </div>
+                <% end %>
+              </div>
+              <span>我要留言</span>
+              <% form_for :comment, :url => info_comments_path(:info_id => @info) do |f|%>
+                <div class="inputText">
+                  <%= f.text_area :content, :rows => 5, :cols => 40%>
+                  <br/>
+                  <%= f.hidden_field (:item_type, :value => "Info") %>
+                  <%= f.hidden_field (:item_id, :value => @info.id) %>
+                  <input name="switch" value="<%= info_path(:id => @info)%>" type="hidden">
+                  <%= submit_tag '提交' %>
+                </div>
+              <% end %>
+            </fieldset>
+          </div class="clear"></div>
+          <!-- <div class="left auto_t_b_r w543">  
+            <div class="auto_t_b_l"><h1>您可能关注的其它信息</h1></div>  
+            <div class="auto_b_r"><div class="auto_b_l">
+
+            </div></div>  
+          </div>
+          -->
+        </div>
+      </div><div class="clear"></div>

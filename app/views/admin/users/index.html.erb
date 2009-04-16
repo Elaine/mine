@@ -1,0 +1,196 @@
+   <script language="javascript">
+	function qiehuan(num){
+		for(var id = 1;id<=2;id++)
+		{
+			if(id==num)
+			{
+				document.getElementById("knowmessage"+id).style.display="block";
+				document.getElementById("mynav"+id).className="nav_on";
+				document.getElementById("mynav"+id).style.background="url(../images/admin/l_menu_button_on.gif)";
+				document.getElementById("mynav"+id).style.display="block";
+				document.getElementById("mynav"+id).style.color="#000000";
+			}
+			else
+			{
+				document.getElementById("knowmessage"+id).style.display="none";
+				document.getElementById("mynav"+id).className="";
+				document.getElementById("mynav"+id).style.background="";
+				document.getElementById("mynav"+id).style.color="";
+			}
+		}
+	}
+</script> 
+<div id="body_bg">
+<div id="main">
+<!--头部-->
+<div id="header">
+  <div id="header_sub1">
+    <ul>
+      <li><a href="#">工作台</a></li>
+      <li><a href="#">帮助</a></li>
+    </ul>
+  </div>
+  <div class="clear"></div>
+  <div id="header_messasge"> 您有<a href="#">20</a>条外来，<a href="#">0</a>条站内信息 </div>
+  <div id="header_menu">
+    <ul>
+      <li><%= link_to '退出管理', :action => 'logout'%></li>
+      <li><a href="#">问题反馈</a></li>
+      <li><a  href="#">首页</a></li>
+    </ul>
+  </div>
+</div>
+<div class="clear"></div>
+<!--左侧内容-->
+   <div id="frmTitle">
+    <iframe frameBorder="0" id="carnoc" name="carnoc" scrolling="no" src="" style="HEIGHT: 10px; VISIBILITY: inherit; WIDTH: 1px; Z-INDEX: 2">
+	</iframe> 
+	 <div id="welcome">欢迎进入本页面
+</div>
+	 <div id="menu">
+	 <ul>  
+       <li class="m_a"><%= link_to '用户管理', admin_users_path %></li>
+	   <li><%= link_to '样式管理', admin_theme_categories_path %></li>
+       <li><%= link_to '信息管理', admin_info_categories_path %></li>
+       <li><%= link_to '企业管理', admin_company_categories_path %></li>
+	   <li><%= link_to '知道管理', admin_ask_categories_path %></li>
+       <li><%= link_to '点评管理', admin_serve_categories_path %></li>
+       <li ><%= link_to '等级管理', admin_grades_path %></li>
+	   <li></li>
+	   <li></li>
+	   <li></li>
+	   <li></li>
+	   <li></li>
+	    <li></li>
+	   <li></li>
+
+	 </ul>
+	 </div><div class="clear"></div>
+	 <div id="search">
+	   <input name="text" type="text" />
+	   <button type="submit" id="search_bottom">搜索</button>
+	 </div>
+   </div>
+       
+   <div id="frmcontent" style="display:block">
+    <div id="top_sub_menu"><div id="top_sub_l">
+     <div id="l_menu">
+	  <ul>  
+	     <li><a href="#" onclick="javascript:qiehuan(1)" id="mynav1">用户信息</a></li>
+		 <li><a href="#" onclick="javascript:qiehuan(2)" id="mynav2">用户修改</a></li>
+	  </ul>
+	</div>
+   </div></div><div class="clear"></div>
+   <div id="index_content_01">
+    <div id="knowmessage1" style="display:none">
+	<div id="tableFrame">
+    <div id="tableFrameTitle">
+        <ul>
+		    <li class="checkbox"><input type="checkbox" width="30"/></li>
+            <li class="username">用户姓名</li>
+            <li class="updata">性别</li>
+            <li class="updata">积分</li>
+			<li class="username">是否禁用</li>
+			<li class="delete">操作</li>
+        </ul>
+    </div><div class="clear"></div>
+    <div id="tableCase">
+    <!--此处开始循环 -->
+       <% @users.each do |item| %>
+	   <ul>
+	      <li class="checkbox"><input type="checkbox" width="30"/></li>	
+          <li class="username"> <%= link_to item.login_name%></li>
+          <li class="updata"> </li>
+          <li class="updata"><%= item.score %> </li>
+		  <li class="username">  <% if item.enabled %>
+    [<%= link_to '禁用', admin_user_path(:id => item), :method => :delete %>]
+  <% else %>
+    [<%= link_to '启用', enabled_admin_user_path(:id => item) %>]
+  <% end %>
+ </li><li class="delete"></li>
+ <div class="clear"></div>
+     <% end %>
+	 </div>
+    <!--到此循环结束 -->
+    <div class="categories" style="margin-top:10px; float:left; width:600px">
+    <%= will_paginate @users, :prev_label => '上一页', :next_label => '下一页'%>
+    </div>
+</div><div class="clear"></div>
+	<div id="table_logo">
+	<ul>
+	<li><input type="button" value="删除选中用户" height="25"/></li>
+	</ul>
+	</div>
+   </div>
+  <div id="knowmessage2" style="display:none">
+  	<div id="tableFrame">
+    <div id="tableFrameTitle">
+        <ul>
+		    <li class="checkbox"><input type="checkbox" width="30"/></li>
+            <li class="username">用户姓名</li>
+            <li class="updata">性别</li>
+            <li class="updata">积分</li>
+			<li class="username">是否禁用</li>
+			  <li class="delete">操作</li>
+        </ul>
+    </div><div class="clear"></div>
+    <div id="tableCase">
+    <!--此处开始循环 -->
+       <% @users.each do |item| %>
+	   <ul>
+	      <li class="checkbox"><input type="checkbox" width="30"/></li>	
+          <li class="username"> <%= link_to item.login_name%></li>
+          <li class="updata"> </li>
+          <li class="updata"><%= item.score %> </li>
+		  <li class="username">  <% if item.enabled %>
+		 
+    [<%= link_to '禁用', admin_user_path(:id => item), :method => :delete %>]
+  <% else %>
+    [<%= link_to '启用', enabled_admin_user_path(:id => item) %>]
+  <% end %>
+ </li> 
+  <li class="delete"></li><div class="clear"></div>
+     <% end %>
+	 </div>
+    <!--到此循环结束 -->
+    <div class="categories" style="margin-top:10px; float:left; width:600px">
+    <%= will_paginate @users, :prev_label => '上一页', :next_label => '下一页'%>
+    </div>
+</div><div class="clear"></div>
+	<div id="table_logo">
+	<ul>
+	<li><input type="button" value="删除选中用户" height="25"/></li>
+	</ul>
+	</div>
+ </div>
+   </div><div class="clear"></div>
+   <div id="bot_c"><div id="bot_l"></div></div>
+  </div>
+   <div class="clear"></div>
+   <div id="footer"><div id="f_b_l">
+   </div></div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

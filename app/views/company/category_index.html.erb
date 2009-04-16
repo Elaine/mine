@@ -1,0 +1,19 @@
+<table border="0" cellpadding="2" cellspacing="0" width="75%">
+  <tbody>
+    <% @companies.each do |item|%>
+    <tr valign="middle"> 
+      <td height="25" width="20">&nbsp;</td>
+      <td height="25" width="680">
+        <% if item.avatar %>
+          <%= link_to image_tag(item.avatar.public_filename(:tiny)), company_path(:id => item) %>
+        <% else %>
+          <%= link_to image_tag("../images/noface_tiny.jpg"), company_path(:id => item) %>
+        <% end %>
+        <span>
+          <%= link_to item.login_name, company_path(:id => item) %>
+        </span>
+        <br><%= item.description %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

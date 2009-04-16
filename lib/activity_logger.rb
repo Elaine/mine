@@ -1,5 +1,4 @@
 module ActivityLogger
-
   def add_activities(options = {})
     user = options[:user]
     #include_user = options[:include_user]

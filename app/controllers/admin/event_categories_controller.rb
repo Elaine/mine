@@ -7,7 +7,7 @@ class Admin::EventCategoriesController < ApplicationController
   end
 
   def index
-    @eventcategories = EventCategory.find(:all, :order => 'created_at desc')
+    @eventcategories = EventCategory.find(:all, :order => 'created_at desc').paginate :page => params[:page], :per_page => 16
     @eventcategory = EventCategory.new
   end
 

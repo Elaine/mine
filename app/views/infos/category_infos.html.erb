@@ -1,0 +1,96 @@
+
+<div id="main">
+<div class="left auto_t_b_r w200">  
+           <div class="auto_t_b_l"><h1>便民服务</h1></div>  
+             <div class="auto_b_r"><div class="auto_b_l">
+                  <div class="cate-category">							
+                  <div class="yn-left"> </div>	
+            		<ul>
+             <li><a class="yp01" name="yhp0806/fuwu/bendi1" target="_blank" href="http://bendi.koubei.com/anqing/searchstore--category-4">餐馆</a></li>
+             <li><a class="yp03" name="yhp0806/fuwu/bendi3" target="_blank" href="http://bendi.koubei.com/anqing/searchstore--category-5---subcates-92">银行</a></li>
+             <li><a class="yp05" name="yhp0806/fuwu/bendi4" target="_blank" href="http://bendi.koubei.com/anqing/searchstore--category-6---subcates-75">快递</a></li>
+             <li><a class="yp22" name="yhp0806/fuwu/bendi21" target="_blank" href="http://bendi.koubei.com/anqing/searchstore--category-2---subcates-79">书店</a></li>
+             <li><a class="yp09" name="yhp0806/fuwu/bendi8" target="_blank" href="http://bendi.koubei.com/anqing/searchstore--category-5---subcates-95">学校</a></li>
+             <li><a class="yp11" name="yhp0806/fuwu/bendi10" target="_blank" href="http://bendi.koubei.com/anqing/searchstore--category-2---subcates-47">网吧</a></li>
+             <li><a class="yp25" name="yhp0806/fuwu/bendi24" target="_blank" href="http://bendi.koubei.com/anqing/searchstore--category-3---subcates-333">超市</a></li>
+             <li><a class="yp15" name="yhp0806/fuwu/bendi15" target="_blank" href="http://bendi.koubei.com/anqing/searchstore--category-4---subcates-46">咖啡</a></li>
+             <li><a class="yp17" name="yhp0806/fuwu/bendi16" target="_blank" href="http://bendi.koubei.com/anqing/searchstore--category-2---subcates-19">健身</a></li>
+             <li><a class="yp07" name="yhp0806/fuwu/bendi6" target="_blank" href="http://bendi.koubei.com/anqing/searchstore--category-2---subcates-305">美发</a></li>
+             <li><a class="yp12" name="yhp0806/fuwu/bendi11" target="_blank" href="http://bendi.koubei.com/anqing/searchstore--category-2---subcates-156">棋牌</a></li>
+             <li><a class="yp23" name="yhp0806/fuwu/bendi22" target="_blank" href="http://bendi.koubei.com/anqing/searchstore--category-2---subcates-302">球馆</a></li>
+             <li><a class="yp21" name="yhp0806/fuwu/bendi20" target="_blank" href="http://bendi.koubei.com/anqing/searchstore--category-6---subcates-116">景点</a></li>
+             <li><a class="yp24" name="yhp0806/fuwu/bendi23" target="_blank" href="http://bendi.koubei.com/anqing/searchstore--category-2---subcates-101">公园</a></li>
+             <li><a class="yp20" name="yhp0806/fuwu/bendi19" target="_blank" href="http://bendi.koubei.com/anqing/searchstore--category-3---subcates-99">家居</a></li>
+           </ul>										       							
+         </div></div></div>   
+    </div>
+     <!--标签结束-->
+     <div id="self_message_right_content">
+    <div class="left auto_t_b_r w760">  
+           <div class="auto_t_b_l"><h1>分类信息</h1></div>  
+             <div class="auto_b_r"><div class="auto_b_l">
+			 
+			 <div id="tableFrame_1">
+                <div id="tableFrameTitle_1">
+				<div class="classinfo">
+                  <ul>
+                        <li class="photo_1">信息图片</li>
+			            <li class="title_1">标题</li>
+                         <li class="content_1">内容简介</li>
+			            <li class="count_1">访问量</li>
+			            <li class="time_1">发布时间</li>
+						<li class="contest_1">联系方式</li>
+                  </ul>
+				  </div>
+                </div>
+             <div id="tableCase_1">
+               <!--此处开始循环 -->
+                <% @infos.each do |item| %>
+				
+                 <div class="classinfo">
+				 <ul>
+                <li class="photo_1"><a href="#"> <img src="../images/noface_tiny.jpg"/></a></li>
+				<li class="title_1">
+                <%= link_to item.title, info_path(:id => item) %>
+				</li>
+                <li class="content_1"> <%= item.content %></li> 
+             <li class="count_1"><%= item.views_count%></li>
+			 <li class="time_1"><%= item.created_at.strftime("%Y-%m-%d %H:%M:%S")%></li>
+			 <li class="contest_1"><%= item.phone %></li>
+			 </ul>
+      </div>
+     <% end %>
+             <!--到此循环结束 -->
+          <%= will_paginate @infos, :prev_label => '上一页', :next_label => '下一页' %>
+  
+          </div></div>  
+     </div>
+	 </div>
+	 </div>
+</div> 
+<div class="clear"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

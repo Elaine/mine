@@ -1,0 +1,44 @@
+<% form_for :reservation, :url => shop_product_reservations_path(:product_id => @product) do |f| %>
+<table><tr>
+    <td colspan="2" class="modtit" bgcolor="#ffffff">确认预约的商品/服务 (客服会主动与您取得联系,介绍该产品/服务详细情况)</td>
+  </tr>
+  <tr>
+    <td bgcolor="#ffffff" width="15%">订购数量：</td>
+    <td bgcolor="#ffffff" width="85%">
+      <%= f.text_field :counts %>
+      <span class="redt">*</span></td>
+  </tr>
+  <tr>
+    <td bgcolor="#ffffff" width="15%">姓名：</td>
+    <td bgcolor="#ffffff">
+      <%= f.text_field :truename %>
+      <span class="redt">*</span>
+      <%= f.radio_button :sex, '1' %> 
+      先生 
+      <%= f.radio_button :sex, '2' %>
+      小姐</td>
+  </tr>
+  <tr>
+    <td bgcolor="#ffffff">联系电话：</td>
+    <td bgcolor="#ffffff">
+      <%= f.text_field :phone %>
+      <span class="redt">*</span>(请正确填写，全数字，不超过12位)</td>
+  </tr>
+  <tr>
+
+    <td bgcolor="#ffffff">收货地址：</td>
+    <td bgcolor="#ffffff">
+      <%= f.text_field :receive_address %>
+    </td>
+  </tr>
+  <tr>
+    <td bgcolor="#ffffff">补充：</td>
+    <td bgcolor="#ffffff">
+      <%= f.text_area :add, :rows => 5, :cols => 40 %>
+    </td>
+  </tr>
+  <tr>
+    <td><%= submit_tag '提交' %></td>
+  </tr>
+</table>
+<% end %>

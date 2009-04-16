@@ -1,9 +1,14 @@
-<div id="yourhear"><%= link_to '活动', events_path %>&raquo;
-<%= link_to @event.event_category.name, category_events_events_path(:category_id => @event.event_category) %>&raquo;<%= @event.title %>
-  </div>
-  <div class="main top">
-  <div id="left">
-  <div id="innerheader">
+<div id="main">
+<div class="auto_t_r w960">
+    <div class="auto_t_l">&nbsp;</div>
+  <div class="auto_b_r"><div  class="auto_b_l">
+
+  <div id="yourhear">
+   <%= link_to '活动', events_path %>&raquo;
+   <%= link_to @event.event_category.name, category_events_events_path(:category_id => @event.event_category) %>&raquo;<%= @event.title %>
+   </div>
+<div id="left" style="float:left;">
+<div id="innerheader">
   <div id="innert_time"><%= @event.started_at.strftime("%Y")%><br />
     <%= @event.started_at.strftime("%m月%d日")%></div>
     <div id="inner_t">
@@ -14,7 +19,7 @@
       发起时间：<%= @event.started_at.strftime("%Y-%m-%d %H:%M") %></div>
   <div id="inner_t3">            <% if @event.offical == true %>官方活动<% else %> 会员活动<% end %>
     </div>
-  </div>  
+  </div> 
   <div class="inner_t">基本信息</div>
   <ul class="inner_c"><li>活动地点：<span class="inner_cs"><%= @event.location %></span></li>
     <li>活动时间：<span class="inner_cs">集合时间：
@@ -38,7 +43,7 @@
       </tr>
     </table>
   </div>
-  <div class="inner_t">活动介绍</div>
+   <div class="inner_t">活动介绍</div>
   <div class="inner_c3"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <br>
     <%= @event.introduction %> 
@@ -65,13 +70,13 @@
   <ul>
     <% @event.eventors.each do |e|%>
       <li>
-      <% if e.user.space.avatar %>
-        <%= image_tag(e.user.space.avatar.public_filename(:tiny))%>
+      <% if e.user.avatar %>
+        <%= image_tag(e.user.avatar.public_filename(:tiny))%>
       <% else %>
         <%= image_tag("../images/noface_tiny.jpg ")%>
       <% end %>
       <br/>
-      <%= link_to e.user.username, space_path(:id => e.user.space)%>
+      <%= link_to e.user.username, user_path(:id => e.user)%>
       报名<%= e.members %>人<br/>
       </li>
     <% end %>
@@ -111,18 +116,18 @@
     <div class="quest_t"><span> &nbsp;&nbsp;<%= c.id %>楼 </span>发表时间：
       <%= c.created_at.strftime("%Y-%m-%d %H:%M:%S")%>
       <div class="quest_del"></div></div>
-    <% if c.space.avatar %>
-      <%= image_tag(c.space.avatar.public_filename(:tiny))%>
+    <% if c.user.avatar %>
+      <%= image_tag(c.user.avatar.public_filename(:tiny))%>
     <% else %>
       <%= image_tag("../images/noface_tiny.jpg")%>
     <% end %>
-      <div class="quest_c"><%= link_to c.space.user.username, space_path(:id => c.space) %> 说：<%= c.content %></div>
+      <div class="quest_c"><%= link_to c.user.username, user_path(:id => c.user) %> 说：<%= c.content %></div>
     <div class="clear">&nbsp;</div></li>
   <% end %>
   </ul>
 
   <div class="inner_t">请您留言：注意- 这里是留言区，并非报名区！</div>
-  <% form_for :comment, :url => event_comments_path(:event_id => @event.id, :space_id => logged_in_user.space) do |f|%>
+  <% form_for :comment, :url => event_comments_path(:event_id => @event.id, :user_id => logged_in_user) do |f|%>
   <div class="inner_c">
     <label>
       <%= f.text_area :content, :rows => 10, :cols => 30%>
@@ -136,9 +141,12 @@
   </div>
 <% end %>
   <div class="clear">&nbsp;</div>
+  
+  
 </div>
 
-<div id="right"> 
+<div id="right" style="width:210px"> 
+
   <div id="but"><%= link_to '发起新活动', new_event_path%> </div>
   <div class="right_t">按分类浏览</div>
   <ul id="list">
@@ -148,3 +156,8 @@
   </ul>
 </div>
 <div class="clear">&nbsp;</div>
+</div>
+</div>
+</div>
+</div>
+

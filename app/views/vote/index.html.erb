@@ -1,0 +1,93 @@
+<div id="main">
+<div class="auto_t_r w960">
+    <div class="auto_t_l">&nbsp;</div>
+  <div class="auto_b_r"><div class="auto_b_l"> 
+   <div id="yourhear" class="top">
+    <ul id="yrhnav">
+      <li><a href="shops.php">消费点评 &raquo;</a>
+      <li class="yrhnav_ico"><a href="?class=8">生活服务</s>&nbsp;&nbsp;&nbsp;</a>
+  <ul>
+    <% @category.children_category.each do |item| %>
+      <%= link_to item.name, businesses_path(:category_id => item) %>
+    <% end %>
+  </ul>
+      </li>
+          </ul>
+  </div>
+  <div class="left" style="width:600px; float:left;">
+  <!--筛选-->
+<div id="addresstitle">筛选</div>
+<div id="address">
+ <dl>
+<!-- 商铺分类 -->	
+	<dt>会员商铺: 
+		<b>全部 </b>		<a href="#">会员商铺 </a>		<a href="#">非会员商铺 </a></dt>
+  
+		
+<!-- 价位分类 -->	
+		<dt>人均筛选: 
+		<b>不限</b>		<a href="#" class="on">30元以下</a>		<a href="#" class="on">31-50元</a>		<a href="#" class="on">51-100元</a>		<a href="#" class="on">101-150元</a>		<a href="#" class="on">151-200元</a>		<a href="#" class="on">200元以上</a></dt>
+</dl>
+</div>
+<!--筛选结束-->
+<div class="clear"></div>
+  <div id="title"><span class="small"><b>生活服务</b></span></div>  
+  <div id="subtitle"> <font>排序方式：<b>发布时间</b> | <a href=?class=8&key=&tag=&order=1&area=&cost=0&mem=0>点评数</a> |<a href=?class=8&key=&tag=&order=2&area=&cost=0&mem=0>热门度</a> | <a href=?class=8&key=&tag=&order=3&area=&cost=0&mem=0>质量</a> | <a href=?class=8&key=&tag=&order=4&area=&cost=0&mem=0>环境</a> | <a href=?class=8&key=&tag=&order=5&area=&cost=0&mem=0>服务</a></font>
+
+ <p class="netx">共7页 |上一页 | <a href="?class=8&tag=&key=&button0=&area=&order=0&cost=0&mem=0&p=2">下一页</a></p>
+</div>
+
+<div class="left_c">
+<% @category.businesses.each do |b|%>
+    <div class="review">
+    <div class="review_left">
+      <div class="review_t">
+      <span class="review_c2"><%= link_to b.name, business_path(:id => b) %></span>
+      <div class="review_rj"><%= b.price %></div> 
+          <div class="clear"></div>    </div>      
+    <div class="review_c_01"><ul class="star">
+
+        <li><font>质量：</font>
+          <p class='star00' title="0"></p>
+        </li>
+        <li><font>环境：</font>
+            <p class='star00' title="0"></p>
+        </li>
+        <li><font>服务：</font>
+
+            <p class='star00' title="0"></p>
+        </li>
+      </ul>
+	 <div class="discount"> </div>
+     <div class="clear"></div></div>
+	  <div class="review_c">：<%= b.address %><br/>电话：<%= b.phone %>&nbsp;&nbsp;<br /></div>
+<div class="review_c2">
+      <% if b.votes_count > 0%>
+      <%= b.last_vote.user.login_name%> <em><%= time_ago_in_words(b.last_vote.created_at) %>前说：</em><%= b.last_vote.feel%>  
+      <% end %>
+	  </div>
+        <div class="review_c3">
+      <%= link_to "查看更多点评(#{b.votes_count})", business_path(:id => b) %>
+      <%= link_to '我要点评', new_vote_path(:business_id => b) %></div>	</div>
+	  <div class="review_i"><a href="shop_photos.php?shopid=204292"><img src="../images/image/review_listnoPhoto.gif" /></a></div>
+	<div class="review_p">[<%= link_to b.serve_photos_count, business_serve_photos_path(:business_id => b) %>张]</div>
+  <div class="clear">&nbsp;</div>
+  </div>
+
+<% end %>
+    
+
+
+</div>
+
+</div>
+
+  <div id="right" style="width:230px; float:right">
+
+  </div>
+  <div class="clear"></div>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+

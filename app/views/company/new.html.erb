@@ -1,0 +1,58 @@
+<div id="main">
+<div class="auto_t_r w960">
+    <div class="auto_t_l">&nbsp;</div>
+  <div class="auto_b_r"><div class="auto_b_l">
+<% form_for :company, :url => company_index_path, :html => {:multipart => true}  do |f|%>
+  <%= f.error_messages %>
+  <h3>请填写你的用户名</h3>
+  <ul><label>企业名称：</label>
+    <%= f.text_field :login_name%> <span>*</span>
+  </ul>
+  <ul><label>企业分类：</label>
+    <%= f.select :company_category_id, CompanyCategory.find(:all).map {|m| [m.name, m.id]}%> <span>*</span>
+  </ul>
+  <ul><label>您的密码：</label>
+    <%= f.password_field :password %> <span>*</span>
+  </ul>
+  <ul><label>请您再输入一遍密码：</label>
+    <%= f.password_field :password_confirmation %> <span>*</span>
+  </ul>
+  <ul><label>您的姓名：</label>
+    <%= f.text_field :master_name%> <span>*</span>
+  </ul>
+  <ul><label>您的地址：</label>
+    <%= f.text_field :address %> <span>*</span>
+  </ul>
+  <ul><label>电话联系：</label>
+    <%= f.text_field :phone %> <span>*</span>
+  </ul>
+  <ul><label>公司传真：</label>
+    <%= f.text_field :fax %> <span>*</span>
+  </ul>
+ <ul><label>公司网址：</label>
+    <%= f.text_field :website%> <span>*</span>
+  </ul>
+  <ul><label>您的邮编：</label>
+    <%= f.text_field :postal%> <span>*</span>
+  </ul>
+  <ul><label>公司简介：</label>
+    <%= f.text_area :description, :rows => 5, :cols => 40 %>
+    <span>*</span>
+  </ul>
+  <ul><label>您的邮箱：</label>
+    <%= f.text_field :company_email %> <span>*</span>
+  </ul>
+  <ul><label>企业标志：</label>
+    <%= file_field :company_photo, :uploaded_data %> <span>*</span>
+  </ul>
+  <%= hidden_field_tag :logged_in_type, "Company" %>
+  <ul class="gray9">你在俱乐部的所有信息和言论，我们都将严格保密，绝不以任何形式透露给他方。</ul>
+  <div class="blank10"></div>
+  <ul class="tc">
+    <%= submit_tag '提交' %>
+  </ul>
+  <div class="clear"></div>
+<% end %>
+</div>
+</div>
+</div>

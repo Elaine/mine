@@ -1,0 +1,37 @@
+
+<script>
+  // act-guide
+  function vidiexp(id){
+    for(i=0;i<5;i++){
+      document.getElementById("vidi_"+i).className = "";
+    };
+    document.getElementById("vidi_"+id).className = "big";
+  };
+</script>
+<div class="left auto_t_b_r w200">  
+  <div class="auto_t_b_l"><h1>明星会员</h1></div>  
+  <div class="auto_b_r"><div class="auto_b_l">
+      <div id="home_blk04">
+        <ul>
+          <% @hotusers.each_with_index do |item, index| %>
+            <% if index == 0 %>
+              <li class="big" id='vidi_<%= "#{index}"%>' onmouseover=vidiexp(<%= "#{index}" %>)>
+            <% else %>
+              <li class="" id='vidi_<%= "#{index}"%>' onmouseover=vidiexp(<%= "#{index}" %>)>
+            <% end %>
+            <% if item.avatar %>
+              <%= link_to image_tag(item.avatar.public_filename(:tiny), :border => 0, :class => "hypic", :rel => "nofollow"), user_path(:id => item)%>
+            <% else %>
+              <%= link_to image_tag("../images/noface_tiny.jpg", :class => "hypic", :border => 0, :rel => "nofollow"), user_path(:id => item) %>
+            <% end %>
+            <span>
+              <%= link_to item.login_name, user_path(:id => item)%>&nbsp;&nbsp;<%= image_tag("../images/image/h_pic07.gif", :target => "_blank", :class => "name", :rel => "nofollow") %> 
+            </span>
+            <p>此处为管理员总结的个人介绍</p>
+            </li>
+          <% end %>
+
+        </ul>
+      </div>
+  </div></div>  
+</div>

@@ -1,8 +1,143 @@
-<h1>Admin::Site#index</h1>
-<%= @admin.name%>
-<%= link_to '样式管理', admin_theme_categories_path %>
-<%= link_to '产品分类', admin_shop_categories_path %>
-<%= link_to '问答分类', admin_ask_categories_path %>
-<%= link_to '活动分类', admin_event_categories_path %>
-<%= link_to '添加商铺', new_shop_path %>
-<%= link_to '退出管理', :action => 'logout'%>
+<div id="body_bg">
+<div id="main">
+<!--头部-->
+<div id="header">
+  <div id="header_sub1">
+    <ul>
+      <li><a href="#">工作台</a></li>
+      <li><a href="#">留言板</a></li>
+      <li><a href="#">帮助</a></li>
+    </ul>
+  </div>
+  <div class="clear"></div>
+  <div id="header_messasge"> 
+    您有<%= link_to @messages.size, admin_messages_path %>条外来短信
+  </div>
+  <div id="header_menu">
+    <ul>
+     <li><%= link_to '退出管理', :action => 'logout'%></li>
+      <li><a href="#">参数设置</a></li>
+      <li><a href="#">问题反馈</a></li>
+      <li class="active"><a  href="#">首页</a></li>
+    </ul>
+  </div>
+</div>
+<div class="clear"></div>
+<!--左侧内容-->
+   <div id="frmTitle">
+    <iframe frameBorder="0" id="carnoc" name="carnoc" scrolling="no" src="" style="HEIGHT: 10px; VISIBILITY: inherit; WIDTH: 1px; Z-INDEX: 2">
+	</iframe> 
+	 <div id="welcome"><%= @admin.name%>欢迎进入本页面
+</div>
+	 <div id="menu">
+	 <ul>
+       <li><%= link_to '用户管理', admin_users_path %></li>
+	   <li><%= link_to '样式管理', admin_theme_categories_path %></li>
+       <li><%= link_to '信息管理', admin_info_categories_path %></li>
+       <li><%= link_to '商铺管理', admin_shop_categories_path %></li>
+       <li><%= link_to '企业管理', admin_company_categories_path %></li>
+	   <li><%= link_to '知道管理', admin_ask_categories_path %></li>
+       <li><%= link_to '点评管理', admin_serve_categories_path %></li>
+       <li><%= link_to '等级管理', admin_grades_path %></li>
+       <li><%= link_to '许愿墙', admin_board_categories_path %></li>
+       <li><%= link_to '论坛管理', admin_forum_categories_path %></li>
+	   <li></li>
+	   <li></li>
+	   <li></li>
+	    <li></li>
+	   <li></li>
+	 </ul>
+	 </div><div class="clear"></div>
+	 <div id="search">
+	   <input name="text" type="text" />
+	   <button type="submit" id="search_bottom">搜索</button>
+	 </div>
+   </div>
+   <div id="frmcontent" style="display:block">
+    <div id="top_sub_menu"><div id="top_sub_l">
+     <div id="l_menu">
+	 <ul>  
+	     <a style="color:#fff"><%= @admin.name%></a><strong style="color:#fff">欢迎进入本页面</strong>
+	 </ul>
+	</div>
+   </div></div><div class="clear"></div>
+   <div id="index_content_01">
+      <div id="index_user_welcome">
+	 <a><%= @admin.name%>欢迎进入本页面</a>
+	 <ul>
+	    <li>您的管理权限有：</li>
+	 </ul>
+	 </div>
+	<!--管理开始-->
+   <div class="admin_box">
+      <div class="top_c"><div class="top_l"><div class="top_r">
+	  <h1>企业管理</h1>
+	  </div></div></div>
+	  <div class="box_content">
+	  <ul>  
+	     <li><a href="#">企业建站</a>&nbsp;|&nbsp;<a href="#">企业黄页</a></li>
+		 <li><a href="#">企业招聘</a>&nbsp;|&nbsp;<a href="#">管理咨询</a></li>
+		 <li><a href="#">加盟企业</a>&nbsp;|&nbsp;<a href="#">供求信息</a></li>
+	  </ul>
+	  </div>
+	  <div class="bot_c"><div class="bot_l"><div class="bot_r">
+	  </div></div></div>
+   </div>
+   <!--管理结束-->
+    	<!--管理开始-->
+   <div class="admin_box">
+      <div class="top_c"><div class="top_l"><div class="top_r">
+	  <h1>企业管理</h1>
+	  </div></div></div>
+	  <div class="box_content">
+	  <ul>  
+	     <li><a href="#">企业建站</a>&nbsp;|&nbsp;<a href="#">企业黄页</a></li>
+		 <li><a href="#">企业招聘</a>&nbsp;|&nbsp;<a href="#">管理咨询</a></li>
+		 <li><a href="#">加盟企业</a>&nbsp;|&nbsp;<a href="#">供求信息</a></li>
+	  </ul>
+	  </div>
+	  <div class="bot_c"><div class="bot_l"><div class="bot_r">
+	  </div></div></div>
+   </div>
+   <!--管理结束-->
+    	<!--管理开始-->
+   <div class="admin_box">
+      <div class="top_c"><div class="top_l"><div class="top_r">
+	  <h1>企业管理</h1>
+	  </div></div></div>
+	  <div class="box_content">
+	  <ul>  
+	     <li><a href="#">企业建站</a>&nbsp;|&nbsp;<a href="#">企业黄页</a></li>
+		 <li><a href="#">企业招聘</a>&nbsp;|&nbsp;<a href="#">管理咨询</a></li>
+		 <li><a href="#">加盟企业</a>&nbsp;|&nbsp;<a href="#">供求信息</a></li>
+	  </ul>
+	  </div>
+	  <div class="bot_c"><div class="bot_l"><div class="bot_r">
+	  </div></div></div>
+   </div>
+   <!--管理结束-->
+    	<!--管理开始-->
+   <div class="admin_box">
+      <div class="top_c"><div class="top_l"><div class="top_r">
+	  <h1>企业管理</h1>
+	  </div></div></div>
+	  <div class="box_content">
+	  <ul>  
+	     <li><a href="#">企业建站</a>&nbsp;|&nbsp;<a href="#">企业黄页</a></li>
+		 <li><a href="#">企业招聘</a>&nbsp;|&nbsp;<a href="#">管理咨询</a></li>
+		 <li><a href="#">加盟企业</a>&nbsp;|&nbsp;<a href="#">供求信息</a></li>
+	  </ul>
+	  </div>
+	  <div class="bot_c"><div class="bot_l"><div class="bot_r">
+	  </div></div></div>
+   </div>
+   <!--管理结束-->
+   </div>
+   <div class="clear"></div>
+   <div id="bot_c"><div id="bot_l"></div></div>
+  </div>
+   <div class="clear"></div>
+   <div id="footer"><div id="f_b_l">
+   </div></div>
+</div>
+</div>

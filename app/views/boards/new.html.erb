@@ -1,0 +1,37 @@
+<li><%#= link_to_function "我要#{@category.name[0,6]}", :id => "mynav#{@category.id}", :onclick => "javascript:qiehuan(1)" %></li>
+<div id="wishfrm1_container" style="overflow: auto; background-color: rgb(255, 255, 255); width: 520px; height: 229px; font-size: 12px; text-align: center; float: left;"><br>
+  <% form_for :board,:url => boards_path(:category_id => @category), :onsubmit => "return false" do |f| %>
+    <table align="center" bgcolor="#cccccc" border="0" cellpadding="0" cellspacing="1" width="100%">
+      <tbody><tr>  
+          <td align="right" bgcolor="#ffffff" width="21%">类型：</td>  
+          <td align="left" bgcolor="#ffffff" valign="middle" width="79%">   
+            <label><%= f.radio_button :type_id, "5", :checked => "checked" %>生活</label> 
+            <label><%= f.radio_button :type_id, "6" %>恋爱</label>
+            <label><%= f.radio_button :type_id, "7" %>友情</label>
+            <label><%= f.radio_button :type_id, "8" %>学业</label>
+            <label><%= f.radio_button :type_id, "9" %>事业</label>
+            <label><%= f.radio_button :type_id, "10" %>健康</label>
+            <label><%= f.radio_button :type_id, "11" %>家庭</label>
+            <label><%= f.radio_button :type_id, "12" %>财富</label>
+          </td> 
+        </tr>  
+        <tr>  
+          <td align="right" bgcolor="#ffffff">出气内容：</td>
+          <td align="left" bgcolor="#ffffff">
+            <!--<textarea name="content" id="cont" cols="40" rows="5" required="1" onkeyup="textlim();"></textarea>-->
+            <%= f.text_area :content, :rows => 5, :cols => 40%>
+          </td> 
+        </tr> 
+        <tr> 
+          <td bgcolor="#ffffff"><a name="bottom"></a></td> 
+          <td align="left" bgcolor="#ffffff">
+            <%#= f.hidden_field (:switch, :value => "Wish")%>
+            <!--<input id="btnSave" value="添 加" disabled="disabled" onclick="saveWish(this.form)" type="button">&nbsp;&nbsp;-->
+            <%= submit_tag '添加' %>
+            <input value="取 消" onclick="wishDlg.close()" type="button">(字数限制100字，目前
+            <span id="spannotice">0</span>字)</td> 
+        </tr>
+      </tbody>
+    </table>
+  <% end %>
+</div>

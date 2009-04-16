@@ -1,0 +1,11 @@
+<% @askings.each do |ask|%>
+  <ul>
+    <li class="group"><%= link_to ask.ask_category.name, category_asks_asks_path(:category_id => ask.ask_category), :method => :put %></li>
+    <li class="title_01">
+    <%= link_to ask.title, ask_path(:id => ask.id)%>
+    </li>
+    <li class="many"><span><%= ask.score%></span></li>
+    <li class="answer"><%= ask.answers_count%></li>
+    <li class="time"><font size=2><%= time_ago_in_words(ask.created_at)%> 前</font> </li>
+  </ul>
+<% end %> 

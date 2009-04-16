@@ -1,11 +1,12 @@
 require 'digest/sha1'
 class Admin < ActiveRecord::Base
   belongs_to :role
+  has_many :manager_messages
   validates_presence_of :name, :password, :message => '不能为空'
   validates_length_of :name, :within => 3..10, :too_short => '不能少于3个字符', :too_long => '不能超过10个字符'
   validates_uniqueness_of :name, :message => '已经存在'
   validates_confirmation_of :password, :message => '输入的不一致'
-  attr_accessor :password_confirmation
+  attr_accessor :oldpassword
 
   ColumnNames = {
     :name => '用户名', :password => '密码'
@@ -39,8 +40,8 @@ class Admin < ActiveRecord::Base
   def create_a_salt
     self.salt = self.object_id.to_s + rand.to_s
   end
-  def self.encrypt_password(password,salt)
-    string_to_hash = password + 'D3JIADMIN' + salt
+  def self.encrypt_password(password, salt)
+    string_to_hash = password.to_s + 'D3JIADMIN' + salt.to_s
     Digest::SHA1.hexdigest(string_to_hash)
   end
 end

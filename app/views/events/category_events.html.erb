@@ -1,7 +1,12 @@
-<div class="main top">
-  <div id="left">
-    <% @categoryevents.each do |event|%>
+<div id="main">
+<div class="auto_t_r w960">
+    <div class="auto_t_l">&nbsp;</div>
+  <div class="auto_b_r"><div  class="auto_b_l">
+<div id="left" style="float:left;">
+
+     <% @categoryevents.each do |event|%>
       <ul class="camp_c top">
+	    <li class="c_time">03月<br /><span class="redt">28日</span></li>
         <li class="c_title1"><%= event.title %></li>
         <li class="c_about">
         <%= event.introduction %>
@@ -12,15 +17,22 @@
         <li class="clear">&nbsp;</li>
       </ul>
     <% end %>
-  </div>
+    <%= will_paginate @categoryevents,:prev_label=> '上一页',:next_label=> '下一页' %>
+
 </div>
 <div id="right">
   <div id="but"><%= link_to '发起新活动', new_event_path%> </div>
-  <div id="mymser">
-    <div class="right_t">按分类浏览</div>
+    <div id="mymser">
+    <div class="right_t" style="width:200px">按分类浏览</div>
     <ul id="list">
       <% @eventcategories.each do |c|%>
         <li><%= link_to c.name, category_events_events_path(:category_id => c.id) %> </li>
       <% end %>
     </ul>
   </div>
+</div>
+<div class="clear"></div>
+</div>
+</div>
+</div>
+</div><div class="clear"></div>

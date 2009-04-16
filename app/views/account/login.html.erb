@@ -1,8 +1,10 @@
-<div class="left auto_t_b_r w960">  
-  <div class="auto_t_b_l"></div>
-  <div class="auto_b_r">
-    <div class="auto_b_l">
-      <% if flash[:error]%>
+<div id="main">
+<!--用户注册框-->
+  <div class="auto_t_r w960">
+    <div class="auto_t_l">&nbsp;</div>
+      <div class="auto_b_r"><div class="auto_b_l">
+              <!--注册内容-->
+		<% if flash[:error]%>
         <%= flash[:error]%>
       <% end %>
       <% if flash[:notice]%>
@@ -10,15 +12,22 @@
       <% end %>
       <% form_tag login_path do %>
         <h4>用户登录</h4>
-        <ul>
+        <ul id="logreg_main">
           <label>账&nbsp;号:</label>
-          <%= text_field_tag :username, nil, :class => 'input'%><br/><br/>
+          <%= text_field_tag :login_name, nil, :class => 'input'%><br/><br/>
           <label>密&nbsp;码:</label>
           <%= password_field_tag :password, nil, :class => 'input'%><p/>
-          <%= submit_tag '登录'%>
+          <%#= hidden_field_tag :logged_in_type, "User" %>
+          <label>身份:</label>
+          <%= radio_button_tag :logged_in_type, "User" %>用户
+          <%= radio_button_tag :logged_in_type, "Shop" %>商铺
+          <%= radio_button_tag :logged_in_type, "Company" %>企业
+          <div id="btn_submit" ><%= submit_tag '登录'%></div> 
+		  <div class="left"><%= link_to '忘记密码' %>| <%= link_to '注册', signup_path %></div>
         </ul>
-      <% end %>
-      <div id="login_link"><%= link_to '忘记密码' %>| <%= link_to '注册', new_user_path %></div>
-    </div>
-  </div>
-</div>
+         <% end %><div class="clear"></div>
+			  <!--登入结束-->
+			  </div>
+			</div> 
+		</div>
+<div class="clear"></div>

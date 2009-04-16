@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <%= stylesheet_link_tag "block" %>
+    <%= javascript_include_tag :defaults %>
+    <%= stylesheet_link_tag "layout" %>
+    <%= stylesheet_link_tag "main" %>
+    <%= stylesheet_link_tag "Piecemeal" %>
+  </head>
+  <body>
+    <%= render :partial => 'shared/header' %>
+    <div id="header_nav">
+      <div id="left_sidebar">
+        <ul>
+          <li class="ta"><%= link_to '首 页', home_path %></li>
+          <li class="ta"><%= link_to '点评', votes_path %></li>
+          <li class="tb"><%= link_to '导 购', shops_path %></li>
+          <li class="ta"><%= link_to '信 息', infos_path %></li>
+          <li class="ta"><%= link_to '知 道', askhome_path %></li>
+          <li class="ta"><%= link_to '企 业', company_index_path%></li>
+          <li class="ta"><%= link_to '社 区', :controller => 'community', :action => 'index' %></li>
+        </ul>
+      </div>
+      <div id="right_sidebar">
+        <ul>
+          <li class="t4"><%= link_to '论坛', forums_path %></li>
+          <li class="t4"><%= link_to '活动', events_path %></li>
+          <li class="t4"><%= link_to '广告', vote_index_path %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div id="search">
+    <div id="search_lbg">
+      <div id="search_rbg">
+        <div id="nav_search">
+          <form id="head_searchform" action="http://so.mimimama.com/s/search.jsp" onsubmit="return this.key.value!=''" target="_blank">
+            <span id="sub_nav1">
+              <input name="key" type="text" class="tfield" id="key" onfocus="if('请输入关键词，如婚庆，酒吧...'==this.value)this.value=''" onblur="if(''==this.value)this.value='请输入关键词，如婚庆，酒吧...'" value="请输入关键词，如婚庆，酒吧..." size="50" />
+            </span>
+            <button type="submit" id="sub_nav2">搜索</button>
+            <input name="si" type="hidden" id="searchform_si" value="2" />
+            <div id="sub_nav3"><a href="http://so.mimimama.com/">高级搜索</a></div>
+          </form>
+        </div>
+        <div id="telephone"><a href="http://www.mimimama.com/buycard/card_index.php" title="申领密密麻麻网会员卡，有问题请拨打客服电话：4006-829-353" target="_blank">申领密密麻麻网会员卡有问题请拨打客服电话：4006-829-353</a></div>
+      </div>
+    </div>
+  </div>
+  <div id="menunav">
+    <div id="menuleft">
+      <div id="menuright">
+       
+        <ul>
+          <% @categories.each do |item|%>
+            <li><%= link_to item.name, category_shops_shops_path(:category_id => item), :method => :put %></li>
+        <% end %>
+        </ul>
+ 
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <!--主体内容开始-->
+  <%= yield %>
+  <!--页脚开始-->
+  <div id="footer" class="auto_t_r">
+    <div class="auto_t_l">&nbsp;</div>
+    <div id="footer_box" class="auto_b_r"><div  class="auto_b_l">
+        <%= link_to '关于我们', :controller => 'about', :action => 'index' %>&nbsp;&nbsp;&nbsp; 
+        <%= link_to '媒体报道', :controller => 'about', :action => 'media' %>&nbsp;&nbsp;&nbsp; 
+        <%= link_to '广告服务', :controller => 'about', :action => 'ad' %>&nbsp;&nbsp;&nbsp;
+        <%= link_to '招贤纳士', :controller => 'about', :action => 'joinus' %>&nbsp;&nbsp;&nbsp; 
+        <%= link_to '版权说明', :controller => 'about', :action => 'copyright' %>&nbsp;&nbsp;&nbsp; 
+        <%= link_to '联系我们', :controller => 'about', :action => 'contact' %>&nbsp;&nbsp;&nbsp; 
+        <%= link_to '友情链接', :controller => 'about', :action => 'friends' %>&nbsp;&nbsp;&nbsp;
+        <%= link_to '客户登录', :controller => 'about', :action => 'login' %>
+        <br />
+        Copyright 2005-2008, 版权所有mimimama.com&nbsp;TEL:+86 028 66288015,4006-829-353<br />
+        蜀ICP备<a href="http://www.miibeian.gov.cn/" target="_blank" title="网络备案号06011367">06011367</a>号  
+      </div>
+    </div>
+  </div>
+</div>
+  </body>
+</html>

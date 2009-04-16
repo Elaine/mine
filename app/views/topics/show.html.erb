@@ -1,26 +1,34 @@
-<div id="foruminfo">
-  <div id="nav">
+<div id="main">
+<div class="auto_t_r w960">
+    <div class="auto_t_l"></div>
+  <div class="auto_b_r"><div class="auto_b_l">
+<div id="foruminfo" style="width:900px">
+  <div id="nav" style="width:900px">
     <%= link_to '论坛', forums_path %>&raquo; <%= link_to @topic.forum.title, forum_path(:id => @topic.forum) %> &raquo; <%= @topic.title %>	</div>
 </div>
 <div class="mainbox viewthread">
-  <h1><%= @topic.title %></h1>
+<h1><%= @topic.title %> <% if @topic.status %>该贴为<%= @topic.status %> <% end %></h1>
   <table id="pid107092" summary="pid107092" cellspacing="0" cellpadding="0">
     <tr>
       <td class="postauthor">
         <cite>	
-          <%= link_to @topic.user.username %>
+          <%= link_to @topic.user.login_name%>
         </cite>
-        <div class="avatar"><% if @topic.user.space.avatar %>
-            <%= image_tag(@topic.user.space.avatar.public_filename(:tiny))%>
+        <div class="avatar"><% if @topic.user.avatar %>
+            <%= image_tag(@topic.user.avatar.public_filename(:tiny))%>
           <% else %>
             <%= image_tag("../images/noface_tiny.jpg")%>
           <% end %>
           <dl class="profile">
             <dt>帖子</dt><div><%= @topic.user.posts_count %></div>
-            <dt>精华</dt>
-            <dt>威望</dt><dt>金钱</dt></dl>						
+            <dt>精华<%= @topic.best_paste.size %></dt>
+            <dt>威望</dt>
+            <dt>金钱</dt></dl>						
           <%= link_to '发短信息', new_user_message_path(:user_id => @topic.user)%>
-          <br/> <%= link_to '加为好友', new_user_friend_path(:user_id => logged_in_user, :friend_id => @topic.user)%>
+          <br/>
+          <% if is_logged_in? %>
+          <%= link_to '加为好友', new_user_friend_path(:user_id => logged_in_user, :friend_id => @topic.user.id)%>
+        <% end %>
         </td>
         <td class="postcontent" >
           <div id="ad_thread2_0"></div>		
@@ -38,26 +46,29 @@
       </tr>
     </table>
   </div>
-  <% @topic.posts.each do |post|%>
+  <% @posts.each do |post|%>
     <div class="mainbox viewthread">
       <table id="pid107092" summary="pid107092" cellspacing="0" cellpadding="0">
         <tr>
           <td class="postauthor">
             <cite>	
-              <%= link_to post.user.username %>
+              <%= link_to post.user.login_name%>
             </cite>
-            <div class="avatar"><% if post.user.space.avatar %>
-                <%= image_tag(post.user.space.avatar.public_filename(:tiny))%>
+            <div class="avatar"><% if post.user.avatar %>
+                <%= image_tag(post.user.avatar.public_filename(:tiny))%>
               <% else %>
                 <%= image_tag("../images/noface_tiny.jpg")%>
               <% end %>
               <dl class="profile"><dt>帖子</dt><div><%= post.user.posts_count %></div>
-                <dt>精华</dt>
+                <dt>精华<%= post.topic.best_paste.size %></dt>
                 <dt>威望</dt>
                 <dt>金钱</dt>
               </dl>						
                 <%= link_to '发短信息', new_user_message_path(:user_id => post.user)%>
-                <br/>    <%= link_to '加为好友', new_user_friend_path(:user_id => logged_in_user, :friend_id => post.user)%>
+                <br/>  
+                <% if is_logged_in? %>
+                <%= link_to '加为好友', new_user_friend_path(:user_id => logged_in_user, :friend_id => post.user)%>
+              <% end %>
             </td>
             <td class="postcontent" >
               <div id="ad_thread2_0"></div>		
@@ -76,7 +87,7 @@
         </table>
       </div>
     <% end %>
-
+    <%= will_paginate @posts, :prev_label => '上一页', :next_label => '下一页'%>
     <div class="pages_btns">
       <%= link_to '发新话题', new_forum_topic_path(:forum_id => @topic.forum)%>
     </div>
@@ -88,7 +99,7 @@
         <div class="postform">
           <p><label>内容</label>
           <%= javascript_include_tag :fckeditor%>
-          <%= fckeditor_textarea ('post', 'content', {:toolbarSet => 'Simple', :width => '150%', :height => '200px' }) %>
+          <%= fckeditor_textarea ('post', 'content', {:toolbarSet => 'Simple', :width => '900px', :height => '200px' }) %>
           </p>
           <p class="btns">
           <%= submit_tag '提交' %>
@@ -98,3 +109,7 @@
         </div>
       </div>
     <% end %>
+</div>
+</div>
+</div>
+</div><div class="clear"></div>

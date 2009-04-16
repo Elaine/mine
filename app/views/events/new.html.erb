@@ -1,8 +1,13 @@
+<div id="main">
+<div id="main">
+<div class="auto_t_r w960">
+    <div class="auto_t_l">&nbsp;</div>
+  <div class="auto_b_r"><div  class="auto_b_l">
 <div id="yourhear"><%= link_to 'Event', events_path %> &raquo; <a href="#"></a>Begin Event</div>
-<div class="main top">
-  <div id="left">
-    <% form_for :event, :url => events_path do |f| %>
-      <ul class="add">
+<div id="left" style="float:left; width:630px">
+  
+<% form_for :event, :url => events_path do |f| %>
+        <ul class="add">
         <li class="left"><span class="redt">* </span>Title
         <li class="right">
         <%= f.text_field :title, :class => 'input'%>
@@ -12,13 +17,14 @@
         <li class="right"> 
         <%= f.select :event_category_id, EventCategory.find(:all).map {|m| [m.name, m.id]} %>
         </li>
-        <li class="left"><span class="redt">*</span> Time</li>
-        <li class="right">start_time<label>
-          <%= f.datetime_select :started_at%>
-        </label><br/>
-        End_Time<label><%= f.datetime_select :end_at %></label>
+        <li class="left"><span class="redt">*</span>start_time</li>
+        <li class="right">
+           <%= f.datetime_select :started_at%>
+         </li>
+        <li class="left"> &nbsp;&nbsp;End_Time</li>
+		 <li class="right"><%= f.datetime_select :end_at %>
         </li>
-        <li class="left"><span class="redt">*</span> City</li>
+		 <li class="left"><span class="redt">*</span> City</li>
         <li class="right">
         <%= f.text_field :city, :class => 'input' %>
         </li>
@@ -55,13 +61,20 @@
           <br />
           Bus...</label>
         </li>
-        <li class="left"></li>
+        <li id="tags"><strong>标签</strong>
+        <%= text_field :tags, :name %>
+        </li>
+        <li id="tags2" style=""><strong>已有:</strong>
+        <% @user.owned_tags.each do |t| %> 
+          <%= t.name %> &nbsp;&nbsp;
+        <% end %>
+<li class="left"></li>
         <li class="butten">
         <label><%= submit_tag 'Submit' %> </label>
         <li class="left"></li>
       </ul>
     <% end %>
-    <div class="clear">&nbsp;</div>
+    <div class="clear">&nbsp;</div> 
   </div>
   <div id="right">
     <div class="right_c">Notice
@@ -72,5 +85,9 @@
       <br />
       3............ </div>
   </div>
-  <div class="clear">&nbsp;</div>
+<div class="clear">&nbsp;</div>
 </div>
+</div>
+</div>
+</div>
+

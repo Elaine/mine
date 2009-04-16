@@ -1,0 +1,26 @@
+<% form_for :message, :url => admin_messages_path(:recipient_id => @recipient.id) do |f|%>
+  <table border="0" cellpadding="5" cellspacing="0" width="100%">
+    <tbody>
+      <tr>
+        <td >收件人：
+          <span class="STYLE1">*</span><%= text_field_tag :recipient_id, h(@recipient.name) %>
+        </td>
+      </tr>
+      <tr>
+        <td>标 &nbsp;题&nbsp;：
+          <span class="STYLE1">*</span> <%= f.text_field :title, :class => 'input' %></td>
+      </tr>
+      <tr>
+        <td >内容：<span class="STYLE1">*</span>
+        <%= javascript_include_tag :fckeditor%>
+        <%= fckeditor_textarea ('message', 'content', {:toolbarSet => 'Simple',:width =>'500px', :height => '300px' }) %>
+        </td>
+      </tr>
+      <tr>
+        <td>&nbsp;
+          <%= submit_tag 'Save', :class => 'button' %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>

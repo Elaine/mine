@@ -1,0 +1,13 @@
+<ul>
+<% @children.each do |serve|%>
+  <li>
+  <%= link_to serve.name%>
+  | <%= link_to_function 'Edit', "Element.show('edit')"%>
+  | <%= link_to 'Del', admin_serve_category_path(:id => serve.id), :method => :delete, :confirm => "确认要删除吗?"%>
+  </li>
+<% end %>
+</ul>
+<div class="categories" style="margin-top:10px; float:left; width:600px">
+    <%= will_paginate @children, :prev_label => '上一页', :next_label => '下一页'%></div>
+    
+

@@ -1,26 +1,107 @@
-<h3>所有问题:</h3>
-<div class="bd">
-  <table>
-    <thead>
-      <tr>
-        <th class="mqlist_title">标题</th> 
-        <th class="mqlist_offer">悬赏</th>
-        <th class="mqlist_answer"> 回答</th>
-        <th class="mqlist_dt">时间</th>
-      </tr>
-    </thead>
-    <tbody>
+<div id="main">
+
+  <div id="answer_left_content">
+    <div class="left auto_t_b_r w150">  
+           <div class="auto_t_b_l"> <h1>知识标签</h1></div>  
+             <div class="auto_b_r"><div class="auto_b_l">
+			  <ul class="know_sort">
+
+		   <li><a href="#">民俗传统</a></li>
+		   <li><a href="#">节假日</a></li>
+		   <li><a href="#">军事</a></li>
+		   <li><a href="#">国内旅游</a></li>
+		   <li><a href="#">海外旅游</a></li>
+		   <li><a href="#">旅游常识</a></li>
+		   <li><a href="#">交游</a></li>
+		   <li><a href="#">摄影摄像</a></li>
+		    <li><a href="#">反病毒</a></li>
+		   <li><a href="#">操作系统</a></li>
+		   <li><a href="#">系统故障</a></li>
+		   <li><a href="#"> 电脑常识</a></li>
+		   <li><a href="#">体育运动</a></li>
+		   </ul>
+                   </div></div>
+	</div>
+  </div>
+  <div id="answer_center_content">
+    <div class="left auto_t_b_r w543">  
+       <div class="auto_t_b_l"> &nbsp;</div>
+         <div class="auto_b_r"><div class="auto_b_l"> 
+            <div id="know1" style="display:block">
+		     <div id="tableFrame">
+                <div id="tableFrameTitle">
+                  <ul>
+			            <li class="title">标题</li>
+                         <li class="many">悬赏</li>
+			            <li class="answer">回答数</li>
+			            <li class="time">发布时间</li>
+                  </ul>
+                </div>
+             <div id="tableCase">
       <% @asks.each do |ask|%>
-        <tr>
-          <td class="mqlist_title">
-            <%= link_to ask.title, ask_path(:id => ask.id)%>
-          </td>
-          <td class="mqlist_offer"><span><%= ask.score%></span></td>
-          <td class="mqlist_answer"><%= ask.answers_count%></td>
-          <td class="mqlist_dt"><font size=2><%= time_ago_in_words(ask.created_at)%> 前</font> </td>
-        </tr>
+          <ul>
+               <li class="title"><%= link_to ask.title, ask_path(:id => ask.id)%></li>
+             <li class="many"><%= ask.score%></li>
+          <li class="answer"><%= ask.answers_count%></li>
+         <li class="time"><font size=2><%= time_ago_in_words(ask.created_at)%> 前</font></li>
+		 </ul>
       <% end %>
-    </tbody>
-  </table>
-</div>
-<br/>
+    <!--到此循环结束 -->
+               </div>
+		     </div>
+          </div>
+    </div></div>       
+    </div>
+  </div>
+  <div id="answer_right_content">
+  <div class="right auto_t_b_r w265">  
+           <div class="auto_t_b_l"> <h1>本周知道之星</h1></div>  
+             <div class="auto_b_r"><div class="auto_b_l">
+            <div class="answer_man">
+					<a class="answer_man_img"><img src="../images/css/wj110.gif"/></a>
+					<div class="answer_man_message">
+					<ul>
+					    <li><a href="10467726">火舞飞龙</a></li>
+					    <li class="wo">积分：<a href="/dir/97316772.html">50分</a></li>
+				
+					</ul>
+					</div>
+	     </div> 
+         <div class="answer_man">
+					<a class="answer_man_img"><img src="../images/css/wj110.gif"/></a>
+					<div class="answer_man_message">
+					<ul>
+					    <li><a href="10467726">火舞飞龙</a></li>
+					    <li  class="wo">积分：<a href="/dir/97316772.html">50分</a></li>
+				
+					</ul>
+					</div>
+	     </div> 
+		    </div>
+            </div></div>
+     <div class="right auto_t_b_r w265">  
+           <div class="auto_t_b_l"><h1>分类达人排行榜</h1></div>  
+             <div class="auto_b_r"><div class="auto_b_l">
+                <div class="answer_man">
+					<a class="answer_man_img"><img src="../images/css/wj110.gif"/></a>
+					<div class="answer_man_message">
+					<ul>
+					    <li><a href="10467726">火舞飞龙</a></li>
+					    <li>擅长分类：<a href="/dir/97316772.html">外汇外汇</a></li>
+						
+					</ul>
+					</div>
+	          </div> 
+		   <div class="answer_man">
+					<a class="answer_man_img"><img src="../images/css/wj110.gif"/></a>
+					<div class="answer_man_message">
+					<ul>
+					    <li><a href="10467726">火舞飞龙</a></li>
+					    <li>擅长分类：<a href="/dir/97316772.html">外汇外汇</a></li>
+				
+					</ul>
+			 </div></div><div class="clear"></div>
+	</div> 
+	</div>
+	</div>
+</div><div class="clear"></div>

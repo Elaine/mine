@@ -1,0 +1,112 @@
+<div id="main">
+  <div class="auto_t_r w960">
+    <div class="auto_t_l">&nbsp;</div>
+    <div class="auto_b_r">
+      <div class="auto_b_l">
+        <div id="left" style="float:left;width:640px;">
+          <div id="usersearch">寻找朋友：
+            <% form_for :userinfo, :controller => 'community', :action => 'friendlist' do |f|%>
+              <label>性别:
+                <%= select_tag 'sex', "<option value='' selected='selected'>全部</option>
+             <option value='true'>帅哥</option>
+             <option value='false'>美女</option>" %>
+           </label>
+           <label>
+             年龄：
+             <%= select_tag 'age',
+               "<option value='0' selected='selected'>不限</option>
+                    <option value='20'>20岁以下</option>
+                    <option value='28'>20-28</option>
+                    <option value='35'>28-35</option>
+                    <option value='45'>35-45</option>
+                    <option value='46'>45岁以上</option>" %>
+                  </label>
+                  <label>爱好:<%= f.text_field :hobiy, :size => 15 %>
+                  </label>
+                  <label>
+                    <%= submit_tag 'Go'%>
+                    <input name="action" type="hidden" id="action5" value="a" />
+                  </label>
+                <% end %>
+
+              </div>	<div class="clear"></div>
+			  
+			  <div id="jc_user">
+                <div id="jc_user_t">精彩用户</div>
+                <ul>
+                  <% @goodusers.each do |item|%>
+                    <li>
+                    <% if item.avatar %>
+                      <%= link_to image_tag(item.avatar.public_filename(:tiny)), user_path(:id => item)%>
+                    <% else %>
+                      <%= link_to image_tag("../images/noface_tiny.jpg"), user_path(:id => item) %>
+                    <% end %>
+                    <%= link_to item.login_name, user_path(:id => item) %>
+                    </li>
+                  <% end %>
+                </ul>
+              </div><div class="clear"></div>
+              <div class="content_t">优秀博客文章
+                <div class="content_more"><%= link_to '更多文章&raquo;', :controller => 'community', :action => 'entrylist' %></div>
+              </div>
+              <ul id="c1_con">
+                <% @goodentries.each do |item|%>
+                  <li class="left"><%= link_to item.title, user_entry_path(:user_id => item.user,:id => item)%></li>
+                  <li class="right"><%= link_to item.user.login_name, user_path(:id => item.user) %></li>
+                <% end %>
+              </ul>
+              <div class="clear"></div>
+              <div id="c2_t">优秀空间展示</div>
+              <div id="c2">
+                <div id="c2_l"><a href="/home.php?u=citybaby" target="_blank"><img src="/images/up_img/28/mh4.jpg" width="88" height="88" border="0" /></a><a href="/home.php?u=citybaby" target="_blank">YOYOの魔法书</a><br />
+                  <div>你不曾給過我壹次回眸，我卻始终在對你微笑</div>
+                </div>
+
+                <div id="c2_r"><a href="/home.php?u=Miki" target="_blank"><img src="/images/up_img/28/mh3.jpg" width="88" height="88" border="0" /></a><a href="/home.php?u=Miki" target="_blank">Cinderella</a><br />
+                  【十字是坚定和信仰】      </div>
+              </div>
+            </div>
+            <div id="right">
+			   <div id="mymser">
+                <% if is_logged_in?%>
+                  <div id="mymser_t">
+                    <%= link_to logged_in_user.login_name, user_path(:id => logged_in_user.id) %>
+                    <% if logged_in_user.avatar %>
+                      <%= link_to image_tag(logged_in_user.avatar.public_filename(:tiny)), user_path(:id => logged_in_user) %>
+                    <% else%>
+                      <%=link_to image_tag("../images/noface_tiny.jpg"), user_path(:id => logged_in_user) %>
+                    <% end %>
+                    ，<span class="green">从这里开始...</span></div>
+                  你发表了<%= logged_in_user.entries_count %>篇博客文章 | <%= link_to '发表新文章', new_user_entry_path(:user_id => logged_in_user) %><br />
+                  进入我的<%= link_to '个人空间', user_path(:id => logged_in_user) %>
+                <% end %>
+              </div>
+			  
+			 <div class="r_t">+ 最新加入会员</div>
+               <ul id="r1">
+                <% @newusers.each do |item|%>
+                  <li>
+                  <% if item.avatar %>
+                    <%= link_to image_tag(item.avatar.public_filename(:tiny)), user_path(:id => item)%>
+                  <% else%>
+                    <%= link_to image_tag("../images/noface_tiny.jpg"), user_path(:id => item) %>
+                  <% end %>
+                  <%= link_to item.login_name, user_path(:id => item) %>
+                </li>
+              <% end %>
+              </ul>
+              <div class="clear"></div>
+              <div class="r_t">+ 最新博客文章</div>
+              <ul class="r2" >
+                <% @newentries.each do |item|%>
+                  <li class="left"><%= link_to item.title, user_entry_path(:user_id => item.user,:id => item) %></li>
+                  <li class="right"><%= link_to item.user.login_name, user_path(:id => item.user) %></li>
+                <% end %>
+              </ul>
+            </div>
+
+            <div class="clear">&nbsp;</div> 
+          </div> 
+        </div>
+        <div class="clear">&nbsp;</div> 
+      </div>

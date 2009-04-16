@@ -1,6 +1,7 @@
 class Admin::ThemeCategoriesController < ApplicationController
+  layout 'admin'
   def index
-    @themecategories = ThemeCategory.find(:all, :order => 'created_at desc')
+    @themecategories = ThemeCategory.find(:all, :order => 'created_at desc').paginate :page => params[:page], :per_page => 2
     @themecategory = ThemeCategory.new
   end
 

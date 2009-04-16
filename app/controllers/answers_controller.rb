@@ -1,7 +1,8 @@
 class AnswersController < ApplicationController
+  before_filter :login_required
   def new
     @ask = Ask.find(params[:ask_id])
-    @answer = @ask.answers.new
+    @answer = Answer.new
   end
 
   def create
@@ -31,7 +32,10 @@ class AnswersController < ApplicationController
     @answer.update_attributes(:status => true)
     @ask = Ask.find(params[:ask_id])
     @ask.update_attributes(:solved => true)
+    @answer.user.update_attribute(:score, @answer.user.score + @answer.score)
+    if @answer.user.score > @answer.user.grade.score
+      @answer.user.update_attribute(:grade_id, @answer.user.grade_id + 1)
+    end
     redirect_to ask_path(:id => @ask)
   end
-
 end

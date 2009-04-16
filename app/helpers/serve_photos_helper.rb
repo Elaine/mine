@@ -1,0 +1,2 @@
+module ServePhotosHelper
+end

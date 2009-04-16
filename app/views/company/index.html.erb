@@ -1,0 +1,394 @@
+
+<div id="main">
+  <!--上块结束-->
+  <div id="company_center_content">
+    <!--企业黄页-->
+    <div class="left auto_t_b_r w200">  
+      <div class="auto_t_b_l"><h1>企业黄页</h1></div>  
+      <div class="auto_b_r"><div class="auto_b_l">
+	  <ul>
+        <% @company_categories.each do |item|%>
+          <li><%= link_to item.name,category_index_company_path(:category_id => item.id), :method => :put %></li>
+        <% end %>
+		</ul>
+      </div> </div>
+    </div>
+    <!--最新加盟企业-->
+    <div class="left auto_t_b_r w379">  
+      <div class="auto_t_b_l"> <h1>最新加盟企业</h1></div>  
+      <div class="auto_b_r"><div class="auto_b_l">
+          <div class="join">
+            <ul>
+              <% @new_companies.each do |item| %>
+                <li> 
+                <%= link_to item.login_name, company_path(:id => item) %>
+                </li>
+              <% end %>
+            </ul> 
+          </div> 	
+        </div>
+      </div>
+    </div>
+	<div class="left auto_t_r w300">
+       <div class="auto_t_l">&nbsp;</div>
+       <div class="auto_b_r"><div  class="auto_b_l">
+	 <% if is_logged_in? %>
+            <div id="login2">
+              <div id="login2_main">欢迎登录，<strong><%= link_to logged_in_user.login_name, panel_user_path(:id => logged_in_user) %></strong>
+                [<%= link_to '退出', logout_path %>]</div>
+              <ul><li><%= link_to '个人中心', panel_user_path(:id => logged_in_user) %></li>
+                <li><%= link_to '个人主页', user_path(:id => logged_in_user) %></li>
+                <li><%= link_to '相册', user_albums_path(:user_id => logged_in_user) %></li>
+                <li><%= link_to '博客', user_entries_path(:user_id => logged_in_user) %></li>
+              </ul>
+              <!-- <div id="login2_credits">你的积分：</div> -->
+            </div>
+          <% else %> 
+            <div id="login">
+              <% form_tag login_path do %>
+                <h4>用户登录</h4>
+                <ul>
+                  <li class="login_text">账&nbsp;&nbsp;&nbsp;号：
+                  <label>
+                    <%= text_field_tag :login_name, nil, :class => 'login_tfield'%>
+                  </label>
+                  </li>
+                  <li class="login_text">密&nbsp;&nbsp;&nbsp;码：
+                  <label>
+                    <%= password_field_tag :password, nil, :class => 'login_tfield'%>
+                  </label>
+                  </li><div class="clear"></div>
+                  <li>
+                  <div class="login_text">身&nbsp;&nbsp;&nbsp;份：
+                    <%= radio_button_tag :logged_in_type, "User" %>用户
+                    <%= radio_button_tag :logged_in_type, "Shop" %>商铺
+                    <%= radio_button_tag :logged_in_type, "Company" %>企业
+                  </div>
+                  </li>
+                  <li class="login_hidden">
+                  <label>
+                    <%= image_submit_tag("../images/image/butlogin.gif") %>
+                  </label>
+                  </li>
+                  <li class="login_button">
+                  <label>
+                    <input name="rememberme" type="checkbox" id="rememberme" value="1" />
+                  </label>
+                  保存登录状态</li>
+                </ul>
+                <div id="login_link"><%= link_to '忘记密码' %>| <%= link_to '免费注册',signup_path %></div>
+              <% end %>
+            </div>
+          <% end %>
+          <!--登录窗体结束-->
+		  </div>
+		  </div>
+		  </div>
+  </div>
+  <!--中间模块结束-->
+  <div class="clear"></div>
+  <div id="company_bot_content">
+    <!--供求信息-->
+    <div class="left auto_t_b_r w480">
+      <div class="auto_t_b_l">
+        <h1>供求信息</h1>
+      </div>
+      <div class="auto_b_r">
+        <div class="auto_b_l">
+          <div class="message">
+            <ul>
+              <% @company_supplies.each do |item|%>
+                <li>
+                <div class="message_name"><%= link_to item.title, info_path(:id => item) %></div>
+                <div class="company_name"><%= link_to item.item.login_name, company_path(:id => item.item.id) %> </div>
+                <div class="date"><%= item.created_at.strftime("%Y-%m-%d") %></div>
+              </li>
+            <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--企业招聘-->
+    <div class="left auto_t_b_r w480">
+      <div class="auto_t_b_l">
+        <h1>企业招聘</h1>
+      </div>
+      <div class="auto_b_r">
+        <div class="auto_b_l">
+          <div class="message">
+            <ul>
+             <% @company_invites.each do |item|%>
+              <li>
+              <div class="jobname"><%= link_to item.title, info_path(:id => item) %></div>
+              <div class="date"><%= item.created_at.strftime("%Y-%m-%d") %></div>
+              </li>
+            <% end %>
+           </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="know_banner"><a href="../images/css/ascend.gif"><img src="../images/image/75080.jpg" /></a></div> 
+  <!--底部块-->
+  <div id="company_top_content">
+    <div class="right auto_t_b_r w960">  
+      <div class="auto_t_b_l">  <h1>企业建站</h1></div>  
+      <div class="auto_b_r h380"><div class="auto_b_l h380">
+          <script type="text/javascript" src="../javascript/js.js"></script>
+          <div id="top_ms">
+            <div id="kbb_content1" style="display:block;">
+              <div class="con">
+                <div class="center">
+                  <div class="le1">
+                    <div id="PreviewBox" onmouseout=hidePreview(event);>
+                      <div class="Picture" onmouseout=hidePreview(event);><SPAN></SPAN>
+                        <div><A id="previewUrl" href="javascript:void(0)" target=_blank><IMG oncontextmenu=return(false) id=PreviewImage onmouseout=hidePreview(event); src="../javascript/Preview.tmp" 
+
+                            border=0></A> </div></div></div>
+                    <script src="../javascript/Preview.js"></script>
+                    <SCRIPT language=javascript type=text/javascript>
+                      var previewBox = document.getElementById('PreviewBox');
+                      var previewImage = document.getElementById('PreviewImage');
+                      var previewUrl = document.getElementById('previewUrl');
+                      var previewFrom = null;
+                      var previewTimeoutId = null;
+                      var loadingImg = '../images/Images/loading.gif';
+                    </SCRIPT>
+                    <ul>
+                      <li>
+                      <a href="#" target="_blank" onmouseover=showPreview(event); onmouseout=hidePreview(event);><img src="../images/image/bpic.gif" pic-link="#" large-src="../images/image/bpic.gif" width="80" height="80" border="0"/></a>             </li>
+
+                      <li> <a href="#" target="_blank" onmouseover=showPreview(event); onmouseout=hidePreview(event);><img src="../images/image/cpic.gif" pic-link="#" large-src="../images/image/cpic.gif" width="80" height="80" border="0"/></a> 
+                      </li>
+                      <li> <a href="#" target="_blank" onmouseover=showPreview(event); onmouseout=hidePreview(event);><img src="../images/image/dpic.gif" pic-link="#" large-src="../images/image/dpic.gif" width="80" height="80" border="0"/></a> 
+                      </li>
+                      <li> <a href="#" target="_blank" onmouseover=showPreview(event); onmouseout=hidePreview(event);><img src="../images/image/200703122133334274.jpg" pic-link="#" large-src="../images/image/200703122133385504.jpg" width="80" height="80" border="0"/></a> 
+                      </li>
+                    </ul>   
+                  </div>
+                  <div class="cen_02">
+                    <ul>
+                      <li class="focuson focuson_top" onmouseover="_slip(1);pause_s(1);">
+                      <h1><a href="#" target="_blank">学校</a></h1>
+                      </li>
+                      <li onmouseover="_slip(2);pause_s(2);">
+                      <p><a href="#" target="_blank"><img class="gongzuo" src="../images/css/gongzuo.png" /></a></p>
+                      <h1><a href="#" target="_blank">医院</a></h1>
+                      </li>
+                      <li onmouseover="_slip(3);pause_s(3);">
+                      <p><a href="#" target="_blank"><img class="jiaoyu" src="../images/css/jiaoyu.gif"/></a></p>
+                      <h1><a href="http://digi.daqi.com/feature_290669_5_index.html" target="_blank">商贸</a></h1>
+                      </li>
+                      <li onmouseover="_slip(4);pause_s(4);">
+                      <p><a href="#" target="_blank"><img class= "qinggan" src="../images/css/qinggan.gif"/></a></p>
+                      <h1><a href="http://digi.daqi.com/feature_290691_5_index.html" target="_blank">美食</a></h1>
+                      </li>
+                      <li onmouseover="_slip(5);pause_s(5);">
+                      <p><a href="#" target="_blank"><img class="bagua" src="../images/css/bagua.gif"/></a></p>
+                      <h1><a href="http://digi.daqi.com/feature_290691_5_index.html" target="_blank">房产</a></h1>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="rig_02">
+                    <div class="rig1">
+
+                      <div class="cont"> </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="kbb_content2" style="display:none;">
+              <div class="con">
+                <div class="center">
+                  <div class="le1">
+
+                  </div>
+                  <div class="cen">
+                    <ul>
+                      <li class=" focuson_top" onmouseover="_slip(1);pause_s(1);">
+                      <h1><a href="#" target="_blank">学校</a></h1>
+                      </li>
+                      <li class="focuson" onmouseover="_slip(2);pause_s(2);">
+                      <p><a href="#" target="_blank"><img class="gongzuo" src="../images/css/gongzuo.png" /></a></p>
+                      <h1><a href="#" target="_blank">医院</a></h1>
+                      </li>
+                      <li onmouseover="_slip(3);pause_s(3);">
+                      <p><a href="#" target="_blank"><img class="jiaoyu" src="../images/css/jiaoyu.gif"/></a></p>
+                      <h1><a href="http://digi.daqi.com/feature_290669_5_index.html" target="_blank">商贸</a></h1>
+                      </li>
+                      <li onmouseover="_slip(4);pause_s(4);">
+                      <p><a href="#" target="_blank"><img class= "qinggan" src="../images/css/qinggan.gif"/></a></p>
+                      <h1><a href="http://digi.daqi.com/feature_290691_5_index.html" target="_blank">美食</a></h1>
+                      </li>
+                      <li onmouseover="_slip(5);pause_s(5);">
+                      <p><a href="#" target="_blank"><img class="bagua" src="../images/css/bagua.gif"/></a></p>
+                      <h1><a href="http://digi.daqi.com/feature_290691_5_index.html" target="_blank">房产</a></h1>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="rig_02">
+                    <div class="rig1">
+
+                      <div class="cont"> </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="kbb_content3" style="display:none;">
+              <div class="con">
+                <div class="center">
+                  <div class="le1">
+
+                  </div>
+                  <div class="cen_02">
+                    <ul>
+                      <li class=" focuson_top" onmouseover="_slip(1);pause_s(1);">
+                      <h1><a href="#" target="_blank">学校</a></h1>
+                      </li>
+                      <li onmouseover="_slip(2);pause_s(2);">
+                      <p><a href="#" target="_blank"><img class="gongzuo" src="../images/css/gongzuo.png" /></a></p>
+                      <h1><a href="#" target="_blank">医院</a></h1>
+                      </li>
+                      <li class="focuson" onmouseover="_slip(3);pause_s(3);">
+                      <p><a href="#" target="_blank"><img class="jiaoyu" src="../images/css/jiaoyu.gif"/></a></p>
+                      <h1><a href="http://digi.daqi.com/feature_290669_5_index.html" target="_blank">商贸</a></h1>
+                      </li>
+                      <li onmouseover="_slip(4);pause_s(4);">
+                      <p><a href="#" target="_blank"><img class= "qinggan" src="../images/css/qinggan.gif"/></a></p>
+                      <h1><a href="http://digi.daqi.com/feature_290691_5_index.html" target="_blank">美食</a></h1>
+                      </li>
+                      <li onmouseover="_slip(5);pause_s(5);">
+                      <p><a href="#" target="_blank"><img class="bagua" src="../images/css/bagua.gif"/></a></p>
+                      <h1><a href="http://digi.daqi.com/feature_290691_5_index.html" target="_blank">房产</a></h1>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="rig_02">
+                    <div class="rig1">
+
+                      <div class="cont"> </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="kbb_content4" style="display:none;">
+              <div class="con">
+                <div class="center">
+                  <div class="le1">
+
+                  </div>
+                  <div class="cen_02">
+                    <ul>
+                      <li class=" focuson_top" onmouseover="_slip(1);pause_s(1);">
+                      <h1><a href="#" target="_blank">学校</a></h1>
+                      </li>
+                      <li onmouseover="_slip(2);pause_s(2);">
+                      <p><a href="#" target="_blank"><img class="gongzuo" src="../images/css/gongzuo.png" /></a></p>
+                      <h1><a href="#" target="_blank">医院</a></h1>
+                      </li>
+                      <li onmouseover="_slip(3);pause_s(3);">
+                      <p><a href="#" target="_blank"><img class="jiaoyu" src="../images/css/jiaoyu.gif"/></a></p>
+                      <h1><a href="http://digi.daqi.com/feature_290669_5_index.html" target="_blank">商贸</a></h1>
+                      </li>
+                      <li  class="focuson" onmouseover="_slip(4);pause_s(4);">
+                      <p><a href="#" target="_blank"><img class= "qinggan" src="../images/css/qinggan.gif"/></a></p>
+                      <h1><a href="http://digi.daqi.com/feature_290691_5_index.html" target="_blank">美食</a></h1>
+                      </li>
+                      <li onmouseover="_slip(5);pause_s(5);">
+                      <p><a href="#" target="_blank"><img class="bagua" src="../images/css/bagua.gif"/></a></p>
+                      <h1><a href="http://digi.daqi.com/feature_290691_5_index.html" target="_blank">房产</a></h1>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="rig_02">
+                    <div class="rig1">
+
+                      <div class="cont"> </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="kbb_content5" style="display:none;">
+              <div class="con">
+                <div class="center">
+                  <div class="le1">
+
+                  </div>
+                  <div class="cen_02">
+                    <ul>
+                      <li class="focuson_top" onmouseover="_slip(1);pause_s(1);">
+                      <p><a href="#" target="_blank"><img class="shenghuo"src="../images/css/shenghuo.gif"/></a></p>
+                      <h1><a href="#" target="_blank">房源</a></h1>
+                      </li>
+                      <li onmouseover="_slip(2);pause_s(2);">
+                      <p><a href="#" target="_blank"><img class="gongzuo" src="../images/css/gongzuo.png" /></a></p>
+                      <h1><a href="#" target="_blank">工作</a></h1>
+                      </li>
+                      <li onmouseover="_slip(3);pause_s(3);">
+                      <p><a href="#" target="_blank"><img class="jiaoyu" src="../images/css/jiaoyu.gif"/></a></p>
+                      <h1><a href="http://digi.daqi.com/feature_290669_5_index.html" target="_blank">二手</a></h1>
+                      </li>
+                      <li onmouseover="_slip(4);pause_s(4);">
+                      <p><a href="#" target="_blank"><img class= "qinggan" src="../images/css/qinggan.gif"/></a></p>
+                      <h1><a href="http://digi.daqi.com/feature_290691_5_index.html" target="_blank">供求</a></h1>
+                      </li>
+                      <li class="focuson" onmouseover="_slip(5);pause_s(5);">
+                      <p><a href="#" target="_blank"><img class="bagua" src="../images/css/bagua.gif"/></a></p>
+                      <h1><a href="http://digi.daqi.com/feature_290691_5_index.html" target="_blank">婚嫁</a></h1>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="rig_02">
+                    <div class="rig1">
+
+                      <div class="cont"> </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <script language="javascript">play_s();</script>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="clear"></div>
+<div id="Brand" class="auto_t_r">
+  <div class="auto_t_l"></div>
+  <div class="auto_b_r">
+    <div class="auto_b_l"> 
+      <div id="Brand_box">
+        <dl>
+          <dt><img src="../images/image/logo_t.gif" width="50" height="80" /></dt>
+          <dd><a href="http://sale.mimimama.com/doc/1/provide/33" target="_blank"><img src="../images/image/logo_gusheying.gif" alt="成都古摄影婚纱艺术" width="88" height="31" /></a></dd>
+          <dd><a href="http://sale.mimimama.com/doc/1/provide/67/" target="_blank"><img src="../images/image/logo_hongdou.gif" alt="成都红豆摄影" width="88" height="31" /></a></dd>
+          <dd><a href="http://sale.mimimama.com/doc/1/provide/169/" target="_blank"><img src="../images/image/logo_v2.gif" alt=" 成都v2摄影" width="88" height="31" /></a></dd>
+          <dd><a href="http://sale.mimimama.com/doc/1/provide/229/" target="_blank"><img src="../images/image/logo_shangping.gif" alt="成都尚品国际婚纱摄影" width="88" height="31" /></a></dd>
+          <dd><a href="http://sale.mimimama.com/doc/1/provide/257/" target="_blank"><img src="../images/image/logo_huamei.gif" alt="成都华美教育培训中心" width="88" height="31" /></a></dd>
+          <dd><a href="http://sale.mimimama.com/doc/1/provide/263/" target="_blank"><img src="../images/image/logo_vogue.gif" alt="成都风尚国际婚纱摄影" width="88" height="31" /></a></dd>
+          <dd><a href="http://sale.mimimama.com/doc/1/provide/85/" target="_blank"><img src="../images/image/logo_xindongtai.gif" alt="新动态成都英语培训学校" width="88" height="31" /></a></dd>
+          <dd><a href="http://sale.mimimama.com/doc/1/provide/40/" target="_blank"><img src="../images/image/logo_longfa.gif" alt="北京龙发装饰集团" width="88" height="31" /></a></dd>
+          <dd><a href="http://sale.mimimama.com/doc/1/provide/19/" target="_blank"><img src="../images/image/logo_yezhifeng.gif" alt="成都业之峰装饰工程有限公司" width="88" height="31" /></a></dd>
+          <dd><a href="http://sale.mimimama.com/doc/1/provide/139/" target="_blank"><img src="../images/image/logo_zisy.gif" alt="梓摄影" width="88" height="31" /></a></dd>
+          <dd><a href="http://sale.mimimama.com/doc/1/provide/175/" target="_blank"><img src="../images/image/logo_uv.gif" alt="成都U&amp;V视觉婚纱摄影空间" width="88" height="31" /></a></dd>
+          <dd><a href="http://sale.mimimama.com/doc/1/provide/260/" target="_blank"><img src="../images/image/logo_benseziran.gif" alt="本色自然" width="88" height="31" /></a></dd>
+          <dd><a href="http://sale.mimimama.com/doc/1/provide/235/" target="_blank"><img src="../images/image/logo_luotuo.gif" alt="成都骆驼影像摄影" width="88" height="31" /></a></dd>
+          <dd><a href="http://sale.mimimama.com/doc/1/provide/168/" target="_blank"><img src="../images/image/logo_shijuekongjian.gif" alt="成都视觉空间摄影" width="88" height="31" /></a></dd>
+          <dd><a href="http://sale.mimimama.com/doc/1/provide/167/" target="_blank"><img src="../images/image/logo/logo_shulong.gif" alt="四川蜀龙装饰工程有限公司" width="88" height="31" /></a></dd>
+          <dd><a href="http://sale.mimimama.com/doc/1/600/" target="_blank"><img src="../images/image/logo_hongji.gif" alt="鸿基木业地板" width="88" height="31" /></a></dd>
+          <dd><a href="http://sale.mimimama.com/doc/1/690/" target="_blank"><img src="../images/image/logo_kele.gif" alt="科勒洁具" width="88" height="31" /></a></dd>
+          <dd><a href="http://sale.mimimama.com/doc/1/265/" target="_blank"><img src="../images/image/logo_aosite.gif" alt="澳斯特橱柜" width="88" height="31" /></a></dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>
+</div><div class="clear"></div>

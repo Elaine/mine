@@ -1,7 +1,90 @@
-<% form_for :album, :url => space_albums_path do |f|%>
-  <table><tr>
-      <strong>创建相册</strong>
+<div id="spacesease">
+  <div id="topnav">
+    <div class="lc">
+      <div class="rc">
+        <div class="left"><a href="/">回到网站首页</a> | <a href="javascript:void(0)" onclick="window.clipboardData.setData('Text',location.href+'\n<%= @user.space.title %>');
+	alert('已经把该网址复制到剪贴板，您可以打开QQ或者MSN的对话框，\n然后使用（Ctrl+V或鼠标右键）粘贴功能给您的好友^_^');">复制地址</a> | <a href="javascript:void(0)" onclick="window.external.AddFavorite(location.href,'<%= @user.space.title %>')">收藏</a><span id="header_msgnew" style="display:none"></span></div>
+        <div class="right"><a href="home.php?u=gaoshan0505" target="_blank">我的个人空间</a> | <a href="ctrlpanel.php">控制面板</a> | <a href="logout.php?r=%2Fctrlpanel.php">注销</a></div>
+      </div>
+    </div>
+  </div>
+  <table width="753" border="0" align="center" cellpadding="0" cellspacing="5">
+    <tr>
+      <td width="22%" height="70"><h1><%= @user.space.title %></h1>
+        <%= @user.space.title %></td>
+      <td width="70%"><div class="test_ad"><a href="http://www.mimimama.com/buycard/gift.php" target="_blank"><img src="http://www.mimimama.com/new/imagesbeta/adimg/gift.jpg" /></a></div></td>
     </tr>
+  </table>
+  <!--- <div id="spaces_header"><div class="lc"><div class="rc">
+    <div class="tit"><h1><%= @user.space.title %></h1></div>
+    <div class="desc"><%= @user.space.title %></div>
+<div class="test_ad"><a href="http://www.mimimama.com/buycard/gift.php" target="_blank"><img src="http://www.mimimama.com/new/imagesbeta/adimg/gift.jpg" /></a></div></div></div></div> --->
+  <div id="nav">
+    <div class="lc">
+      <div class="rc"> 
+        <font><%= link_to '控制面板', panel_user_path(:id => @user) %></font>
+        <font><%= link_to '首页', user_path(:id => @user) %></font>
+        <font><%= link_to '个人档案' %></font>
+        <font><%= link_to '博客', user_entries_path(:user_id => @user) %></font>
+        <font><%= link_to '相册', user_albums_path(:user_id => @user), :class =>'on' %></font>
+        <font><%= link_to '好友', user_friends_path(:user_id => @user) %></font>
+        <font><%= link_to '留言薄', user_comments_path(:user_id => @user)%></font>
+          <%= link_to '网站首页', home_path %>
+          <div id="tabline"></div>
+      </div>
+    </div>
+  </div>
+    <div id="content">
+    <div id="indexleft">
+      <div class="mod">
+        <div class="modth">
+          <div class="lc">
+            <div class="rc">
+              <div class="modtit">
+                <h1> <%= @user.space.title %> </h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="m_pro" class="modbox">
+          <ul>
+            <li class="image"><img src="/images/noface.jpg" width="80" height="80" /></li>
+            <li class="user">
+              <!--<img src="/skins/spaces/default/images/mama.gif" alt="美女" width="20" height="18" />-->
+              美女 | 20岁</li>
+            <li class="a"><a href="mysetting.php?step=4">修改头像</a></li>
+            <li class="b"><a href="newpost.php"> 发表文章</a></li>
+            <li class="c"><a href="newphoto.php">上传照片</a></li>
+            <li class="desc addr">地点：
+              青岛 </li>
+            <li class="desc">等级：      
+              军团学员 </li>
+            <li class="desc">积分：
+              14 </li>
+            <li class="desc">上次登录：
+              5分钟以前 </li>
+            <li class="clear">&nbsp;</li>
+          </ul>
+          <div class="clear">&nbsp;</div>
+        </div>
+      </div>
+	  </div>
+    <div id="con_ina">
+      <div class="mod">
+        <div class="modth">
+          <div class="lc">
+            <div class="rc">
+              <div class="modtit">
+                <h1>我的相册</h1>
+                </div><div class="modopt">
+		       </div>
+            </div>
+          </div>
+        </div>
+ <div class="modbox" id="l_blog">
+
+<% form_for :album, :url => user_albums_path do |f|%>
+  <table>
     <tr>
       <td>相册名称：</td>
       <td><label>
@@ -14,6 +97,15 @@
           <%= f.text_area :description, :rows => 5, :cols => 45 %>
       </label></td>
     </tr>
+    <tr><td>自己写标签: </td> <td><%= text_field :tags, :name %></td></tr>
+    <tr><td>已有自定义标签:</td> 
+      <td>
+        <% @user.owned_tags.each do |t| %> 
+          <%= t.name %> &nbsp;&nbsp;
+        <% end %>
+      </td>
+    </tr>
+
     <tr>
       <td>&nbsp;</td>
       <td>
@@ -22,3 +114,52 @@
     </tr>
   </table>
 <% end %>
+
+
+	   <div class="clear"></div>
+  </div>
+</div> 
+</div>  <div class="clear"></div>
+	<div id="foot"> 
+版权所有2007-2008©密密麻麻网<br />
+ 
+  <script type="text/javascript" src="/scripts/stat.js"></script>
+<!--<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-96370-2";
+urchinTracker();
+</script>-->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-96370-2");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script>
+<!-- 51.la统计代码  -->
+<script language="javascript" type="text/javascript" src="http://js.users.51.la/2107423.js"></script>
+<noscript><a href="http://www.51.la/?2107423" target="_blank"><img alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/2107423.asp" style="border:none" /></a></noscript>
+<!-- 51.la统计代码 --></div>  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

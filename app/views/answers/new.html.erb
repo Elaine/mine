@@ -1,29 +1,118 @@
-<div class="ks_opt">
-  <div class="ask_form">
-    <% form_for :answer, :url => ask_answers_path(:ask_id => @ask.id) do |f|%>
-      <table border="0" cellpadding="0" cellspacing="0" width="100%">
-        <tbody><tr>
-            <th>您正在回答该提问：</th>
-            <td>
-              <h2><%=@ask.title  %></h2>
-            </td>
-          </tr>
-          <tr>
-            <th><em>*</em>您的回答：</th>
-            <td>
-        <%= javascript_include_tag :fckeditor%>
-        <%= fckeditor_textarea ('answer', 'content', {:toolbarSet => 'Simple', :width => '150%', :height => '200px' }) %>
-              <p>还可输入<span id="count">2000</span>个字，回答越准确详细，越容易被选为最佳答案！</p>
-            </td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>
-              <%= submit_tag '提交' %>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    <% end %>
+<div id="header">
+  <div id="logo"><a href="http://www.mimimama.com"><img src="../images/image/logo.gif" alt="密密麻麻网" /></a></div>
+  <div id="header_link">
+    <ul>
+      <li><a href="http://www.mimimama.com/sitemap/">网站地图</a></li>
+      <li class="help"><a href="http://www.mimimama.com/help/">帮助中心</a></li>
+      <li><a href="http://www.mimimama.com/buycard/card_index.php">会员服务</a></li>
+      <li><a href="http://www.mimimama.com/blogs.php">博客</a></li>
+      <li><a href="http://www.mimimama.com/usershall.php">社区</a></li>      
+            <li>你好，欢迎光临！<a href="http://www.mimimama.com/login.php?r=%2F">[登录]</a><a href="http://www.mimimama.com/register.php?r=%2F">[注册]</a></li>
+    </ul>
+  </div>  <div id="header_nav">
+    <div id="left_sidebar">
+      <ul>
+        <li class="ta"><a href="http://www.mimimama.com/index.php">首 页</a></li>        
+        <li class="ta"><a href="http://sale.mimimama.com/marry/">导 购</a></li>
+        <li class="ta"><a href="http://sale.mimimama.com/home/">信 息</a></li>
+        <li class="tb"><a href="http://sale.mimimama.com/doc/1/listpage/sale_p_p_4_20_1.html">知 道</a></li>
+        <li class="ta"><a href="http://sale.mimimama.com/peixun/">企&nbsp;业</a></li>
+        <li class="ta"><a href="http://sale.mimimama.com/doc/1/listpage/sale_p_p_6_20_1.html">社 区</a></li>
+      </ul>
+    </div>
+    <div id="right_sidebar">
+      <ul>
+        <li class="t4"><a href="http://www.mimimama.com/forum">论坛</a></li>
+        <li class="t1"><a href="http://www.mimimama.com/campaign.php">消费活动</a></li>
+        <li class="t1"><a href="http://www.mimimama.com/shop.php">消费点评</a></li>
+      </ul>
+    </div>
   </div>
 </div>
+<div id="search">
+  <div id="search_lbg">
+    <div id="search_rbg">
+      <div id="nav_search">
+        <form id="head_searchform" action="http://so.mimimama.com/s/search.jsp" onsubmit="return this.key.value!=''" target="_blank">
+          <span id="sub_nav1">
+            <input name="key" type="text" class="tfield" id="key" onfocus="if('请输入关键词，如婚庆，酒吧...'==this.value)this.value=''" onblur="if(''==this.value)this.value='请输入关键词，如婚庆，酒吧...'" value="请输入关键词，如婚庆，酒吧..." size="50" />
+          </span>
+          <button type="submit" id="sub_nav2">搜索</button>
+          <input name="si" type="hidden" id="searchform_si" value="2" />
+          <div id="sub_nav3"><a href="http://so.mimimama.com/">高级搜索</a></div>
+        </form>
+      </div>
+      <div id="telephone"><a href="http://www.mimimama.com/buycard/card_index.php" title="申领密密麻麻网会员卡，有问题请拨打客服电话：4006-829-353" target="_blank">申领密密麻麻网会员卡有问题请拨打客服电话：4006-829-353</a></div>
+    </div>
+  </div>
+</div>
+<div id="know_nav">
+  <div class="t_b_c">
+    <div class="t_b_l">
+      <div class="t_b_r"></div>
+    </div>
+  </div>
+  <div id="know_menu">
+    <div class="m_l">
+      <div class="m_r">
+        <ul class="fixfloat">
+          <li id="ks-top-nav-ask"><%= link_to '千万网友为您回答', new_ask_path %></li>
+         <li id="ks-top-nav-answer"><%= link_to '赚&gt;积分 赢大奖', asks_path %></li>
+          <li id="ks-top-nav-discover"><a href="/question/self_ask" >分享知识和经验</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="b_c">
+    <div class="b_l">
+      <div class="b_r"></div>
+    </div>
+  </div>
+</div>
+<div class="clear"></div>
+<div id="main">
+    <div id="question_content" class="auto_t_r">
+        <div class="auto_t_l">&nbsp;</div>
+          <div class="auto_b_r"><div  class="auto_b_l">
+            <div id="question_content_l">
+        <% form_for :ask, :url => ask_answers_path do |f|%> 
+        <div class="asks_title">
+       <strong><span class="redsymbol">*</span>您正在回答该提问：</strong>
+         <%=@ask.title  %>
+        </div>
+       <div class="ask_content">
+        <strong><span class="redsymbol">*</span>您的回答：</strong>
+		 <%= javascript_include_tag :fckeditor%>
+        <%= fckeditor_textarea ('answer', 'content', {:toolbarSet => 'Simple', :width => '570px', :height => '250px' }) %>
+              <p>还可输入<span id="count">2000</span>个字，回答越准确详细，越容易被选为最佳答案！</p>
+        </div>
+        <div class="r">
+          <p><%= submit_tag '提交'%></p>
+        </div>
+        <% end %>
+	 </div>
+  <div id="question_content_r">
+     <div id="know_question1">
+	 <ul>
+	 <li><h4 class="green">如何提问？</h4> <a href="#" class="more">更多&gt;&gt;</a></li>
+	 <li> 在提问框中输入您的问题，然后点&quot;提交问题&quot;按钮就ok啦！
+          小秘籍：高级设置可以让您的问题更抢手~</li>
+	 </ul>
+	 </div>
+	  <div id="know_question2">
+	    您目前尚未登录，只能通过邮件获取回答通知，建议您<a href="#">登录</a>后提问，以便查询网友全部回答。
+	 </div>
+  </div><div class="clear"></div>
+  </div></div> 
+</div><div class="clear"></div>
+<div id="footer" class="auto_t_r">
+    <div class="auto_t_l">&nbsp;</div>
+       <div id="footer_box" class="auto_b_r"><div  class="auto_b_l">
+          <a href="http://www.mimimama.com/about/index.html">关于我们</a>&nbsp;&nbsp;&nbsp; <a href="http://www.mimimama.com/about/index_media.html">媒体报道</a>&nbsp;&nbsp;&nbsp; <a href="http://www.mimimama.com/about/index_ad.html">广告服务</a>&nbsp;&nbsp;&nbsp;<a href="http://www.mimimama.com/about/index_joinus.html">招贤纳士</a>&nbsp;&nbsp;&nbsp; <a href="http://www.mimimama.com/about/index_copy.html">版权说明</a>&nbsp;&nbsp;&nbsp; <a href="http://www.mimimama.com/about/index_lianxi.html">联系我们</a>&nbsp;&nbsp;&nbsp; <a href="http://www.mimimama.com/ulinks.php">友情链接</a> &nbsp;&nbsp;&nbsp;<a href="http://login.sale.mimimama.com/">客户登录</a><br />
+Copyright 2005-2008, 版权所有mimimama.com&nbsp;TEL:+86 028 66288015,4006-829-353<br />
+         青藤互动：<a href="http://www.mimimama.com" target="_blank">密密麻麻网</a> | <a href="http://life.169ol.com/" target="_blank">联通分站</a> | <a href="http://www.lx1999.com.cn" target="_blank">龙翔手机</a> | <a href="http://www.028auto.net/" target="_blank">成都汽车网</a> <br />
+蜀ICP备<a href="http://www.miibeian.gov.cn/" target="_blank" title="网络备案号06011367">06011367</a>号  
+    </div>
+</div>
+</div>
+

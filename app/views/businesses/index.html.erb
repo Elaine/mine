@@ -1,0 +1,38 @@
+<div id="main">
+<div class="auto_t_r w960">
+    <div class="auto_t_l">&nbsp;</div>
+  <div class="auto_b_r"><div class="auto_b_l"> 
+<% @businesses.each do |b|%>
+<div class="review">
+  <div class="review_left">
+    <div class="review_t">
+        <span class="review_c2"><%= b.name %></span>
+      </a>   
+      <div class="review_rj"><%= b.price %></div> 
+      <div class="clear"></div> 
+    </div>
+    <div class="review_c"><ul class="star">
+        <li><font>质量：</font> </li>
+        <li><font>环境：</font> </li>
+        <li><font>服务：</font> </li>
+      </ul>
+      <div class="discount"> </div>
+      <div class="clear"></div></div>
+    <div class="review_c">地址：<%= b.address %><br>电话：<%= b.phone %>&nbsp;&nbsp;<br></div>
+    <div class="review_c2">
+      <% if b.votes_count > 0%>
+      <%= b.last_vote.user.login_name%> <em><%= time_ago_in_words(b.last_vote.created_at) %>前说：</em><%= b.last_vote.feel%>  </div>
+  <% end %>
+    <div class="review_c3">
+      <%= link_to "查看更多点评(#{b.votes_count})" %>
+      <%= link_to '我要点评', new_vote_path(:business_id => b) %></div>
+  </div>
+  <div class="review_p">[<%= link_to b.serve_photos_count, business_serve_photos_path(:business_id => b) %>张]</div>
+  <div class="clear">&nbsp;</div>
+</div>
+<% end %>
+<div class="clear"></div>
+</div>
+</div>
+</div>
+<div class="clear"></div>

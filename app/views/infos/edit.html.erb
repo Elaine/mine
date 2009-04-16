@@ -1,0 +1,45 @@
+<div class="txt">
+  <% form_for :info, :url => info_path, :html => {:method => :put, :multipart => true } do |f|%>
+    <ul>
+      <li>
+      <label>信息分类：</label>
+      <%= f.select :info_category_id, InfoCategory.find(:all, :conditions => ["info_type = ?",logged_in_type ]).map {|m| [m.name, m.id]},{:prompt => '请选择分类'} %> 
+      </li>
+      <li>
+      <label>标题：</label>
+      <%= f.text_field :title %>
+      </li>
+      <li style="padding-left: 60px; padding-bottom: 0pt;">
+      <label>内容:</label>
+      <%= javascript_include_tag :fckeditor%>
+      <%= fckeditor_textarea ('info', 'content', {:toolbarSet => 'Simple', :width => '150%', :height => '200px' }) %>
+      </li>
+      <li><label>联系方式：</label>
+      <%= f.text_field :phone %>
+      </li>
+      <li><label>联系人：</label>
+      <%= f.text_field :contact %>
+      </li>
+      <li><label>地址:</label> <%= f.text_field :address %></li>
+      <% unless logged_in_type == "Company" %>
+      <li><label>图片：</label>
+      <%= file_field :info_photo, :uploaded_data %>
+      </li>
+        <li id="tags"><strong>标签</strong>
+        <%= text_field :tags, :name %>
+        </li>
+        <li id="tags2" style=""><strong>已有:</strong>
+        <% logged_in_user.owned_tags.each do |t| %>
+          <%= t.name %> &nbsp;&nbsp;
+        <% end %>
+      </li>
+    <% end %>
+    <%= f.hidden_field (:item_type, :value => "#{logged_in_type}") %>
+    <input name="switch" value="<%= info_path(:id => @info)%>" type="hidden">
+      <span class="STYLE1">您所发布的信息需要经过审核，方能正常显示并收录，请等候审核。或直接联系客服 即时审核QQ:115788917</span></li>
+    </ul>
+    <div class="addsubmit" style="background: rgb(238, 238, 238) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; padding-top: 8px; padding-bottom: 8px;">
+      <%= submit_tag '提交' %>
+    </div>
+  <% end %>
+</div>

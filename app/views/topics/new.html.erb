@@ -1,32 +1,47 @@
+<div id="main">	
+<div class="auto_t_r w960">
+   <div class="auto_t_l">&nbsp;</div>
+  <div class="auto_b_r"><div  class="auto_b_l">
+   <div class="form_top_index">
+			<ul>
+				<li><cite><a href="space.php?action=viewpro&amp;uid=13599">天空css</a></cite></li>
+				<li><a href="/logout.php?forward=http%3A%2F%2Fwww.mimimama.com%2Fforum%2F" class="notabs">退出</a></li>
+				<li><a href="pm.php" target="_blank">短消息</a></li>			
+			    <li><a href="member.php?action=list">会员</a></li>			
+				<li><a href="search.php">搜索</a></li>			
+				<li><a href="tag.php">标签</a></li>										
+				<li id="my" class="dropmenu" onmouseover="showMenu(this.id)"><a href="my.php">我的</a></li>		 
+				<li id="memcp" class="dropmenu" onmouseover="showMenu(this.id)"><a href="memcp.php">控制面板</a></li>								                <li><a href="magic.php">道具</a></li>																
+				<li><a href="faq.php">帮助</a></li>
+			</ul>
+		</div><div class="clear"></div>
+
 <div id="nav"><%= link_to '网站首页', home_path%> &gt;&gt; <%= link_to @forum.title, forums_path %>
   &gt;&gt; 发新话题</div>
 <% form_for :topic, :url => forum_topics_path do |f|%>
   <div class="mainbox formbox">
     <h1>发新话题</h1>
-    <table summary="post" id="newpost" cellpadding="0" cellspacing="0">
-      <thead>
-        <tr>
-          <th>用户名</th>
-          <td>
-            <%= logged_in_user.username %> [<%= link_to '退出', logout_path %>]
-          </td>
-        </tr>
-    </thead></table>
-<div class="postform">
+    <div class="postform">
       <h5><label for="subject">标题</label>
         <%= f.text_field :title, :class => 'input' %>
-        <div id="threadtypes"></div>
         <p><label>内容</label>
         <%= javascript_include_tag :fckeditor%>
-        <%= fckeditor_textarea ('topic', 'content', {:toolbarSet => 'Simple', :width => '150%', :height => '200px' }) %>
-        </p>
+        <%= fckeditor_textarea ('topic', 'content', {:toolbarSet => 'Simple', :width => '150%' }) %>
+        <br/>
+        <li id="tags"><strong>标签</strong>
+        <%= text_field :tags, :name %>
+        </li>
+        <li id="tags2"><strong>已有:</strong>
+        <% logged_in_user.owned_tags.each do |t| %> 
+          <%= t.name %> &nbsp;&nbsp;
+        <% end %>
+        </li>
         <p class="btns">
         <%= submit_tag '提交'%>
         </p>
       </div>
     </div>
   </div>
-  <br>
-<% end %>
+<% end %></div>
 </div>
-
+</div>

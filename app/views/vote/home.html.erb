@@ -1,0 +1,225 @@
+<div id="main">
+<div class="auto_t_r w960">
+    <div class="auto_t_l">&nbsp;</div>
+  <div class="auto_b_r"><div class="auto_b_l"> 
+  <div class="left" style="width:600px; float:left;">
+    <div id="title">消费点评商家共2240家。其中290家是密密麻麻网<a href="#">加盟会员店</a>！</div>
+	<div class="clear"></div>
+	 <div class="title">服务分类</div>  
+  <div class="tags2">
+  <ul> 
+    <% @children.each do |item| %>
+      <li>  <%= link_to item.name, businesses_path(:category_id => item) %> </li>
+    <% end %>
+  </ul>
+  </div>  
+  <div class="clear">&nbsp;</div>
+  <div class="tagsmore"><a href="shops.php">[更多分类]...</a></div>
+	 <div class="title">商家排行</div>
+  <div class="tags1">
+    <ul>
+      <li><a href="#">评价最高</a></li>
+      <li><a href="#">本周热门</a></li>
+
+      <li><a href="#">最想去的</a></li>
+      <li><a href="#">最新的</a></li>
+      </ul>
+    <div class="clear"></div>
+  </div> 
+  <div id="so_test">
+    <form action="shops.php" method="get" onsubmit="return (''!=this.key.value&amp;&amp;'搜索商家'!=this.key.value)">
+      <label class="so1">
+
+      <input name="key" type="text" class="atfield" id="key" value="搜索商家" onfocus="if('搜索商家'==this.value)this.value=''" onblur="if(''==this.value)this.value='搜索商家'" />
+      </label>
+      <label class="so2">
+      <input name="button2" type="submit"  value="搜索" />
+      </label>
+    </form>
+  </div>
+ <div class="title">推荐加盟会员店</div>
+
+  <div class="top" id="left_b">
+<ul class="top">
+  <li><a href="http://www.mimimama.com/shop.php?id=204089"><img src="http://www.mimimama.com/buycard/images/sj001.jpg" alt="木鱼新法餐厅" width="130" height="90" /></a><a title="木鱼新法餐厅" href="http://www.mimimama.com/shop.php?id=204089">木鱼新法餐厅 </a></li>
+  <li><a href="http://www.mimimama.com/shop.php?id=204062"><img src="http://www.mimimama.com/buycard/images/sj002.jpg" alt="食神锅奉行" width="130" height="90" /></a><a title="食神锅奉行" href="http://www.mimimama.com/shop.php?id=204062">食神锅奉行</a></li>
+  <li><a href="http://www.mimimama.com/shop.php?id=204059"><img src="http://www.mimimama.com/buycard/images/sj003.jpg" alt="瓦尔登咖啡西餐厅" width="130" height="90" /></a><a title="瓦尔登咖啡西餐厅" href="http://www.mimimama.com/shop.php?id=204059">瓦尔登咖啡西餐厅</a></li>
+  <li><a href="http://www.mimimama.com/shop.php?id=204057"><img src="http://www.mimimama.com/buycard/images/sj004.jpg" alt="欧索米萝咖啡" width="130" height="90" /></a><a title="欧索米萝咖啡" href="http://www.mimimama.com/shop.php?id=204057">欧索米萝咖啡</a></li>
+  <li><a href="http://www.mimimama.com/shop.php?id=204052"><img src="http://www.mimimama.com/buycard/images/sj005.jpg" alt="滴意法式餐厅.酒廊" width="130" height="90" /></a><a title="滴意法式餐厅.酒廊" href="http://www.mimimama.com/shop.php?id=204052">滴意法式餐厅.酒廊</a></li>
+
+  <li><a href="http://www.mimimama.com/shop.php?id=204159"><img src="http://www.mimimama.com/buycard/images/sj006.jpg" alt="品德西餐啤酒屋" width="130" height="90" /></a><a title="品德西餐啤酒屋" href="http://www.mimimama.com/shop.php?id=204159">品德西餐啤酒屋</a></li>
+  <li><a href="http://www.mimimama.com/shop.php?id=204055"><img src="http://www.mimimama.com/buycard/images/sj007.jpg" alt="吉品堂" width="130" height="90" /></a><a title="吉品堂" href="http://www.mimimama.com/shop.php?id=204055">吉品堂</a></li>
+  <li><a href="http://www.mimimama.com/shop.php?id=204058"><img src="http://www.mimimama.com/buycard/images/sj008.jpg" alt="重庆打渔郎" width="130" height="90" /></a><a title="重庆打渔郎" href="http://www.mimimama.com/shop.php?id=204058">重庆打渔郎</a></li>
+</ul>
+<div class="clear">&nbsp;</div>
+  </div>	
+ <div class="left_title top">热门消费点评</div>
+  <div class="left_c">
+
+    <div class="left">
+    <div id="c1a"> <img src="/user1/66979053/upload_images/1232505604_s.jpg" onerror="this.src='/skins/system/images/NoResPhoto.gif'" width="80" height="103" />
+        <div id="c1a_con">
+          <h4>1.&nbsp;&nbsp;麻辣空间郫县店</h4>
+            <div class='star05'></div>
+          <a href="shop.php?id=204319">这种火锅的味道和传统的火锅味道完全不同,<br>
+又麻有辣,但是麻辣都适中,正如他们的广告语&...</a></div>
+
+        
+      </div>    
+    </div>
+    <div class="right"><ul id="c1b">
+          <li><a href="shop.php?id=203864">圣域阳光美发造型机构</a></li><li><a href="shop.php?id=487">百姓人家蒋氏餐饮</a></li><li><a href="shop.php?id=760">风尚国际婚纱摄影</a></li><li><a href="shop.php?id=1137">生捞果水果主题餐厅</a></li><li><a href="shop.php?id=2534">诚信食府</a></li>      </ul></div>
+    <div class="clear">&nbsp;</div>
+  </div>
+
+  <div class="left_title top">最新消费点评</div>
+  <div class="left_c">
+        <div class="review">
+      <div class="review_t"><a href="shop.php?id=5267">
+        金汉斯南美烧烤
+        </a>
+                </div>
+      <div class="review_img"><img src="/images/Shop_img/mimimama6091327S315_s.jpg" width="90" onerror="this.src='/skins/system/images/NoResPhoto.gif'" /></div>
+      <div class="review_t">
+
+        <div class="star"></div>
+      </div>
+      <div class="review_user"><img src="/images/noface.jpg" width="50" height="50" /><a target="_blank" href="home.php?u=alfredhawk">
+        风笑沙
+        </a><br />
+        2天以前
+      </div>
+      <div class="review_c">
+        烂就1个字。因为价格便宜，人多得不行，上个菜给你一点点，味道差得很。叫服务员半天没反应。去过一次再也不想去了，和朋友聊过，是成都所有巴西烤肉最烂的一家，如果不是价格便宜，早没人去了
+        <a href="shop.php?id=5267">[更多内容]</a></div>
+
+      <div class="clear">&nbsp;</div>
+    </div>
+        <div class="review">
+      <div class="review_t"><a href="shop.php?id=203865">
+        重庆小天鹅美人美时尚火锅（财富店）
+        </a>
+                </div>
+      <div class="review_img"><img src="/user1/Fairy1314/upload_images/20086/12142776199875_s.jpg" width="90" onerror="this.src='/skins/system/images/NoResPhoto.gif'" /></div>
+      <div class="review_t">
+
+        <div class="star"></div>
+      </div>
+      <div class="review_user"><img src="/images/noface.jpg" width="50" height="50" /><a target="_blank" href="home.php?u=sthjj">
+        天之最骄子
+        </a><br />
+        5天以前
+      </div>
+      <div class="review_c">
+        涨价了，菜单上明显改过。服务有待改进<br>
+
+密密麻麻卡不能打折，只能携程金卡。携程会员卡也不行。
+        <a href="shop.php?id=203865">[更多内容]</a></div>
+      <div class="clear">&nbsp;</div>
+    </div>
+        <div class="review">
+      <div class="review_t"><a href="shop.php?id=203865">
+        重庆小天鹅美人美时尚火锅（财富店）
+        </a>
+                </div>
+      <div class="review_img"><img src="/user1/Fairy1314/upload_images/20086/12142776199875_s.jpg" width="90" onerror="this.src='/skins/system/images/NoResPhoto.gif'" /></div>
+
+      <div class="review_t">
+        <div class="star"></div>
+      </div>
+      <div class="review_user"><img src="/images/noface.jpg" width="50" height="50" /><a target="_blank" href="home.php?u=sthjj">
+        天之最骄子
+        </a><br />
+        5天以前
+      </div>
+      <div class="review_c">
+        比起之前消费，明显涨价了，份量虽然没少，但可以在菜单上看出，好多菜都被改了。<br>
+
+另外吃完饭被告知，密密麻麻卡不能打折，携程也不行，必须携程金卡。
+        <a href="shop.php?id=203865">[更多内容]</a></div>
+      <div class="clear">&nbsp;</div>
+    </div>
+        <div class="review_more"><a href="review_list.php">更多点评&gt;&gt;</a></div>
+  </div>	
+	
+	
+  </div>
+
+<div id="right" style="width:230px; float:right">
+<div id="but"><%= link_to '添加店铺', new_business_path, :class =>'left'%></div>
+    <div id="mymser">
+    <div id="mymser_t"><a href="home.php?u=gaoshan0505" target="_blank">天空css</a>，<span class="green">从这里开始...</span></div>
+  你已经登记了0
+  家商铺 | <a href="shops.php?c=1">我登记的商户</a><br />
+
+    你发表了条消费点评 <a href="/myshop.php?mid=36385">查看我的点评</a></div>
+	  <div class="right_t">会员服务</div>
+  <div class="left_card"> 
+    <div class="left_card1"></div> 
+    拥有“密密麻麻会员卡”即可以5~9折优惠在成都所有加盟会员店消费 <br />
+      <a href="/buycard/card_index.php" target="_blank">[详细介绍]      </a>
+      <div class="clear"></div>
+
+  </div>
+  <div class="right_t">最新加盟会员店</div>
+  <div class="right_c">
+   <ul><!--5-->
+             <li><a href="shop.php?id=204348">
+            叶记粥底火锅</a><br />
+            菜品8.8折（限菜品）
+          </li>
+
+		          <li><a href="shop.php?id=204347">
+            溯禾红酒咖啡馆</a><br />
+            8.8折（红酒、洋酒、香烟、特惠产品除外）
+          </li>
+		          <li><a href="shop.php?id=204344">
+            好望角咖啡馆</a><br />
+            咖啡，果、茶水类8折（特价除外）
+          </li>
+		          <li><a href="shop.php?id=204343">
+
+            周记爬爬虾香辣蟹（华阳店）</a><br />
+            菜品88折（酒水除外）
+          </li>
+		          <li><a href="shop.php?id=204342">
+            李渔门豆花</a><br />
+            菜品9折，茶坊浴足8折（烟、酒特价除外）
+          </li>
+		   </ul>
+  </div>
+
+  <div class="right_t">本月活跃会员</div>
+  <div class="right_c">
+  <ul id="hyuser"><!--5-->
+             <li><img src="/images/noface.jpg" width="35" height="35" border="0" align="absmiddle" /> <a target="_blank" href="home.php?u=pluck11">㊣宗の龟苓膏</a><br />
+           </li>
+                     <li><img src="/images/noface.jpg" width="35" height="35" border="0" align="absmiddle" /> <a target="_blank" href="home.php?u=666666">666666</a><br />
+
+           </li>
+                     <li><img src="/images/noface.jpg" width="35" height="35" border="0" align="absmiddle" /> <a target="_blank" href="home.php?u=sthjj">天之最骄子</a><br />
+           </li>
+                     <li><img src="/user1/dianarong2007/face36327.gif" width="35" height="35" border="0" align="absmiddle" /> <a target="_blank" href="home.php?u=dianarong2007">diana</a><br />
+           </li>
+                     <li><img src="/images/noface.jpg" width="35" height="35" border="0" align="absmiddle" /> <a target="_blank" href="home.php?u=2233445566778899">尹爱莎</a><br />
+
+           </li>
+                     <li><img src="/images/noface.jpg" width="35" height="35" border="0" align="absmiddle" /> <a target="_blank" href="home.php?u=xizilang">咖啡豆</a><br />
+           </li>
+                     <li><img src="/images/noface.jpg" width="35" height="35" border="0" align="absmiddle" /> <a target="_blank" href="home.php?u=july_975">july</a><br />
+           </li>
+                     <li><img src="/images/noface.jpg" width="35" height="35" border="0" align="absmiddle" /> <a target="_blank" href="home.php?u=qq85681996">小凯</a><br />
+
+           </li>
+                     <li><img src="/images/noface.jpg" width="35" height="35" border="0" align="absmiddle" /> <a target="_blank" href="home.php?u=plucky">Pluckyの小寶</a><br />
+           </li>
+                     <li><img src="/images/noface.jpg" width="35" height="35" border="0" align="absmiddle" /> <a target="_blank" href="home.php?u=laodageye">laodageye</a><br />
+           </li>
+             </ul>
+   </div>
+</div>
+<div class="clear">&nbsp;</div>
+</div>
+</div>
+</div>
+<div class="clear"></div>

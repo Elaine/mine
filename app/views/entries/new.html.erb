@@ -1,24 +1,131 @@
-<div class="modbox" id="addblog">
-  <% form_for :entry, :url => space_entries_path do |f|%>
+
+<div id="spacesease">
+  <div id="topnav">
+    <div class="lc">
+      <div class="rc">
+        <div class="left"><a href="/">回到网站首页</a> | <a href="javascript:void(0)" onclick="window.clipboardData.setData('Text',location.href+'\n<%= @user.space.title %>');
+	alert('已经把该网址复制到剪贴板，您可以打开QQ或者MSN的对话框，\n然后使用（Ctrl+V或鼠标右键）粘贴功能给您的好友^_^');">复制地址</a> | <a href="javascript:void(0)" onclick="window.external.AddFavorite(location.href,'<%= @user.space.title %>')">收藏</a><span id="header_msgnew" style="display:none"></span></div>
+        <div class="right"><a href="home.php?u=gaoshan0505" target="_blank">我的个人空间</a> | <a href="ctrlpanel.php">控制面板</a> | <a href="logout.php?r=%2Fctrlpanel.php">注销</a></div>
+      </div>
+    </div>
+  </div>
+  <table width="753" border="0" align="center" cellpadding="0" cellspacing="5">
+    <tr>
+      <td width="22%" height="70"><h1><%= @user.space.title %></h1>
+        <%= @user.space.title %></td>
+      <td width="70%"><div class="test_ad"><a href="http://www.mimimama.com/buycard/gift.php" target="_blank"><img src="http://www.mimimama.com/new/imagesbeta/adimg/gift.jpg" /></a></div></td>
+    </tr>
+  </table>
+  <!--- <div id="spaces_header"><div class="lc"><div class="rc">
+    <div class="tit"><h1><%= @user.space.title %></h1></div>
+    <div class="desc"><%= @user.space.title %></div>
+<div class="test_ad"><a href="http://www.mimimama.com/buycard/gift.php" target="_blank"><img src="http://www.mimimama.com/new/imagesbeta/adimg/gift.jpg" /></a></div></div></div></div> --->
+  <div id="nav">
+    <div class="lc">
+      <div class="rc"> 
+        <font><%= link_to '控制面板', panel_user_path(:id => @user) %></font>
+        <font><%= link_to '首页', user_path(:id => @user) %></font>
+        <font><%= link_to '个人档案' %></font>
+        <font><%= link_to '博客', user_entries_path(:user_id => @user), :class =>'on' %></font>
+        <font><%= link_to '相册', user_albums_path(:user_id => @user) %></font>
+        <font><%= link_to '好友', user_friends_path(:user_id => @user) %></font>
+        <font><%= link_to '留言薄', user_comments_path(:user_id => @user) %></font>
+          <%= link_to '网站首页', home_path %>
+          <div id="tabline"></div>
+      </div>
+    </div>
+  </div>
+  <div id="content">
+    <div id="indexleft">
+      <div class="mod">
+        <div class="modth">
+          <div class="lc">
+            <div class="rc">
+              <div class="modtit">
+                <h1> <%= @user.space.title %> </h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        <%= render :partial => 'shared/profile'%> 
+      </div>
+	 </div>
+	 </div>
+    <div id="con_ina">
+      <div class="mod">
+        <div class="modth">
+          <div class="lc">
+            <div class="rc">
+              <div class="modtit">
+                </div><div class="modopt">
+		       </div>
+            </div>
+          </div>
+        </div>
+        <div class="modbox" id="l_blog">
+         <!--新建文章-->
+		 <div class="modbox" id="addblog">
+     <% form_for :entry, :url => user_entries_path do |f|%>
     <ul>
       <li><strong>文章标题:</strong>
       <label>
         <%= f.text_field :title, :class => 'input'%>
       </label>
       </li>
-      <li>
-      <div id="addblogcon">
+	   <li>
         <%= javascript_include_tag :fckeditor%>
-        <%= fckeditor_textarea ('entry', 'content', {:toolbarSet => 'Simple', :width => '150%', :height => '200px' }) %>
-
+        <%= fckeditor_textarea ('entry', 'content', {:toolbarSet => 'Simple', :width => '500px', :height => '300px' }) %>
         </li>
-        <li id="tags"><strong>默认标签</strong>
+        <li id="tags"><strong>标签</strong>
+        <%= text_field :tags, :name %>
         </li>
         <li id="tags2" style=""><strong>已有:</strong>
+        <%= @user.owned_tags %> <br/>
+        <% @user.owned_tags.each do |t| %> 
+          <%= t.name %> &nbsp;&nbsp;
+        <% end %>
+        </li>
         <li class="upload_notice">被删除。</li>
         <li class="upload_but"><%= submit_tag '立刻发表', :class => 'button' %>
         <input name="action" id="action" value="save" type="hidden">
         </li>
       </ul>
     <% end %>
+	</div>
   </div>
+</div>
+</div>  <div class="clear"></div>
+	<div id="foot"> 
+版权所有2007-2008©密密麻麻网<br />
+ 
+<script type="text/javascript">
+_uacct = "UA-96370-2";
+urchinTracker();
+</script>-->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-96370-2");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script>
+<!-- 51.la统计代码  -->
+<script language="javascript" type="text/javascript" src="http://js.users.51.la/2107423.js"></script>
+<noscript><a href="http://www.51.la/?2107423" target="_blank"><img alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/2107423.asp" style="border:none" /></a></noscript>
+<!-- 51.la统计代码 --></div>  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+

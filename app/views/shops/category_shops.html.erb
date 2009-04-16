@@ -1,0 +1,87 @@
+﻿<div id="main" style="margin-top:-20px;">
+  <div class="auto_t_r w960">
+    <div class="auto_t_l">&nbsp;</div>
+    <div class="auto_b_r"><div class="auto_b_l">
+        <div id='sale_searchs'>
+          <input id='sale_search' onkeyup='autoComplete.hdleEvent(event)' value='=请输入关键字=' onClick="if(this.value == '=请输入关键字=') this.value='';" ondblclick='autoComplete.expandAllItem();' style='width:400px;font:10pt Arial;'/>
+          &nbsp;
+          <input type='button' id='button_sarch_xh' onclick='thisgotourl()' value=' 查找 ' disabled='disabled' />
+          &nbsp;     
+          <input type='hidden' id='url_mark' /><span id='span_text_xh' style='width:100%; font:10pt Arial;'></span>
+        </div>
+        <!--左边的导航-->
+        <div id='left' style="float:left; width:230px;">
+          <div class="mod" id="subnav">
+            <div class="bgtop"></div>
+            <div class="modth" id="t0">
+              <div class="lc">
+                <div class="rc">
+                  <div class="modtit">
+                    <h3>分类</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modbox">
+              <script language="javascript" src="/doc/1/ext_class_7.js"></script>
+              <% if @category.parent_id.nil? -%>
+                <% @category.subcategories.each do |sub|%>
+                  <dd><%= link_to sub.name, category_shops_shops_path(:category_id => sub), :method => :put %></dd>
+                <% end %>
+              <% else %>
+                <% @category.shops.each do |item| -%>
+                  <dd><%= link_to item.login_name, shop_path(:id => item)%>[<%= item.products_count %>]</dd>
+                <% end -%>
+              <% end -%>
+            </div>
+            <div class="bgbottom"></div>
+          </div>										
+          <div class="mod" id="ad4">
+            <div class="bgtop"></div>
+            <div class="modth" id="t11">
+              <div class="lc">
+                <div class="rc">
+                  <div class="modtit">
+                    <h3>您最近浏览商品</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modbox">
+              <ul id="history">
+                <script>		
+                  history_show();
+                </script>
+              </ul>
+            </div>
+            <div class="bgbottom"></div>
+          </div>
+        </div>
+        <!--左边导航结束-->
+        <div id="right" style="width:680px;"> 
+          <div id='youarehear'>您现在的位置: 
+            <%= link_to '嘿嘿', home_path %>&gt;&gt;
+            <%= link_to '商城', shops_path %> &gt;&gt;
+            <%= link_to @category.name, category_shops_shops_path(:category_id => @category) %> 
+            （本类下共有商品<%= @category.products_count%>个）</div>  
+          <div class='list_cz'>
+            <div class='list_qh'><a href='sale_p_p_7_20_1.html'><strong>图片</strong></a> <a href='sale_w_p_7_20_1.html'>图文</a>  每页显示：<a href='sale_p_p_7_20_1.html'>20条</a> <a href='sale_p_p_7_40_1.html'>40条</a> <a href='sale_p_p_7_80_1.html'>80条</a> <a href='sale_p_p_7_5000_1.html'>全部</a> </div>
+              </div><div id='content_list'><ul>
+              <% @category.products.each do |item|%>
+              <li>
+              <div class='sp_mainlist1_img'><%= link_to image_tag(item.avatar.public_filename(:tiny)), product_path(:id => item) %>
+              </div>
+              <div class='spjs_jg3'><span class='spjs_jg3'>￥<%= item.price %></span> &nbsp;</div>
+              <div class='spjs2'><%= link_to item.name, product_path(:id => item) %> </div>
+            </li><% end %>
+          </ul></div><div class="clear"></div>
+              <div class='list_cz'>
+                <div class='list_qh'><a href='sale_p_p_7_20_1.html'><strong>图片</strong></a> <a href='sale_w_p_7_20_1.html'>图文</a>  每页显示：<a href='sale_p_p_7_20_1.html'>20条</a> <a href='sale_p_p_7_40_1.html'>40条</a> <a href='sale_p_p_7_80_1.html'>80条</a> <a href='sale_p_p_7_5000_1.html'>全部</a> </div>
+                <div class='list_page'>共121个 第1/7页 首页 上一页 <a href='sale_p_p_7_20_2.html'>下一页</a> <a href='sale_p_p_7_20_7.html'>最后一页</a></div>
+              </div>
+            </div>		
+            <div class="clear"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clear"></div>

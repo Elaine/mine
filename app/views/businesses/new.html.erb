@@ -1,0 +1,210 @@
+<div id="main" >	
+  <div class="auto_t_r w960">
+    <div class="auto_t_l">&nbsp;</div>
+    <div class="auto_b_r"><div class="auto_b_l">
+<%= javascript_include_tag :defaults %>
+<div id="yourhear"><%= link_to '消费点评', votes_path %> &gt;&gt; 添加新商户</div>
+<div class="main top">
+<div id="left">
+  <div id="title">添加新商户</div>
+  <div>
+    <% form_for :business, :url => businesses_path do |f|%>
+    <table border="0" cellpadding="4" cellspacing="2" width="100%">
+    <tbody><tr>
+      <td align="right" valign="top" width="90"><strong>&gt;&gt;基本资料</strong></td>
+      <td>带(<span style="color: rgb(255, 0, 0);">*</span><span id="validatename">&nbsp;</span>)为必添项目</td>
+    </tr> 
+    <tr>
+      <td align="right" bgcolor="#ffffff" nowrap="nowrap" width="90"><span style="color: rgb(255, 0, 0);">*</span><span id="validatename">&nbsp;店名：</span></td>
+      <td>
+      <%= f.text_field :name%>
+		</td>
+    </tr>
+    <tr>
+      <td align="right" bgcolor="#ffffff" nowrap="nowrap" width="90"><span style="color: rgb(255, 0, 0);">*</span><span id="validatename">&nbsp;所在城市：</span></td>
+      <td>
+      <%= f.text_field :city %>
+		</td>
+    </tr>
+    <tr>
+      <td align="right" bgcolor="#ffffff" nowrap="nowrap" valign="top" width="90"><span style="color: rgb(255, 0, 0);">*</span><span id="validatename">&nbsp;详细地址：</span></td>
+      <td>
+        <%= f.text_field :address %>
+        <br>
+        例：一环路南一段21号红瓦寺凯悦新城（学府影城对面）</td>
+    </tr>
+    <tr>
+      <td align="right" bgcolor="#ffffff" nowrap="nowrap" width="90">手　　机：</td>
+      <td>
+        <%= f.text_field :phone %>
+      </td>
+    </tr>
+    <tr>
+      <td align="right" bgcolor="#ffffff" nowrap="nowrap" width="90"><span style="color: rgb(255, 0, 0);">*</span><span id="validatename"> 行业分类：</span></td>
+      <td>
+        <%= f.select :serve_category_id, ServeCategory.find(:all).map {|m| [m.name, m.id]} %>
+  </td>
+    </tr>
+        </tbody>
+      </table>
+    <tr>
+      <td align="right" bgcolor="#ffffff" nowrap="nowrap" valign="top" width="90">店铺介绍：<br>
+(1000字以内)</td>
+      <td>
+        <%= f.text_area :description, :rows => 5, :cols => 45 %>
+      <div id="introducemark" style="display: inline;"></div></td>
+    </tr>
+    <br/>
+    <tr>
+      <td align="right" bgcolor="#ffffff" nowrap="nowrap">营业时间：</td>
+      <td>
+        <%= f.radio_button :working, "日常" %>
+        <label for="shophours1">日常营业</label>
+        <%= f.radio_button :working, "午后" %>
+        <label for="shophours2">午后营业</label>
+        <%= f.radio_button :working, "夜店" %>
+        <label for="shophours3">夜店</label>
+        <%= f.radio_button :working, "24小时" %>
+        <label for="shophours4">24小时营业</label>
+        <%= f.radio_button :working, "不详" %>
+        <label for="shophours5">不详</label> 
+      </td>
+    </tr>
+    <br/>
+    <tr>
+      <td align="right" bgcolor="#ffffff" nowrap="nowrap">停车信息：</td>
+      <td>
+        <%= f.radio_button :park, "免费" %>
+        <label for="parking1">免费停车</label>
+        <%= f.radio_button :park, "付费" %>
+        <label for="parking2">付费停车</label>
+        <%= f.radio_button :park, "无" %>
+        <label for="parking3">无停车位</label>
+        <%= f.radio_button :park, "不详" %>
+        <label for="parking4">不详</label> </td>
+    </tr>
+    <br/>
+    <tr>
+      <td align="right" bgcolor="#ffffff" nowrap="nowrap">包　　厢：</td>
+      <td>
+        <%= f.radio_button :box, "有包厢" %>
+        <label for="isbalcony1">有包厢</label>
+        <%= f.radio_button :box, "无包厢" %>
+        <label for="isbalcony2">无包厢</label>
+        <%= f.radio_button :box, "不详" %>
+        <label for="isbalcony3">不详</label> </td>
+    </tr><br/>
+    <tr>
+      <td align="right" bgcolor="#ffffff" nowrap="nowrap">外　　卖：</td>
+      <td>
+        <%= f.radio_button :takeaway, "有外卖" %>
+        <label for="isdeliver1">有外卖</label>
+        <%= f.radio_button :takeaway, "无外卖" %>
+        <label for="isdeliver2">无外卖</label>
+        <%= f.radio_button :takeaway, "不详" %>
+        <label for="isdeliver3">不详</label> </td>
+    </tr><br/>
+    <tr>
+      <td align="right" bgcolor="#ffffff" nowrap="nowrap">可否刷卡<span id="validatename">：</span></td>
+      <td>
+        <%= f.radio_button :creditcard, "可刷卡" %>
+        <label for="creditCard1">可刷卡</label>
+        <%= f.radio_button :creditcard, "不能刷卡" %>
+        <label for="creditCard2">不能刷卡</label>
+        <%= f.radio_button :creditcard, "不详" %>
+        <label for="creditCard3">不详</label> </td>
+    </tr><br/>
+    <tr>
+      <td align="right" bgcolor="#ffffff" nowrap="nowrap">公交线路：</td>
+      <td>
+        <%= f.text_field :bus %>
+      </td>
+    </tr><br/>
+    <tr>
+      <td align="right" bgcolor="#ffffff" nowrap="nowrap">人均价格：</td>
+      <td>￥
+        <%= f.text_field :price %>
+        元</td>
+    </tr><br/>
+    <tr>
+      <td align="right" bgcolor="#ffffff" nowrap="nowrap">是否店主：</td>
+      <td>
+        <%= f.radio_button :master, "true" , :onclick => 'Element.hide("open_ping")'%>
+        是
+        <%= f.radio_button :master, "false", :onclick => 'Element.show("open_ping")' %>
+        否</td>
+    </tr><br/>
+  </tbody></table>
+  <div id="open_ping" style="display: none;">
+    <table border="0" cellpadding="4" cellspacing="2" width="100%">
+	  <tbody><tr>
+          <td align="right" width="90">
+            <strong><a href="#">&gt;&gt;添加点评</a></strong></td>
+      <td>&nbsp;</td>
+    </tr>
+	 <tr>
+          <td align="right" bgcolor="#ffffff" nowrap="nowrap">&nbsp;</td>
+          <td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tbody><tr>
+              <td width="50">质量：</td>
+              <td>
+                <div id="quality_div">
+              </div>
+            </td>
+              </tr>
+            <tr>
+              <td width="50">环境：</td>
+              <td><div id="condition_div">
+                  <img id="star1" src="../../image/eshop/star_on.gif" onmouseup="kgStars(document.getElementById('condition_div'),1);" ;="" onmouseover="showStars(document.getElementById('condition_div'),1);"><img id="star2" src="../../image/eshop/star_off.gif" onmouseup="kgStars(document.getElementById('condition_div'),2);" ;="" onmouseover="showStars(document.getElementById('condition_div'),2);"><img id="star3" src="../../image/eshop/star_off.gif" onmouseup="kgStars(document.getElementById('condition_div'),3);" ;="" onmouseover="showStars(document.getElementById('condition_div'),3);"><img id="star4" src="../../image/eshop/star_off.gif" onmouseup="kgStars(document.getElementById('condition_div'),4);" ;="" onmouseover="showStars(document.getElementById('condition_div'),4);"><img id="star5" src="../../image/eshop/star_off.gif" onmouseup="kgStars(document.getElementById('condition_div'),5);" ;="" onmouseover="showStars(document.getElementById('condition_div'),5);">&nbsp;&nbsp;&nbsp;<a id="condition_div_tip" class="textCcc"> 1分  很糟糕</a><input id="condition_div_kg" value="1" type="hidden">
+              </div>
+            </td>
+              </tr>
+            <tr>
+              <td width="50">服务：</td>
+              <td>
+              <div id="service_div">
+              </div>
+            </td>
+              </tr>
+          </tbody></table>
+		    <input name="quality" id="quality" value="0" type="hidden">
+			<input name="condition" id="condition" value="0" type="hidden">
+	    	<input name="service" id="service" value="0" type="hidden">
+		  </td>
+        </tr>
+        <tr>
+          <td align="right" bgcolor="#ffffff" nowrap="nowrap" width="90">消费情况：</td>
+          <td><input name="costmembers" size="5" onchange="if(/\D/.test(this.value)){alert('只能输入数字');this.value='';}">
+            人共消费了
+            <input name="costmoney" size="8" onchange="if(/\D/.test(this.value)){alert('只能输入数字');this.value='';}">
+          元 </td>
+        </tr>
+        <tr>
+          <td align="right" nowrap="nowrap">消费时间：</td>
+          <td><input name="costdate" id="costdate" onclick="calendar.init('costdate')" type="text"> 
+        <img src="/images/selectdate.gif" style="border: 1px solid red; cursor: pointer;" title="点击选择日期" onmouseover="this.style.background='red';" onmouseout="this.style.background=''" onclick="calendar.init('costdate')" height="14" width="20"></td>
+        </tr>
+        <tr>
+          <td align="right" bgcolor="#ffffff" nowrap="nowrap" width="90">推荐：</td>
+          <td>
+		  <input name="tags" id="tags" size="30" maxlength="50">(多个请用空格隔开)
+		</td>
+        </tr>
+        <tr>
+          <td align="right" nowrap="nowrap" valign="top">消费感受：<br>
+            (1000字以内)</td>
+          <td><textarea name="pingcontent" id="pingcontent" rows="8" cols="40" onkeyup="fontcnt('pingcontent')"></textarea>
+          <div id="pingcontentmark" style="display: inline;"></div></td>
+        </tr>
+      </tbody></table>
+    </div>
+  <div></div>
+  <div id="addButten" style="text-align: center;">
+    <input name="btnsubmit" id="btnsubmit" value="确认提交" type="submit">
+</div><% end %></div>
+</div>
+</div>
+</div>
+</div> 
+<div class="clear">&nbsp;</div>
+</div>

@@ -1,4 +1,191 @@
-<% @shops.each do |shop|%>
-  <%= shop.login_name %>
-<% end %>
-<%= link_to '添加商铺', new_shop_path%>
+﻿<div id="main" style="margin-top:-19px;">
+  <div class="auto_t_r w960">
+    <div class="auto_t_l">&nbsp;</div>
+    <div class="auto_b_r"><div class="auto_b_l"> 
+        <div id="sale_searchs">
+          <div class="content">
+            <input id="sale_search" onkeyup="autoComplete.hdleEvent(event)" value="=请输入关键字=" onclick="if(this.value == '=请输入关键字=') this.value='';" ondblclick="autoComplete.expandAllItem();" style="width:400px;font:10pt Arial;"/>
+            &nbsp;
+            <input type="button" id="button_sarch_xh" onclick="thisgotourl()" value=" 查找 " disabled="disabled" />
+            &nbsp;     
+            <input type="hidden" id="url_mark" /><span id="span_text_xh" style="width:100%; font:10pt Arial;"></span></div></div>
+        <div class="marr_body_head">
+          <div class="marr_body_head_left">
+            <div class="marr_body_head_left2">
+              <div class="mod" id="subnav">
+                <div class="modbox_test">
+                  <dl style="margin-left:10px;">
+                    <% @categories.each do |item|%>
+                      <dt><%= link_to item.name, category_shops_shops_path(:category_id => item), :method =>:put%></dt>
+                      <% item.subcategories.each do |sub|%>
+                        <dd><%= link_to sub.name,category_shops_shops_path(:category_id => sub), :method => :put %>|</dd>
+                      <% end %>
+                    <% end %>
+                  </dl>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="marr_body_head_imgshow">
+            <div id="MainPromotionBanner">
+              <div id="SlidePlayer">
+                <ul class="Slides">
+                  <li><a href="#" target="_blank"><img src="../images/image/fd10.jpg" /></a></li>
+                  <li><a href="http://www.mimimama.com/forum/viewthread.php?tid=18988&extra=page%3D1" target="_blank"><img src="../images/image/fd12.jpg" /></a></li>
+                  <li><a href="http://sale.mimimama.com/marry/promo/20090225/index.html" target="_blank"><img src="../images/image/fd7.jpg" /></a></li>
+                  <li><a href="http://sale.mimimama.com/doc/1/903/" target="_blank"><img src="../images/image/fd14.jpg" /></a></li>
+                  <li><a href="http://sale.mimimama.com/doc/1/882/" target="_blank"><img src="../images/image/fd11.jpg" /></a></li>
+                </ul>
+              </div>
+              <script type="text/javascript">
+                TB.widget.SimpleSlide.decoration('SlidePlayer', {eventType:'mouse', effect:'scroll'});
+                </script>
+              </div>  
+            </div>
+            <div class="marr_body_head_rig">
+              <div class="marr_body_head_rig1">我们为您提供：</div>
+              <div class="marr_body_head_rig2">
+                <ul>
+                  <li>        <p><a href="http://www.mimimama.com/register.php?forward=http%3A%2F%2Fwww.mimimama.com%2Fforum%2Fforumdisplay.php%3Ffid%3D52%26page%3D1" target="_blank"><span class="redt">免费注册</span></a></p>
+                  活动 交友 美食 消费</li>
+                  <li>        <p><a href="http://sale.mimimama.com/doc/1/listpage/sale_p_p_7_20_1.html" target="_blank"><span class="redt">找商家</span></a></p>
+                  摄影 亲子 孕妇 婚庆</li>
+                  <li>        <p><a href="http://www.mimimama.com/forum/" target="_blank"><span class="redt">互动社区</span></a></p>
+                  分享 圈子 咨询 购物</li>
+                </ul>
+              </div>
+              <div class="marr_body_head_rig3">
+                <p><a href="http://www.mimimama.com/help/" target="_blank"><font class="STYLE15">新手上路</font></a></p>
+                <p><a href="http://www.mimimama.com/about/index_lianxi.html" target="_blank"><font class="STYLE15">商家入驻</font></a></p>
+                <span><font class="STYLE15">客服电话：4006-829-353</font>
+              </span></div>
+            </div>
+          </div>
+          <!--婚庆-->
+          <div class="main">
+            <div class="title" id="t2">
+              <div class="titleright">
+                <% @marrycategory.subcategories.each do |sub| %>
+                  <%= link_to sub.name, category_shops_shops_path(:category_id => sub),:method => :put %>
+                <% end %>
+              </div>
+            </div>
+            <div class="dmainLitex350" id="d2">
+              <div class="dmainleftLitex350"><a href="http://sale.mimimama.com/doc/1/881/" target="_blank"><img src="../images/image/m2.jpg" width="220" height="280" /></a></div>
+              <div class="dmainrightLitex350">
+                <div class="leftmain">
+                  <div class="chanpinLitex350">
+                    <ul>
+                      <li><a href='http://sale.mimimama.com/doc/1/874/' target="_blank"><img src='../images/image/chanp01.gif' width='100' height='100' /></a>
+                      <div class="imgshow1">
+                        <div class="imgshow2 "> <span class="hx2"><a href="http://sale.mimimama.com/doc/1/874/" target="_blank">V2稀区写真·缤纷跳,预定可享受优惠</a></span><span class="STYLE4">￥588.00</span>/套</div>
+                      </div>
+                      </li>
+                      <li><a href='http://sale.mimimama.com/doc/1/858/' target="_blank"><img src='../images/image/chanp02.gif' width='100' height='100' /></a>
+                      <div class="imgshow1">
+                        <div class="imgshow2 "> <span class="hx2"><a href="http://sale.mimimama.com/doc/1/858/" target="_blank">粉片摄影·个人写真D套系 炫出自己</a></span><span class="STYLE4">￥1598.00</span>/套</div>
+                      </div>
+                      </li>
+                    </ul>
+                    <ul>
+                      <li><a href='http://sale.mimimama.com/doc/1/839/' target="_blank"><img src='../images/image/chanp03.gif' width='100' height='100' /></a>
+                      <div class="imgshow1">
+                        <div class="imgshow2 "> <span class="hx2"><a href="http://sale.mimimama.com/doc/1/839/" target="_blank">梓摄影·中国风 享受经典完美诠释</a></span><span class="STYLE4 STYLE3">￥808.00</span>/套</div>
+                      </div>
+                      </li>
+                    </ul>
+                    <ul>
+                      <li><a href='http://sale.mimimama.com/doc/1/673/' target="_blank"><img src='../images/image/chanp04.gif' width='100' height='100' /></a>
+                      <div class="imgshow1">
+                        <div class="imgshow2 "> <span class="hx2"><a href="http://sale.mimimama.com/doc/1/673/" target="_blank">尚品国际婚纱艺术摄影·情意绵绵</a></span><span class="STYLE4">￥5999.00</span>/套</div>
+
+                      </div>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="showcpLitex350">       <div class="adlite01"><a href="http://sale.mimimama.com/doc/1/883/" target="_blank"><img src="../images/image/b03.gif" width="200" height="90" /></a></div>
+                    <div class="adlite02">
+                      <ul>
+                        <li><span class="STYLE8"><img src="../images/image/help.gif" /></span> <a href="http://sale.mimimama.com/doc/1/880/" target="_blank">[童年记忆] 春天外景团拍特惠 ￥298</a></li>
+                        <li><span class="STYLE8"><img src="../images/image/help.gif" /></span><a href="http://sale.mimimama.com/doc/1/853/" target="_blank"> [童年记忆] 宽窄巷子 ￥1688</a></li>
+                        <li><span class="STYLE8"><img src="../images/image/help.gif" /></span> <a href="http://sale.mimimama.com/doc/1/884/" target="_blank">[童年记忆] 亲子照（全家福） ￥799</a> </li>
+                        <li><span class="STYLE8"><img src="../images/image/help.gif" /></span> <a href="http://sale.mimimama.com/doc/1/833/" target="_blank">[80S摄影] 相约2009，让爱永恒 </a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="rightmainLitex350">
+                  <p class="STYLE5 STYLE11">最受关注套系</p>
+                  <div class="txtad">
+                    <ul>
+                      <li><span class="STYLE8">1. </span><a href="http://sale.mimimama.com/doc/1/879/" target="_blank">[V2视觉] 外景·花季 <span class="STYLE7 redt">￥2990</span></a></li>
+                      <li><span class="STYLE8">2. </span><a href="http://sale.mimimama.com/doc/1/882/" target="_blank">[U&amp;V视觉] 创意婚纱 <span class="redt">￥2580</span></a></li>
+                      <li><span class="STYLE8">3. </span><a href="http://sale.mimimama.com/doc/1/885/" target="_blank">[本色自然] 旅游婚纱 <span class="STYLE7 redt">￥1500</span></a></li>
+                      <li><span class="STYLE8">4.</span><a href="http://sale.mimimama.com/doc/1/297/" target="_blank"> [弥摄影] 情侣特价套系 <span class="redt">￥1000</span></a></li>
+
+                      <li><span class="STYLE8">5. </span><a href="http://sale.mimimama.com/doc/1/883" target="_blank">[</a><a href="/doc/1/883">童年记忆</a><a href="http://sale.mimimama.com/doc/1/473/" target="_blank">]</a><a href="/doc/1/883"> 孕妈咪写真</a><a href="http://sale.mimimama.com/doc/1/473/" target="_blank"> <span class="redt">￥599</span></a><a href="http://sale.mimimama.com/doc/1/343/" target="_blank"></a></li>
+                      <li><span class="STYLE8">6. </span><a href="http://sale.mimimama.com/doc/1/784/" target="_blank">[红豆摄影] 特惠B套系 <span class="redt">￥888</span></a><a href="http://sale.mimimama.com/doc/1/349/" target="_blank"></a></li>
+                      <li><span class="STYLE8">7. </span><a href="http://sale.mimimama.com/doc/1/859" target="_blank">[粉片摄影] 全家福 <span class="redt">￥598</span></a><a href="http://sale.mimimama.com/doc/1/349/" target="_blank"></a></li>           
+                    </ul>
+                  </div>
+                  <div class="txtadlite3"><a href="http://sale.mimimama.com/doc/1/449/" target="_blank"><img src="../images/image/b01.gif" width="210" height="60" /></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--家居-->
+          <div class="main">
+            <div class="title" id="t1">
+              <div class="titleright">
+                <% @housecategory.subcategories.each do |sub| %>
+                  <%= link_to sub.name, category_shops_shops_path(:category_id => sub),:method => :put %>
+                <% end %>
+              </div>
+            </div>
+            <div class="dmainlite" id="d1">
+              <div class="dmainleftlite"><a href="#"><img src="../images/image/m1.jpg" width="220" height="275" /></a></div>
+              <div class="dmainrightlite" style="margin-left:-20px;">
+                <div class="leftmain">
+                  <div class="ad03"><a href="http://sale.mimimama.com/doc/1/260/" target="_blank"><img src="../images/image/m1_185x77.jpg" width="185" height="77" /></a></div>
+                  <div class="ad04"><a href="http://sale.mimimama.com/doc/1/235/" target="_blank"><img src="../images/image/m1_265x77.jpg" width="265" height="77" /></a></div>
+                  <div class="chanpinlite">
+                    <ul>
+                      <li><a href='http://sale.mimimama.com/doc/1/792/' target="_blank"><img src='../images/image/hdong6.gif' width='110' height='110' /></a>
+                      <div class="imgshow1">
+                        <div class="imgshow2 "> <span class="hx2"><a href="http://sale.mimimama.com/doc/1/792/" target="_blank">威尼斯商人陶瓷<span style="DISPLAY: block">W25020-250*330</span></a></span><span class="STYLE4">3.68元/匹</span></div>
+                      </div>
+                      </li>
+                      <li><a href='http://sale.mimimama.com/doc/1/265/' target="_blank"><img src='../images/image/hdong5.gif' width='110' height='110' /></a>
+                      <div class="imgshow1">
+                        <div class="imgshow2 "> 
+                          <div align="center"><span class="hx2"><a href="http://sale.mimimama.com/doc/1/265/" target="_blank">澳斯特橱柜<span style="DISPLAY: block">2009特价套餐</span></a></span><span class="STYLE4">6880.00元</span></div>
+                        </div>
+                      </div>
+                      </li>
+                      <li><a href="http://sale.mimimama.com/doc/1/245/" target="_blank"><img src='../images/image/hdong7.gif' width='110' height='110' /></a>
+                      <div class="imgshow1">
+                        <div class="imgshow2 "> <span class="hx2"><a href="http://sale.mimimama.com/doc/1/245/" target="_blank">联兴行<span style="DISPLAY: block">德国高仪龙头2.5折</span></a></span><span class="STYLE4">498.00元</span></div>
+                      </div>
+                      </li>
+                      <li><a href="http://sale.mimimama.com/doc/1/352/" target="_blank"><img src='../images/image/hdong8.gif' width='110' height='110' /></a>
+                      <div class="imgshow1">
+                        <div class="imgshow2 "> <span class="hx2"><a href="http://sale.mimimama.com/doc/1/352/" target="_blank">安心木业<span style="DISPLAY: block">实木套装门优惠价</span></a></span><span class="STYLE4">920.00元/套</span></div>
+                      </div>
+                      </li>
+                    </ul>
+                </div> </div>
+                <div class="rightmainlite">
+                  <div class="txtad3"><a href="http://sale.mimimama.com/doc/1/427/" target="_blank"><img src="../images/image/a1.gif" width="210" height="60" /></a><a href="http://sale.mimimama.com/doc/1/88/" target="_blank"></a></div>
+                  <div class="txtad3"><a href="http://sale.mimimama.com/doc/1/819/" target="_blank"><img src="../images/image/a2.gif" width="210" height="60" /></a><a href="http://sale.mimimama.com/doc/1/88/" target="_blank"></a></div>
+                  <div class="txtad3"><a href="http://sale.mimimama.com/doc/1/641/" target="_blank"><img src="../images/image/a3.gif" width="210" height="60" /></a><a href="http://sale.mimimama.com/doc/1/88/" target="_blank"></a></div>
+                  <div class="txtad3"><a href="http://sale.mimimama.com/doc/1/88/" target="_blank"><img src="../images/image/fa.jpg" width="206" height="50" /></a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clear"></div>

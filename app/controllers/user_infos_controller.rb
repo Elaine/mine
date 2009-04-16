@@ -1,13 +1,14 @@
 class UserInfosController < ApplicationController
+  before_filter :login_required
   def edit
   end
 
   def update
-    @space = Space.find(params[:space_id])
+    @user = User.find(params[:user_id])
     @userinfo = @space.user.user_info
     if @userinfo.update_attributes(params[:userinfo])
       flash[:notice] = "隐私设置完毕"
-      redirect_to edit_userinfo_space_path(:id => @space)
+      redirect_to edit_userinfo_user_path(:id => @user)
     end
   end
 end

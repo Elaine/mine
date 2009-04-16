@@ -1,7 +1,6 @@
 class Admin::ShopCategoriesController < ApplicationController
-
   def index
-    @categories = ShopCategory.find(:all, :conditions => {:parent_id => nil}, :order => "name desc")
+    @categories = ShopCategory.find(:all, :conditions => {:parent_id => nil}, :order => "name desc").paginate :page => params[:page], :per_page => 10
   end
 
   def new
@@ -40,5 +39,4 @@ class Admin::ShopCategoriesController < ApplicationController
     end
     redirect_to admin_shop_categories_path
   end
-
 end

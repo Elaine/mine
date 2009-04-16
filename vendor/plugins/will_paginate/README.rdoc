@@ -1,0 +1,74 @@
+
+== Installation
+
+The recommended way is that you get the gem:
+
+  gem install mislav-will_paginate --source http://gems.github.com/
+
+After that you don't need the will_paginate <i>plugin</i> in your Rails
+application anymore. Just add a simple require to the end of
+"config/environment.rb":
+
+  gem 'mislav-will_paginate', '~> 2.2'
+  require 'will_paginate'
+
+That's it. Remember to install the gem on <b>all</b> machines that you are
+deploying to.
+
+<i>There are extensive
+{installation instructions}[http://github.com/mislav/will_paginate/wikis/installation]
+on {the wiki}[http://github.com/mislav/will_paginate/wikis].</i>
+
+
+== Example usage
+
+Use a paginate finder in the controller:
+
+  @posts = Post.paginate_by_board_id @board.id, :page => params[:page], :order => 'updated_at DESC'
+
+Yeah, +paginate+ works just like +find+ -- it just doesn't fetch all the
+records.  Don't forget to tell it which page you want, or it will complain!
+Read more on WillPaginate::Finder::ClassMethods.
+
+Render the posts in your view like you would normally do. When you need to render
+pagination, just stick this in:
+
+  <%= will_paginate @posts %>
+
+You're done. (Copy and paste the example fancy CSS styles from the bottom.) You
+can find the option list at WillPaginate::ViewHelpers.
+
+How does it know how much items to fetch per page? It asks your model by calling
+its <tt>per_page</tt> class method. You can define it like this:
+
+  class Post < ActiveRecord::Base
+    cattr_reader :per_page
+    @@per_page = 50
+  end
+
+... or like this:
+
+  class Post < ActiveRecord::Base
+    def self.per_page
+      50
+    end
+  end
+
+... or don't worry about it at all. WillPaginate defines it to be <b>30</b> by default.
+But you can always specify the count explicitly when calling +paginate+:
+
+  @posts = Post.paginate :page => params[:page], :per_page => 50
+
+The +paginate+ finder wraps the original finder and returns your resultset that now has
+some new properties. You can use the collection as you would with any ActiveRecord
+resultset. WillPaginate view helpers also need that object to be able to render pagination:
+
+  <ol>
+    <% for post in @posts -%>
+      <li>Render `post` in some nice way.</li>
+    <% end -%>
+  </ol>
+
+  <p>Now let's render us some pagination!</p>
+  <%= will_paginate @posts %>
+

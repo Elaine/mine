@@ -1,0 +1,208 @@
+<%#= @sql_str %>
+<script language="javascript">	
+  function qiehuan(num){
+    for(var id = 1;id<=4;id++)
+    {
+      if(id==num)
+      {
+        document.getElementById("know"+id).style.display="block";
+        document.getElementById("mynav"+id).className="nav_on";
+        document.getElementById("mynav"+id).style.background="#ffffff";
+        document.getElementById("mynav"+id).style.display="block";
+        document.getElementById("mynav"+id).style.color="#000000";
+
+      }
+      else
+      {
+        document.getElementById("know"+id).style.display="none";
+        document.getElementById("mynav"+id).className="";
+        document.getElementById("mynav"+id).style.background="";
+        document.getElementById("mynav"+id).style.color="";
+      }
+    }
+  }
+</script>
+<div id="main">
+<div class="auto_t_r w960">
+    <div class="auto_t_l">&nbsp;</div>
+       <div class="auto_b_r"><div class="auto_b_l">
+	         <div id="c03tab" style="margin-top:5px;margin-bottom:5px;margin-left:auto; margin-right:auto">
+                <ul>
+				<li><a href="#" onclick="javascript:qiehuan(1)"  id="mynav1">搜索密友</a></li>
+				<li><a href="#" onclick="javascript:qiehuan(2)"  id="mynav2">寻找校友</a></li>
+				<li><a href="#" onclick="javascript:qiehuan(3)"  id="mynav4">寻找同好</a></li>
+                </ul>
+              </div>
+    <div class="mambers_search" id="know1">
+      <% form_for :userinfo, :controller => 'community', :action => 'friendlist' do |f|%>
+        <table border="0" cellpadding="4" cellspacing="0" width="100%">
+          <tbody><tr>
+              <td align="right" width="27%">关键字：</td>
+              <td width="45%"><span class="list_con">
+                  <%= text_field_tag :keyword%>
+                  <%= select_tag 'keytype',
+                    "<option value='login_name'>用户名</option>
+                    <option value='email'>EMAIL</option>
+                    <option value='id'>用户ID</option>" %>
+              </span></td>
+              <td width="28%">&nbsp;</td>
+            </tr>
+            <tr>
+              <td align="right">年龄：</td>
+              <td><span class="frmtd">
+                  <%= select_tag 'age', 
+                   " <option value='0' selected='selected'>不限</option>
+                    <option value='20'>20岁以下</option>
+                    <option value='28'>20-28</option>
+                    <option value='35'>28-35</option>
+                    <option value='45'>35-45</option>
+                    <option value='46'>45岁以上</option>" %>
+              </span></td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+
+              <td align="right">性别：</td>
+              <td><span class="frmtd">
+                  <%= select_tag 'sex', "<option value='' selected='selected'>不限</option>
+             <option value='true'>帅哥</option>
+             <option value='false'>美女</option>" %>
+              </span></td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td align="right">教育程度：</td>
+              <td>
+                <%= select_tag 'educational',
+                  "<option value='' selected='selected'>不限</option>
+                  <option value='初中及以上'>初中及以上</option>
+                  <option value='高中及以上'>高中及以上</option>
+                  <option value='专科及以上'>专科及以上</option>
+                  <option value='学士及以上'>学士及以上</option>
+                  <option value='硕士/双学士及以上'>硕士/双学士及以上</option>" %>
+              </td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td align="right">从事职业：</td>
+              <td>
+                <%= select_tag 'job', 
+                 " <option value='' selected='selected'>不限</option>
+                  <option value='党政企事业单位'>党政企事业单位</option>
+                  <option value='金融'>金融</option>
+                  <option value='银行'>银行</option>
+                  <option value='工商'>工商</option>
+                  <option value='税务'>税务</option>
+                  <option value='保险'>保险</option>
+                  <option value='文艺'>文艺</option>
+                  <option value='影视'>影视</option>
+                  <option value='娱乐'>娱乐</option>
+                  <option value='体育'>体育</option>
+                  <option value='服务业'>服务业</option>
+                  <option value='医护人员'>医护人员</option>
+                  <option value='新闻'>新闻</option>
+                  <option value='媒体'>媒体</option>
+                  <option value='军人'>军人</option>
+                  <option value='公检法人员'>公检法人员</option>
+                  <option value='计算机及通信相关行业'>计算机及通信相关行业</option>
+                  <option value='其它专业技术人员'>其它专业技术人员</option>
+                  <option value='老师'>老师</option>
+                  <option value='学生'>学生</option>
+                  <option value='外资'>外资</option>
+                  <option value='合资企业人员'>合资企业人员</option>
+                  <option value='工人'>工人</option>
+                  <option value='农民'>农民</option>
+                  <option value='个体经营者'>个体经营者</option>" %>
+              </td>
+              <td>至少选择一项作为搜索条件</td>
+            </tr>
+            <tr>
+              <td align="right">&nbsp;</td>
+              <td>
+                <%= submit_tag '搜索' %>
+                <%= f.hidden_field (:type, :value => "Friend")%>
+              </td>
+              <td>&nbsp;</td>
+            </tr>
+        </tbody></table>
+      <% end %>
+    </div>
+    <div class="mambers_search" id="know2" style="display: none;">
+      <% form_for :userinfo, :controller => 'community', :action => 'friendlist' do |f|%>
+        <table border="0" cellpadding="4" cellspacing="0" width="100%">
+          <tbody><tr>
+              <td align="right" width="27%">学校名称：</td>
+              <td width="30%">
+                <%= f.text_field :school%>
+                &nbsp;
+                <%= submit_tag '搜索' %>
+                <%= f.hidden_field (:type, :value => "School")%>
+              </td>
+              <td width="43%">输入学校名称，寻找校友</td>
+            </tr>
+        </tbody></table>
+      <% end %>
+    </div>
+    <div class="mambers_search" id="know3" style="display: none;">
+        <% form_for :userinfo, :controller => 'community', :action => 'friendlist' do |f|%>
+        <table border="0" cellpadding="4" cellspacing="0" width="100%">
+          <tbody><tr>
+              <td align="right" width="27%">关键字：</td>
+              <td width="30%">
+                <%= f.text_field :hobiy%>
+                &nbsp;
+                <%= submit_tag '搜索' %>
+                <%= f.hidden_field (:type, :value => "Hobiy")%>
+              </td>
+              <td width="43%">输入标签，聚集更多志趣相投的朋友。</td>
+            </tr>
+        </tbody></table>
+      <% end %>
+    </div>
+    <br>
+    <% if @users %>
+    <div class="members_main"><span class="title_one">搜索结果</span>
+      <% if @users.size > 0%>
+      <% @users.each do |item|%>
+        <div>
+          <% if item.user.avatar %>
+            <%= link_to image_tag(item.user.avatar.public_filename(:tiny)), user_path(:id => item.user)%>
+          <% else %>
+            <%= link_to image_tag("../images/noface_tiny.jpg"), user_path(:id => item.user) %>
+          <% end %><br/>
+          <%= link_to item.user.login_name, user_path(:id => item.user) %> </div>
+      <% end %>
+    <% else %>
+      <font color="red"> 未找到匹配条件的会员.请重新搜索.</font>
+    <% end %>
+    </div>
+   <div class="clear"></div>
+   </div>
+    <% else %>
+    <div class="members_main"><span class="title_one">最新加入会员</span>
+      <% @newuser.each do |item|%>
+        <div>
+          <% if item.avatar %>
+            <%= link_to image_tag(item.avatar.public_filename(:tiny)), user_path(:id => item)%>
+          <% else %>
+            <%= image_tag("../images/noface_tiny.jpg") %>
+          <% end %><br/>
+          <%= link_to item.login_name, user_path(:id => item) %> </div>
+      <% end %>
+    </div>
+    <div class="members_main"><span class="title_one">热门会员</span>
+      <% @hotuser.each do |item|%>
+        <div>
+          <% if item.avatar %>
+            <%= link_to image_tag(item.avatar.public_filename(:tiny)), user_path(:id => item)%>
+          <% else %>
+            <%= image_tag("../images/noface_tiny.jpg") %>
+          <% end %><br/>
+          <%= link_to item.login_name, user_path(:id => item) %> </div>
+      <% end %>
+    </div>
+   <div class="clear"></div>
+   </div>
+ <% end %>
+   </div>
+</div>

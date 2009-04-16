@@ -1,0 +1,14 @@
+<div class="main top">
+  <div id="title"><%= @business.name %>的图片（共<%= @business.serve_photos_count %>张）</div>
+  <div id="subtitle"><%= link_to '上传您消费时拍的照片', new_business_serve_photo_path %></div>
+<ul class="photo">
+  <% @business.serve_photos.each do |p|%>
+    <li>
+    <p class="p"><%= image_tag (p.public_filename(:tiny)) %> </p>
+    <%= p.title %><br>
+    上传：<%= link_to p.business.user.username, space_path(:id => p.business.user.space) %>
+</li>
+<% end %>
+</ul>
+<div class="clear">&nbsp;</div>
+</div>

@@ -1,3 +1,8 @@
+<div id="main">	
+<div class="auto_t_r w960">
+   <div class="auto_t_l">&nbsp;</div>
+  <div class="auto_b_r"><div  class="auto_b_l">
+
 <div class="mainbox threadlist">
   <h1>
     <%= link_to @forum.title , forums_path %>
@@ -14,7 +19,7 @@
         <td class="lastpost">最后发表</td>
       </tr>
     </thead>
-    <% @forum.topics.each do |topic|%>
+    <% @topics.each do |topic|%>
       <tbody id="stickthread_17667">
         <tr>
           <td class="folder">
@@ -28,18 +33,23 @@
           </th>
           <td class="author">
             <cite>
-              <%= link_to topic.user.username%>
+              <%= link_to topic.user.login_name%>
             </cite>
             <em><%= topic.created_at.strftime("%Y-%m-%d")%></em>
           </td>
           <td class="nums"><strong><%= topic.posts_count %></strong> / <em><%= topic.views_count %></em></td>
           <td class="lastpost">
+            <% if topic.posts_count > 0%>
             <em><%= topic.lastpost.created_at.strftime("%Y-%m-%d %H:%M:%S") %></em>
-            <cite>by <%= link_to topic.user.username %></cite>
+            <cite>by <%= link_to topic.user.login_name%></cite>
+          <% else %>
+            <cite>暂无回复</cite>
+          <% end %>
           </td>
         </tr>
       </tbody>		
     <% end %>
+    <%= will_paginate @topics, :prev_label => '上一页', :next_label => '下一页'%>
   </table>
 </div>
 
@@ -48,6 +58,7 @@
     <%= link_to '发新话题', new_forum_topic_path(:forum_id => @forum)%>
   </div>
 </div>
+<% if is_logged_in?%>
 <% form_for :topic, :url => forum_topics_path(:forum_id => @forum.id) do |f|%>
   <div id="quickpost" class="box">
     <span class="headactions">
@@ -59,11 +70,24 @@
         <div id="threadtypes"></div>
         <p><label>内容</label>
         <%= javascript_include_tag :fckeditor%>
-        <%= fckeditor_textarea ('topic', 'content', {:toolbarSet => 'Simple', :width => '150%', :height => '200px' }) %>
+        <%= fckeditor_textarea ('topic', 'content', {:toolbarSet => 'Simple', :width => '900px', :height => '200px' }) %>
         </p>
+<li id="tags"><strong>标签</strong>
+        <%= text_field :tags, :name %>
+        </li>
+        <li id="tags2"><strong>已有:</strong>
+        <% logged_in_user.owned_tags.each do |t| %> 
+          <%= t.name %> &nbsp;&nbsp;
+        <% end %>
+        </li>
+
         <p class="btns">
         <%= submit_tag '提交'%>
         </p>
       </div>
     </div>
   <% end %>
+<% end %>
+</div>
+</div>
+</div>

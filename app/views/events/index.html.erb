@@ -1,6 +1,30 @@
-<div class="main top">
-  <div id="left">
-    <div class="title top">官方活动</div>
+﻿	<div id="main" style="margin-top:-20px;">
+<div class="auto_t_r w960">
+    <div class="auto_t_l">&nbsp;</div>
+  <div class="auto_b_r"><div  class="auto_b_l">
+<div id="left" style="width:600px;float:left;">
+
+  <div class="left_c">
+  <div id="ad"><a href="#"><img src="../images/image/bbqhuodd.jpg" width="300" height="170" border="0" /></a></div>
+  <div id="subad">
+    <h1><a title="寻找爱跳舞的你" href="#" target="_blank">寻找爱跳舞的你</a></h1>
+    <div id="subad_c">
+      报名时间：2009年4月4日至4月13日
+活动内容：
+海 选 赛4月14日
+晋...
+      [<a href="campaign.php?id=1033">详细</a>]</div>
+    <ul>
+
+				<li><a href="campaign.php?id=1021">让你的孩子“与外国朋友零点交流”</a></li>
+				<li><a href="campaign.php?id=1002">密麻邀你品鉴国产RAV4</a></li>
+				<li><a href="campaign.php?id=982">“寻找投篮王系列比赛”</a></li>
+				<li><a href="campaign.php?id=968">【30元】情系两岸咖啡（含：晚餐、饮料、礼品）</a></li>
+		    </ul>
+  </div>
+  <div class="clear">&nbsp;</div>
+  </div>
+   <div class="title top">官方活动</div>
     <% @official_events.each do |off|%>
       <ul class="camp_c top">
         <li class="c_title1"><%= off.title %></li>
@@ -13,31 +37,72 @@
         <li class="clear">&nbsp;</li>
       </ul>
     <% end %>
-
-    <div class="title top">最新活动</div>
-    <% @recent_events.each do |r|%>
+    <%= will_paginate @official_events,:prev_label=> '上一页',:next_label=> '下一页' %>
+<div class="title top">最新活动</div>
+   <% @recent_events.each do |r|%>
+   
       <ul class="camp_c top">
-        <li class="c_title1"><%= r.title %></li>
+	    <li class="c_time">03月<br /><span class="redt">28日</span></li>
+        <li class="c_title1"><a target="_blank" href='#' ><%= r.title %></a></li>
         <li class="c_about">
         <%= r.introduction %>
         </li>
         <li class="c_addr"> 类型：<%= link_to r.event_category.name, category_events_events_path(:category_id => r.event_category.id)%> | <%= r.views_count %>人点击| <%= r.comments_count %>人评论 | <%= r.members %>人参加</li>
-        <li class="c_user"><%= r.members %> 人
+        <li class="c_user"><font class="redt"><%= r.members %>人</font> 
         <%= link_to '我要参加', event_path(:id => r.id) %></li>
         <li class="clear">&nbsp;</li>
       </ul>
     <% end %>
-  </div>
+
+	    <div class="r_more">
+      <div class="tiao"><%= will_paginate @recent_events,:prev_label=> '上一页',:next_label=> '下一页' %> 
+        <label>
+      </label>
+    </div></div>
+	
 </div>
-<div id="right">
+<div id="right" style="width:230px;">
+<% if is_logged_in? %>
   <div id="but"><%= link_to '发起新活动', new_event_path%> </div>
-  你已经发起了<%= logged_in_user.events_count %>个活动
-  您已经参加了<%= logged_in_user.eventors.size %> 个活动
-  <div id="mymser">
-    <div class="right_t">按分类浏览</div>
+
+    <div id="mymser" >
+    <div id="mymser_t"><a href="home.php?u=gaoshan0505">天空css</a>，<span class="green">从这里开始...</span></div>
+    <img src="/images/image/noface.jpg" width="100" height="100" /><br />
+  你已经发起了起了<span class="green"><%= logged_in_user.events_count %></span>个活动 | <a href="campaign_list.php?c=1">查看我发起的活动</a><br />
+    您已经参加了<span class="green"><%= logged_in_user.eventors.size %></span>个活动| <a href="campaign_list.php?c=2">查看我参加的活动</a></div>
+<% end %>
+	  <div class="right_t">按分类浏览</div>
     <ul id="list">
       <% @eventcategories.each do |c|%>
         <li><%= link_to c.name, category_events_events_path(:category_id => c.id) %> </li>
       <% end %>
     </ul>
+	 <div class="right_t">活跃会员(参加活动次数)</div>
+  <div class="right_c"><ul id="hyuser">
+     <li><img src="/user/fx20060617/upload_images/1152713548_s.jpg" alt="ゞ无花果ゞ" width="35" height="35" /><a href="home.php?u=fx20060617">ゞ无花果ゞ</a>（166）</li>
+<li><img src="/user/ljlcm800521_zg/upload_images/1182137713_s.jpg" alt="jiaojiao" width="35" height="35" /><a href="home.php?u=ljlcm800521_zg">jiaojiao</a>（161）</li>
+<li><img src="/user/liu8520420/upload_images/1196357853_s.jpg" alt="睡仙" width="35" height="35" /><a href="home.php?u=liu8520420">睡仙</a>（78）</li>
+<li><img src="/user/wenia/upload_images/1159274966_s.jpg" alt="冷月无颖" width="35" height="35" /><a href="home.php?u=wenia">冷月无颖</a>（69）</li>
+
+<li><img src="/user/edison/upload_images/1143024297_s.jpg" alt="天地鬼鬼" width="35" height="35" /><a href="home.php?u=edison">天地鬼鬼</a>（61）</li>
+<li><img src="/user/juejiang/upload_images/1182591252_s.gif" alt="倔强" width="35" height="35" /><a href="home.php?u=juejiang">倔强</a>（53）</li>
+<li><img src="/user/cooler51/upload_images/1195629129_s.jpg" alt="小南" width="35" height="35" /><a href="home.php?u=cooler51">小南</a>（48）</li>
+<li><img src="/user/fq101/upload_images/1194368717_s.jpg" alt="卡卡▄秋" width="35" height="35" /><a href="home.php?u=fq101">卡卡▄秋</a>（42）</li>
+<li><img src="/user/tata66/upload_images/1200026621_s.jpg" alt="远远的她她" width="35" height="35" /><a href="home.php?u=tata66">远远的她她</a>（42）</li>
+<li><img src="/user/starel/upload_images/1153971171_s.jpg" alt="♂爍働天‰" width="35" height="35" /><a href="home.php?u=starel">♂爍働天‰</a>（37）</li>
+
+   </ul>
   </div>
+ <div class="right_t">活动回顾</div>
+  <div class="right_c"><script language="JavaScript" src="http://www.mimimama.com/forum/api/javascript.php?key=huodong"></script></div>
+
+
+ 
+</div>
+<div class="clear">&nbsp;</div>
+</div>
+</div>
+</div>
+</div>
+
+

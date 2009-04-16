@@ -1,6 +1,12 @@
+<div id="main" >
+<div class="auto_t_r w960">
+    <div class="auto_t_l">&nbsp;</div>
+  <div class="auto_b_r"><div class="auto_b_l"> 
 <table width="100%" border="0" cellspacing="0" cellpadding="3">
-  <% form_for :product, :url => shop_products_path(:shop_id => @shop), :html => {:multipart => true}  do |f| %>
-    <%= f.error_messages %>
+  <%if flash[:error]%>
+    <%= flash[:error] %>
+  <% end %>
+  <% form_for :product, :url => products_path(:item_id => logged_in_user), :html => { :multipart => true}  do |f| %>
     <tr>
       <td width="24%" align="right"><font color="#FF0000">* </font>商品名称：</td>
       <td><span>
@@ -8,24 +14,16 @@
         </span>
       </td>
     </tr>
+    <% if logged_in_type == "Shop"%>
     <tr>
       <td align="right" valign="top"><font color="#FF0000">* </font>价格：</td>
       <td><%= f.text_field :price, :size => 10 %></td>
     </tr>
-
     <tr>
       <td align="right" valign="top">折扣价：</td>
-      <td><%= f.text_field :discount, :size => 10 %>		</td>
-    </tr>
-    <tr>
-      <td align="right" ><font color="#FF0000">* </font>产品介绍：</td>
-      <td>
-        <%#= fckeditor_textarea ('product', 'introduction', {:toolbarSet => 'Simple', :width => '150%', :height => '200px' }) %>
-        <%= f.text_area :introduction, :rows => 5, :cols => 50 %>
-      </td>
-    </tr>
-
-    <tr>
+      <td><%= f.text_field :discount, :size => 10 %></td>
+      </tr>
+      <tr>
       <td align="right">优惠说明：</td>
       <td>
         <%#= javascript_include_tag :fckeditor%>
@@ -33,19 +31,44 @@
         <%= f.text_area :offer_description, :rows => 5, :cols => 50 %>
       </td>
     </tr>
-
+  <% end %>
+    <tr>
+      <td align="right" ><font color="#FF0000">* </font>产品介绍：</td>
+      <td>
+        <%#= fckeditor_textarea ('product', 'introduction', {:toolbarSet => 'Simple', :width => '150%', :height => '200px' }) %>
+        <%= f.text_area :introduction, :rows => 5, :cols => 50 %>
+      </td>
+    </tr>
     <tr>
       <td align="right">上传图片:</td>
-      <td></td>
+      <td>
+        <%= file_field :item_photo, :uploaded_data %><br/>
+    </td>
     </tr>
+     <!--<tr>
+      <td align="right">标签:</td>
+      <td>
+        <%#= text_field :tags, :name%><br/>
+    </td> <li id="tags2" style=""><strong>已有:</strong>
+        <%# @item.owned_tags.each do |t| %> 
+          <%#= t.name %> &nbsp;&nbsp;
+        <%# end %>
+    </tr>
+    -->
     <tr>
       <td align="right">&nbsp;(<font color="#FF0000">*为必填项</font>)</td>
       <td>
+        <%= f.hidden_field (:item_type, :value => "#{logged_in_type}") %>
         <%= submit_tag '提交' %>
         &nbsp;&nbsp;
-        <%= link_to '取消', shop_products_path(:shop_id => @shop) %>
+        <%#= link_to '取消', shop_products_path(:shop_id => @shop) %>
       </td>
     </tr>
   <% end %>
 </table>
 </div>
+<div class="clear"></div>
+</div>
+</div>
+</div>
+<div class="clear"></div>

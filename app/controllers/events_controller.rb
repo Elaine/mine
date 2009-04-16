@@ -1,25 +1,31 @@
 class EventsController < ApplicationController
-
+  before_filter :login_required, :except => [:index, :category_events, :show]
   def category_events
-    @categoryevents = Event.find_all_by_event_category_id(params[:category_id], :order => 'created_at desc')
+    @categoryevents = Event.find_all_by_event_category_id(params[:category_id], :order => 'created_at desc').paginate :page => params[:page], :per_page => 10
     @eventcategories = EventCategory.find(:all, :order => 'created_at desc')
   end
 
   def index
     @eventcategories = EventCategory.find(:all)
-    @recent_events = Event.find(:all, :order => 'created_at DESC', :conditions => ["closed = ? AND offical = ?", false, false],:limit => 3)
-    @official_events = Event.find(:all, :order => 'created_at desc', :conditions => {:offical => true}, :limit => 3)
+    @recent_events = Event.find(:all, :order => 'created_at DESC', :conditions => ["closed = ? AND offical = ?", false, false],:limit => 3).paginate :page => params[:page], :per_page => 10
+    @official_events = Event.find(:all, :order => 'created_at desc', :conditions => {:offical => true}, :limit => 3).paginate :page => params[:page], :per_page => 10
     @user_events = Event.find_all_by_user_id(logged_in_user, :order => 'created_at desc')
+    if is_logged_in?
+    @user = User.find(logged_in_user)
+    end
   end
 
   def new
+    @user = User.find(logged_in_user)
     @event = Event.new
   end
 
   def create
     @event = logged_in_user.events.new(params[:event])
+    @user = logged_in_user
     if @event.save
-      redirect_to  events_path
+      @user.tag(@event, :with => params[:tags][:name], :on => :tags)
+      redirect_to events_path
     else
       render :action => 'new'
     end

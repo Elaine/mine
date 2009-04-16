@@ -1,15 +1,162 @@
-<li class="left">账号：<%= @shop.login_name %></li>
-<li class="left">店铺名称：<%= @shop.shopname %></li>
-<li class="left">店铺描述：<%= @shop.description %></li>
-<li class="left">地址：<%= @shop.address %></li>
-<%= link_to '添加产品', new_shop_product_path(:shop_id => @shop)%>
-<ul>
-  <% @shop.products.each do |product|%>
-    商品名称:<%= product.name %>
-    商品价格:<%= product.price %>
-    折扣价:<%= product.discount %>
-    商品介绍:<%= product.introduction%>
-    优惠说明:<%= product.offer_description%>
-    <br/>
-  <% end %>
-</ul>
+﻿<div id="main" style="margin-top:-18px;">
+  <div class="auto_t_r w960">
+    <div class="auto_t_l">&nbsp;</div>
+    <div class="auto_b_r"><div class="auto_b_l"> 
+        <div id='sale_searchs'>
+          <div class='content'>
+            <input id='sale_search' onkeyup='autoComplete.hdleEvent(event)' value='=请输入关键字=' onclick="if(this.value == '=请输入关键字=') this.value='';" ondblclick='autoComplete.expandAllItem();' style='width:400px;font:10pt Arial;'/>
+            &nbsp;
+            <input type='button' id='button_sarch_xh' onclick='thisgotourl()' value=' 查找 ' disabled='disabled' />
+            &nbsp;     
+            <input type='hidden' id='url_mark' /><span id='span_text_xh' style='width:100%; font:10pt Arial;'></span>
+          </div>
+        </div>
+        <!--当前位置-->
+        <div id='youarehear'>您现在的位置: 
+          <%= link_to '嘿嘿', home_path %>&gt;&gt;
+          <%= link_to '商城', shops_path %> &gt;&gt;
+          <%= link_to @shop.shop_category.name, category_shops_shops_path(:category_id => @shop.shop_category) %> 
+          （本类下共有商品<%= @shop.shop_category.products_count%>个）
+          商家：<%= @shop.login_name %>
+          （本店铺下共有商品<%= @shop.products_count%>个）
+          <% if logged_in_user == @shop %>
+            &nbsp;&nbsp;&nbsp;<%= link_to '编辑店铺', edit_shop_path(:id => @shop) %>&gt;&gt;
+            <%= link_to '添加产品', new_product_path%>&gt;&gt;
+            <%= link_to '发布信息', new_info_path%>&gt;&gt;
+          <% end %>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 账号：<%= @shop.login_name %>
+        </div>
+        <!--导航栏-->
+        <div id='left' style="float:left; width:200px;">
+          <div class='mod'>
+            <div class='modth rightlists'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最新优惠信息</div>
+
+            <div class='modbox'>
+              <ul>
+                <script language='javascript' src='/doc/1/provide/31/provide_info.js'></script>
+              </ul>
+            </div>
+          </div>
+          <div class='mod'>
+            <div class='modth rightlists'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;产品分类</div>
+            <% if @shop.shop_category.parent_id.nil? %>
+              <% @shop.shop_category.subcategories.each do |item| %>
+                <%= link_to item.name, category_shops_shops_path(:category_id => item), :method => :put %>
+              <% end %>
+            <% else%>
+              <% @shop.shop_category.shops.each do |item| -%>
+                <%= link_to item.login_name, shop_path(:id => item)%>[<%= item.products_count %>]
+              <% end -%>
+            <% end %>
+          <div>
+            <script language='javascript' src='/doc/1/inner_class_13.js'></script>
+            <div class='clear'>&nbsp;</div>
+          </div>
+        </div>
+        <div class='mod' id='ad3'>
+          <div class='modth rightlists'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;也许你还对这些产品感兴趣</div>
+          <div class='modbox'>
+            <ul>
+              <script language='javascript' src='../../class_13.js'></script>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div id='right' style="width:720px;">
+        <div id='content_list4'>
+          <div id='inner_main'>
+
+            <div id='inner_photo'>
+            <% if @shop.avatar %><%= image_tag (@shop.avatar.public_filename(:thumb)) %><% end %></div>
+            <div id='inner_about'>
+              <div id='inner_title'>&nbsp;&nbsp;<%= @shop.shopname %></div>
+              <div id='inner_about_p'>
+                <style> P { margin: 0px; } </style>
+                <P><FONT color=#666666>&nbsp;&nbsp;&nbsp;<%= @shop.description %></FONT></P>
+                <p><font color=#666666>&nbsp;地址：<%= @shop.address %></font></p>
+              </div>
+              <div id='title_xk'></div>
+            </div>
+            <div class='clear'>&nbsp;</div>
+          </div>      
+
+          <div class='mod'>
+            <div class='modth'>&nbsp;&nbsp;&nbsp;&nbsp;<a href='1.html'>推荐产品</a>
+            </div>
+
+            <ul>
+              <% @recommend_products.each do |item| %>
+                <li><%= link_to image_tag(item.avatar.public_filename(:tiny)), product_path(:id => item) %><br/>
+                <%= link_to item.name, product_path(:id => item) %></li>
+              <% end %>
+            </ul>
+            <div class='clear'>&nbsp;</div>
+          </div>
+          <div class='mod'>
+            <div class='modth'>&nbsp;&nbsp;&nbsp;优惠说明</div>
+            <div class='modmain'><style> P { margin: 0px; } </style>
+              <P class=MsoNormal style="MARGIN: 0cm 0cm 0pt"><FONT size=3><SPAN style="FONT-FAMILY: 宋体; mso-ascii-font-family: 'Times 
+                  New Roman'; mso-hansi-font-family: 'Times New   Roman'"></SPAN></FONT>&nbsp;</P>          
+              <div class='clear'>&nbsp;</div>
+            </div>
+          </div>
+        </div>
+        <div class='clear'></div>
+        <div class='mod'>
+          <div class='modth'>&nbsp;&nbsp;&nbsp;给商家留言</div>
+          <div class='modmain'><style> P { margin: 0px; } </style>
+            <div class='clear'>&nbsp;</div>
+          </div>
+          <% @posters.each do |comment| %>
+            <div class="answer_photo">
+              <% if comment.poster.avatar %>
+                <%= image_tag(comment.poster.avatar.public_filename(:tiny))%>
+              <% else %>
+                <%= image_tag("../images/noface_tiny.jpg") %>
+              <% end %>
+            </div>
+            <ul>
+              <li class="q_title">
+              <% if logged_in_type == "Company"%>
+                <%= link_to comment.poster.login_name, company_path(:id => comment.poster)%>
+              <% elsif logged_in_type == "Shop"%>
+                <%= link_to comment.poster.login_name, shop_path(:id => comment.poster)%>
+              <% else %>
+                <%= link_to comment.poster.login_name, user_path(:id => comment.poster)%>
+              <% end %>
+              说：</li>
+              <li class="q_con"><%= comment.content %></li>
+              <li class="q_time">[<%= comment.created_at.strftime("%Y-%m-%d %H-%m") %>]
+            </ul>
+          <% end %>
+          <%= will_paginate @posters, :prev => '上一页', :next => '下一页'%>
+          <% unless logged_in_user == @shop %>
+            <% form_for :comment, :url => shop_comments_path(:shop_id => @shop) do |f|%>
+              <table>
+                <tbody>
+                  <tr valign="middle">
+                    <td align="center" height="25" nowrap="nowrap" width="100"> <br>留言内容<font color="#ff3333">*</font></td>
+                    <td height="25">
+                      <%= f.text_area :content, :rows => 5, :cols => 45 %>
+                    </td>
+                  </tr>
+                  <tr valign="middle">
+                    <td height="25">
+                      <%= f.hidden_field (:item_type, :value => "Shop") %>
+                      <%= f.hidden_field (:item_id, :value => @shop.id) %>
+                      <input name="switch" value="<%= shop_path(:id => @shop)%>" type="hidden">
+                      <%= submit_tag '提交' %>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            <% end %>
+          <% end %>
+        </div>      
+      </div>
+      <div class='clear'></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
+<div class="clear"></div>

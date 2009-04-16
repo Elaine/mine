@@ -1,4 +1,5 @@
 class Admin::AskCategoriesController < ApplicationController
+  layout 'admin'
   def create
     @askcategory = AskCategory.new(params[:askcategory])
     if @askcategory.save
@@ -7,7 +8,7 @@ class Admin::AskCategoriesController < ApplicationController
   end
 
   def index
-    @askcategories = AskCategory.find(:all, :order => 'created_at desc')
+    @askcategories = AskCategory.find(:all, :order => 'created_at desc').paginate :page => params[:page], :per_page => 16
     @askcategory = AskCategory.new
   end
 
@@ -16,5 +17,4 @@ class Admin::AskCategoriesController < ApplicationController
     @askcategory.destroy
     redirect_to :action => 'index'
   end
-
 end

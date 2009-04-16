@@ -1,24 +1,14 @@
 class UsersController < ApplicationController
-  def new
-    @user = User.new
-  end
-
-  def create
-    @user = User.new(params[:user])
-    if @user.save
-      @space = Space.create(:user_id => @user.id, :address => "i.#{request.host}/#{@user.username}")
-      @userinfo = UserInfo.create(:user_id => @user.id)
-      #@space = @user.space.create(:address => "i.#{request.host}/#{@user.username}")
-      self.logged_in_user= @user
-      flash[:notice] = "用户注册成功"
-      redirect_to controlpanel_path(:id => @space)
-    else
-      render :action => 'new'
-    end
-  end
-
+  before_filter :login_required, :only => [:edit, :update]
+  after_filter :recent_visit
+  layout 'space'
   def edit
     @user = User.find(params[:id])
+  end
+
+  def edit_userinfo
+    @user = User.find(params[:id])
+    @userinfo = UserInfo.find_by_user_id(@user)
   end
 
   def update
@@ -39,6 +29,32 @@ class UsersController < ApplicationController
         flash[:email] = "输入的历史密码有误"
       end
     end
-    redirect_to edit_reginfo_space_path(:id => logged_in_user)
+    redirect_to edit_user_path(:id => logged_in_user)
   end
+
+  def show
+    @user = User.find(params[:id])
+    @entries = @user.entries.find(:all, :order => 'created_at DESC', :limit => 8)
+    @albums = @user.albums.find(:all, :order => 'created_at DESC', :limit => 8)
+    @friends = @user.friendships.find(:all, :conditions => {:passed => true})
+    @visits = Visit.find_by_sql ["SELECT guest_id, count(DISTINCT guest_id) from visits where url like '%users/?%' GROUP BY guest_id ", @user]
+    @comments = @user.comments
+    @user.update_attributes(:views_count => @user.views_count + 1)
+  end
+
+  def panel
+    @user = User.find(params[:id])
+    @recent_users = User.find(:all, :order => 'created_at DESC', :limit => 20)
+    @myfriends = @user.friendships.find(:all, :conditions => {:passed => true})
+    @friends = Friendship.find_by_sql ["SELECT friend_id as id from friendships where user_id = ? AND passed = ?", @user, true]
+    @activities = Activity.find_by_sql ["SELECT * from activities where user_id in (?)", @friends]
+    @visits = Visit.find_by_sql ["SELECT guest_id, count(DISTINCT guest_id) from visits where url like '%space/?%' GROUP BY guest_id ", @space]
+  end
+
+ def myasks
+    @user = User.find(params[:id])
+    @asks = Ask.find(:all, :conditions => ["user_id = ?",@user]).paginate :page => params[:page], :per_page => 8
+    @answers = Answer.find(:all, :conditions => ["user_id = ?", @user ]).paginate :page => params[:page], :per_page => 8
+  end
+
 end

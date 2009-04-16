@@ -1,0 +1,270 @@
+
+  <div class="header_test">
+  <div id="topnav">
+    <div class="lc">
+      <div class="rc">
+        <div class="left"><a href="/">回到网站首页</a> | <a href="javascript:void(0)" onclick="window.clipboardData.setData('Text',location.href+'\n<%= @user.space.title %>');
+	alert('已经把该网址复制到剪贴板，您可以打开QQ或者MSN的对话框，\n然后使用（Ctrl+V或鼠标右键）粘贴功能给您的好友^_^');">复制地址</a> | <a href="javascript:void(0)" onclick="window.external.AddFavorite(location.href,'<%= @user.space.title %>')">收藏</a><span id="header_msgnew" style="display:none"></span></div>
+        <div class="right"><a href="home.php?u=gaoshan0505" target="_blank">我的个人空间</a> | <a href="ctrlpanel.php">控制面板</a> | <a href="logout.php?r=%2Fctrlpanel.php">注销</a></div>
+      </div>
+    </div>
+  </div>
+  <table width="753" border="0" align="center" cellpadding="0" cellspacing="5">
+    <tr>
+      <td width="22%" height="70"><h1><%= @user.space.title %></h1>
+        <%= @user.space.title %></td>
+    </tr>
+  </table>
+  <!--- <div id="spaces_header"><div class="lc"><div class="rc">
+    <div class="tit"><h1><%= @user.space.title %></h1></div>
+    <div class="desc"><%= @user.space.title %></div>
+<div class="test_ad"><a href="http://www.mimimama.com/buycard/gift.php" target="_blank"><img src="http://www.mimimama.com/new/imagesbeta/adimg/gift.jpg" /></a></div></div></div></div> --->
+  <div id="nav">
+    <div class="lc">
+      <div class="rc"> 
+<font><%= link_to '控制面板', panel_user_path(:id => @user), :class =>'on' %></font>
+        <font><%= link_to '首页', user_path(:id => @user) %></font>
+        <font><%= link_to '个人档案' %></font>
+        <font><%= link_to '博客', user_entries_path(:user_id => @user) %></font>
+        <font><%= link_to '相册', user_albums_path(:user_id => @user) %></font>
+        <font><%= link_to '好友', user_friends_path(:user_id => @user) %></font>
+        <font><%= link_to '留言薄', user_comments_path(:user_id => @user) %></font>
+          <%= link_to '网站首页', home_path %>
+          <div id="tabline"></div>
+      </div>
+    </div>
+  </div>
+  </div><div id="spacesease">
+  <div id="content">
+    <div id="indexleft">
+      <div class="mod">
+        <div class="modth">
+          <div class="lc">
+            <div class="rc">
+              <div class="modtit">
+                <h1> <%= @user.space.title %> </h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        <%= render :partial => 'shared/profile'%> 
+      </div>
+      <div class="mod">
+        <div class="modth">
+          <div class="lc">
+            <div class="rc">
+              <div class="modtit">
+                <h1>个人管理</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modbox" id="m_list">
+          <ul>
+            <li><%= link_to '控制面板首页', panel_user_path(:id => @user) %></li>
+            <li><%= link_to '个人档案设置' %></li>
+            <li><%= link_to '修改密码', edit_user_path(:id => @user) %></li>
+            <li><%= link_to '隐私设置', edit_userinfo_user_path(:id => @user)%></li>
+            <li><%= link_to '美化空间', edit_user_path(:id => @user)%></li>
+			<li><%= link_to '我的问答', myasks_users_path(:id => @user)%></li>
+			<li><%= link_to '发表文章', new_user_entry_path(:user_id => @user)%></li>
+			<li><%= link_to '新建相册', new_user_album_path(:user_id => @user)%></li>
+			 <li><% if logged_in_user == @user%>
+                 <%= link_to '我的博客', user_entries_path(:user_id => @user)%>
+              <% end %></li>
+			<li><%= link_to '发起活动', new_event_path %></li>
+			<li><%= link_to '发布消息', new_info_path %></li>
+            <li><%= link_to '站内消息', user_messages_path(:user_id => @user) %></li>
+            <!--<li><a href="#">标签管理</a></li>-->
+          </ul>        </div>
+      </div>
+      <div class="mod">
+        <div class="modth">
+          <div class="lc">
+            <div class="rc">
+              <div class="modtit">
+                <h1>邀请好友</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modbox">
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td><textarea name="textarea" cols="10" style="overflow:auto;">http://www.mimimama.com/home.php?u=gaoshan0505</textarea></td>
+              <td align="center" valign="top"><input type="image" name="Submit" src="../images/user/yaoqing.gif"  onclick="copytoBoard()" />
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div id="con">
+      <div class="mod">
+        <div class="modth">
+          <div class="lc">
+            <div class="rc">
+              <div class="modtit">
+                <h1>欢迎回来，天空css</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modbox"> 您现有积分
+          <%= @user.score%> 
+          分[<a href="?action=ur">更新我的积分</a>]，等级:军团学员(1级)，当前您的<a href="http://www.mimimama.com/mysetting.php">个人档案</a>完善度为40%。<br />
+                    <a href="/CardActivation.php"><span style="color:#FF0000">激活会员卡</span></a> <br />
+                    <div class="clear">&nbsp;</div>
+        </div>
+      </div>
+      <div class="mod">
+        <div class="modth">
+          <div class="lc">
+            <div class="rc">
+              <div class="modtit">
+                <h1>最近访客</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="m_friend" class="modbox">
+          <ul>
+           
+            <% @visits.each do |visit|%>
+			 <li>
+             <% if visit.guest.avatar %>
+               <%= image_tag(visit.guest.avatar.public_filename(:tiny))%>
+             <% else %>
+               <%= image_tag("../images/noface_tiny.jpg")%>
+             <% end %>
+             <%= link_to visit.guest.login_name, user_path(:id => visit.guest) %>
+			  </li>
+            <% end %>
+          </ul>
+          <div class="clear">&nbsp;</div>
+        </div>
+      </div>
+      <div class="mod">
+        <div class="modth">
+          <div class="lc">
+            <div class="rc">
+              <div class="modtit">
+                <h1>好友新鲜事</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modbox">
+		<% @activities.each do |activity|%>
+        <% unless activity.item.nil? %>
+            <%= minifeed_message activity %>
+             <%= activity.created_at.strftime("%Y-%m-%d %H-%m")%>
+             <br/>
+             <% end %>
+         <% end %>
+            <div class="clear">&nbsp;</div>
+        </div>
+      </div>
+      <div class="mod">
+        <div class="modth">
+          <div class="lc">
+            <div class="rc">
+              <div class="modtit">
+                <h1>最近加入</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="m_friend2" class="modbox">
+          <ul>
+            <% @recent_users.each do |user|%>
+			<li>
+               <% if user.avatar %>
+               <%= image_tag(user.avatar.public_filename(:tiny)) %>
+               <% else %>
+             <%= image_tag("../images/noface_tiny.jpg") %>
+            <% end %>
+                <%= link_to user.login_name, user_path(:id => user.id)%>
+                 </li>
+           <% end %>
+          </ul>
+          <div class="clear">&nbsp;</div>
+        </div>
+      </div>
+    </div>
+    <div id="right">
+      <div class="mod">
+        <div class="modth">
+          <div class="lc">
+            <div class="rc">
+              <div class="modtit">
+                <h1>空间统计</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modbox">博客文章：<%= @user.entries_count %><br />
+          相册照片：<%= @user.albums_count %><br />
+          点评数：<%= @user.votes_count%><br />
+          空间访问量：<%= @user.views_count %></div>
+      </div>
+      <div class="mod">
+        <div class="modth">
+          <div class="lc">
+            <div class="rc">
+              <div class="modtit">
+                <h1>我的好友 </h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modbox">
+          <div id="myfriends">
+            <img onclick="warpclass('myf1','myf1_w')" id="myf1_w" src="../images/user/ico_dn.gif" width="16" height="16" class="imgmiddle"  />
+            我的好友(<%= @myfriends.size %>)
+            <div  id="m_friend2">
+			<ul>
+              <% @myfriends.each do |item| %>
+			  <li style="width:70px; margin-left:5px; float:left">
+                <% if item.friend.avatar %>
+                  <%= image_tag(item.friend.avatar.public_filename(:tiny)) %>
+                <% else %>
+                 <%= image_tag("../images/noface_tiny.jpg") %>
+                <% end %>
+                 <%= link_to item.friend.login_name %>
+				</li>
+              <% end %>
+			  </ul>
+            </div>
+            <div class="clear"></div>
+          </div>
+        </div>
+      </div> 
+	  </div><div class="clear"></div>
+    <div class="clear"></div>
+    <div id="foot"> 版权所有2007-2008©密密麻麻网<br />
+        <script type="text/javascript" src="/scripts/stat.js"></script>
+        <!--<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-96370-2";
+urchinTracker();
+</script>-->
+        <script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+        <script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-96370-2");
+pageTracker._initData();
+pageTracker._trackPageview();
+  </script>
+        <!-- 51.la统计代码  -->
+        <script language="javascript" type="text/javascript" src="http://js.users.51.la/2107423.js"></script>
+        <noscript>
+        <a href="http://www.51.la/?2107423" target="_blank"><img alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/2107423.asp" style="border:none" /></a>
+        </noscript>
+        <!-- 51.la统计代码 -->
+    </div>
+  </div>
+</div>
